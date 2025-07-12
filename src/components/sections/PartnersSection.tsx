@@ -14,7 +14,7 @@ const PartnersSection = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-2xl md:text-3xl font-bold text-secondary-custom mb-4">
-            Exploring Colloborations with trusted partners like
+            Exploring Colloborations with Trusted Partners like
           </h2>
         </div>
         

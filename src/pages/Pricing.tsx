@@ -153,7 +153,8 @@ const Pricing = () => {
             {/* Free Forever Plan */}
             <Card className="relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 animate-slide-up hover:border-primary-custom">
               <CardHeader className="text-center pb-4">
-                <CardTitle className="text-2xl font-bold text-secondary-custom mb-2">Free Forever ({getPriceDetails("free", billingPeriod).current})</CardTitle>
+              {/* ({getPriceDetails("free", billingPeriod).current}) */}
+                <CardTitle className="text-2xl font-bold text-secondary-custom mb-2">Free Forever </CardTitle>
                 <p className="text-sub mb-4">WhatsApp + AI Analysis</p>
                 
                 <div className="mt-4 space-y-2">

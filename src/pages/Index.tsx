@@ -7,6 +7,7 @@ import MedicalAdvisorsSection from "@/components/sections/MedicalAdvisorsSection
 import PartnersSection from "@/components/sections/PartnersSection";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import CallToActionSection from "@/components/sections/CallToActionSection";
+import QRCodeSection from "@/components/sections/QRCodeSection";
 
 const Index = () => {
   return (
@@ -14,6 +15,7 @@ const Index = () => {
       <HeroSection />
       <FeaturesSection />
       <CircularHealthFeatures />
+      <QRCodeSection />
       <MedicalAdvisorsSection />
       <PartnersSection />
       <TestimonialsSection />

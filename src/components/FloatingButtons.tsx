@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { ArrowUp, MessageCircle, Phone } from 'lucide-react';
+import { FaWhatsapp } from 'react-icons/fa';
 import { Button } from '@/components/ui/button';
 import { useLocation } from 'react-router-dom';
 
@@ -40,10 +41,11 @@ const FloatingButtons = () => {
       {/* WhatsApp Button */}
       <Button
         onClick={openWhatsApp}
-        className="fixed bottom-6 left-6 z-50 w-14 h-14 rounded-full bg-green-500 hover:bg-green-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
+        className="fixed bottom-6 left-6 z-50 w-14 h-14 rounded-full bg-green-500 hover:bg-green-600 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 flex items-center justify-center"
         size="icon"
       >
-        <MessageCircle className="w-6 h-6" />
+        {/* <MessageCircle className="w-6 h-6" /> */}
+        <FaWhatsapp className="w-15 h-15" />
       </Button>
 
       {/* Schedule Call Button - Only on Pricing Page */}
