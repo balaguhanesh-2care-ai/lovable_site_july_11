@@ -1,9 +1,12 @@
-
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Users, Zap, Heart, TrendingUp, IndianRupee, Settings } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import PartnershipForm from "@/components/PartnershipForm";
 
 const Partners = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const partnershipSteps = [
     {
       icon: <Users className="w-12 h-12 text-primary-custom" />,
@@ -59,23 +62,23 @@ const Partners = () => {
   ];
 
   return (
-    <div className="min-h-screen py-12">
-      <div className="container mx-auto px-4">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-secondary-custom mb-4">
-            Join Us for a World Where Distance Never Stands Between Family and Care
-          </h1>
-          <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-8">
-            Our partners drive growth and impact for themselves and their patients with exclusive access inside 2care.ai technology and tools. Join us as home healthcare providers, geriatric clinics, multi-specialty hospitals, nursing homes, and ambulance services.
-          </p>
-          <Button 
-            className="bg-primary-custom hover:bg-primary-custom/90 text-white px-8 py-3 text-lg"
-            onClick={() => window.open('https://form.typeform.com/to/BrsK6GfH', '_blank')}
-          >
-            Apply for Partnership
-          </Button>
-        </div>
+    <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+      <div className="min-h-screen py-12">
+        <div className="container mx-auto px-4">
+          {/* Header */}
+          <div className="text-center mb-16">
+            <h1 className="text-4xl md:text-5xl font-bold text-secondary-custom mb-4">
+              Join Us for a World Where Distance Never Stands Between Family and Care
+            </h1>
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-8">
+              Our partners drive growth and impact for themselves and their patients with exclusive access inside 2care.ai technology and tools. Join us as home healthcare providers, geriatric clinics, multi-specialty hospitals, nursing homes, and ambulance services.
+            </p>
+            <DialogTrigger asChild>
+              <Button className="bg-primary-custom hover:bg-primary-custom/90 text-white px-8 py-3 text-lg">
+                Apply for Partnership
+              </Button>
+            </DialogTrigger>
+          </div>
 
         {/* How To Partner With Us */}
         <section className="mb-16">
@@ -136,17 +139,23 @@ const Partners = () => {
               <p className="text-xl mb-8 opacity-90">
                 Join our growing network of healthcare partners and make a difference in families' lives
               </p>
-              <Button 
-                className="bg-white text-primary-custom hover:bg-gray-100 px-8 py-3 text-lg"
-                onClick={() => window.open('https://form.typeform.com/to/BrsK6GfH', '_blank')}
-              >
-                Start Partnership Application
-              </Button>
+              <DialogTrigger asChild>
+                <Button className="bg-white text-primary-custom hover:bg-gray-100 px-8 py-3 text-lg">
+                  Start Partnership Application
+                </Button>
+              </DialogTrigger>
             </CardContent>
           </Card>
         </section>
       </div>
-    </div>
+    <DialogContent className="sm:max-w-2xl p-6">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-bold text-secondary-custom">Partnership Application</DialogTitle>
+          </DialogHeader>
+          <PartnershipForm onSuccess={() => setIsModalOpen(false)} />
+        </DialogContent>
+      </div>
+    </Dialog>
   );
 };
 

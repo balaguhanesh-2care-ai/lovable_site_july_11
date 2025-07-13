@@ -4,9 +4,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Check, Clock, Lightbulb } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import FeatureRequestForm from "@/components/FeatureRequestForm";
 
 const ProductUpdates = () => {
   const [selectedFilter, setSelectedFilter] = useState("all");
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const updates = [
     {
@@ -136,12 +139,19 @@ const ProductUpdates = () => {
               </div>
               <h3 className="text-lg font-semibold text-secondary-custom mb-2">Request a Feature</h3>
               <p className="text-gray-600 mb-4">Have an idea? Let us know what you'd like to see!</p>
-              <Button 
-                className="bg-primary-custom hover:bg-primary-custom/90 text-white"
-                onClick={() => window.open('https://app.youform.com/forms/utz58uui', '_blank')}
-              >
-                Request Feature
-              </Button>
+              <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+                <DialogTrigger asChild>
+                  <Button className="bg-primary-custom hover:bg-primary-custom/90 text-white">
+                    Request Feature
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-lg">
+                  <DialogHeader>
+                    <DialogTitle>Share Your Idea</DialogTitle>
+                  </DialogHeader>
+                  <FeatureRequestForm onSuccess={() => setIsModalOpen(false)} />
+                </DialogContent>
+              </Dialog>
             </CardContent>
           </Card>
         </div>
