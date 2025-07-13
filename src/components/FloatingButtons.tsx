@@ -27,7 +27,7 @@ const FloatingButtons = () => {
   };
 
   const openWhatsApp = () => {
-    window.open('https://wa.me/916364872888', '_blank');
+    window.open('https://api.whatsapp.com/send/?phone=916364872188&text=Hi&type=phone_number&app_absent=0', '_blank');
   };
 
   const openScheduleCall = () => {

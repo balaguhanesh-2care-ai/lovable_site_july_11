@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Send, Phone, Mail, MapPin } from "lucide-react";
+import { Turnstile } from "@marsidev/react-turnstile";
 
 
 
@@ -16,9 +17,10 @@ const LetsConnect = () => {
     message: ""
   });
 
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submissionStatus, setSubmissionStatus] = useState<'success' | 'error' | null>(null);
-  
+  const [captchaError, setCaptchaError] = useState<string | null>(null);
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -29,6 +31,12 @@ const LetsConnect = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!turnstileToken) {
+      alert("Please complete the CAPTCHA before submitting.");
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmissionStatus(null);
 
@@ -38,7 +46,7 @@ const LetsConnect = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ ...formData}),
+        body: JSON.stringify({ ...formData, "cf-turnstile-response": turnstileToken }),
       });
 
       if (response.ok) {
@@ -138,6 +146,16 @@ const LetsConnect = () => {
                     />
                   </div>
 
+                  <Turnstile 
+                    siteKey={import.meta.env.VITE_CLOUDFLARE_TURNSTILE_SITE_KEY}
+                    onSuccess={(token) => {
+                      setTurnstileToken(token);
+                      setCaptchaError(null); // Clear error on success
+                    }}
+                    onError={() => setCaptchaError("CAPTCHA failed to load. Please refresh or check your ad-blocker.")}
+                    onExpire={() => setTurnstileToken(null)}
+                    options={{ theme: 'light' }}
+                  />
                   <Button
                     type="submit"
                     className="w-full bg-secondary-custom hover:bg-secondary-custom/90 text-white py-3 rounded-full transition-all duration-300 hover:shadow-lg"
@@ -155,7 +173,7 @@ const LetsConnect = () => {
                   
                   {submissionStatus === 'success' && (
                     <p className="text-green-600 text-center font-medium mt-4">
-                      Thank you! Your message has been sent.
+                      Thank you! Your message has been sent. We will reach out to you.
                     </p>
                   )}
                   {submissionStatus === 'error' && (

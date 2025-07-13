@@ -9,13 +9,13 @@ const QRCodeSection = () => {
         <div className="flex flex-col md:flex-row items-center justify-center md:space-x-8">
           <div className="text-center md:text-left mb-8 md:mb-0">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-800">
-              How to get Started?
+              How to get started?
             </h2>
             <p className="text-lg mb-2 text-gray-600">
               (1) You can click on the whatsapp Icon on the Bottom left of the website.
             </p>
             <p className="text-lg mb-2 text-gray-600">
-              (2) Reach us out through Whatsapp number <span className='font-bold'>6364872188</span>
+              (2) Reach us out through Whatsapp number <span className='font-bold'>+91 63648 72188</span>
             </p>
             <p className="text-lg text-gray-600 font-bold">
               (3) Scan the QR code to connect with us.

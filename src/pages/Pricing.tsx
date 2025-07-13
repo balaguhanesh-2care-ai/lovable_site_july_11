@@ -8,6 +8,7 @@ import { Check, X, ChevronDown, ChevronUp } from "lucide-react";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import RazorpayButton from "@/components/RazorpayButton";
+import { Separator } from "@/components/ui/separator";
 
 const Pricing = () => {
   const [knowMoreOpen, setKnowMoreOpen] = useState(false);
@@ -176,7 +177,11 @@ const Pricing = () => {
                 </div>
               </CardHeader>
               
-              <CardContent className="space-y-4 flex justify-center items-center">
+              <CardContent className="space-y-4 flex flex-col justify-center items-center">
+                <Separator />
+                <p className="text-center text-sub">
+                  For one time doctor's appointments.
+                </p>
                 {/* <Button className="w-full bg-primary-custom hover:bg-primary-custom/90 text-white transition-all duration-300 hover:scale-105">
                   Get Started
                 </Button> */}
