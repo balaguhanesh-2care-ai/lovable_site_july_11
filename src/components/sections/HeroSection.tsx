@@ -8,7 +8,7 @@ const HeroSection = () => {
     <>
       <CursorGlow />
       <section 
-        className="relative overflow-hidden flex flex-col justify-center items-center min-h-screen w-full"
+        className="relative overflow-hidden flex flex-col justify-center items-center min-h-screen w-full overflow-x-hidden"
         style={{ minHeight: '100vh', height: '100vh', width: '100vw' }}
       >
         {/* Galaxy Video Background */}

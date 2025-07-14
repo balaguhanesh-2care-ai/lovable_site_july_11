@@ -1,5 +1,7 @@
 
 import { useState } from "react";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import LetsConnect from "@/components/LetsConnect";
 import HeroSection from "@/components/sections/HeroSection";
 import FeaturesSection from "@/components/sections/FeaturesSection";
@@ -11,6 +13,7 @@ import CallToActionSection from "@/components/sections/CallToActionSection";
 import QRCodeSection from "@/components/sections/QRCodeSection";
 import DashboardSlideshow from "@/components/DashboardSlideshow";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import MacbookFrame from "@/components/MacbookFrame";
 
 const LaptopSection = () => (
   <section className="py-10 sm:py-16 md:py-20 bg-white flex justify-center">
@@ -48,33 +51,36 @@ const LaptopSection = () => (
 );
 
 const Index = () => {
-  const [showRest, setShowRest] = useState(false);
+  const scrollRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: scrollRef,
+    offset: ["start start", "end start"],
+  });
+
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
+  const laptopScale = useTransform(scrollYProgress, [0.5, 0.9], [0.8, 1.2]);
+  const laptopY = useTransform(scrollYProgress, [0.5, 0.9], ["100vh", "0vh"]);
+
   return (
-    <div className="min-h-screen w-full overflow-x-hidden">
-      {/* Hero Section with Down Arrow */}
-      <div
-        className={`fixed inset-0 z-40 flex flex-col items-center justify-center bg-transparent transition-opacity duration-700 ${showRest ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
-        style={{ minHeight: '100vh', height: '100vh', width: '100vw' }}
-      >
-        <HeroSection />
-        <button
-          className="fixed bottom-6 right-6 bg-white/80 hover:bg-white text-primary-custom rounded-full p-3 shadow-lg transition-all duration-300 animate-float-down z-50"
-          aria-label="Scroll down"
-          onClick={() => setShowRest(true)}
+    <div className="min-h-screen bg-main-bg overflow-x-hidden">
+      <div ref={scrollRef} className="relative h-[200vh]">
+        <motion.div style={{ opacity: heroOpacity }} className="sticky top-0 h-screen">
+          <HeroSection />
+        </motion.div>
+        
+        <motion.div 
+          style={{ scale: laptopScale, y: laptopY }} 
+          className="absolute top-0 w-full h-screen flex items-center justify-center"
         >
-          <ChevronDown className="w-8 h-8" />
-        </button>
+          {/* You can replace this placeholder with your actual laptop image */}
+          {/* <img src="/placeholder.svg" alt="Laptop" className="w-3/4 h-3/4 object-contain" /> */}
+          <MacbookFrame>
+            <DashboardSlideshow />
+          </MacbookFrame>
+        </motion.div>
       </div>
-      {/* Rest of Homepage (fades in) */}
-      <div className={`transition-opacity duration-700 ${showRest ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-        <button
-          className="fixed bottom-6 right-6 bg-white/80 hover:bg-white text-primary-custom rounded-full p-3 shadow-lg transition-all duration-300 z-50"
-          aria-label="Scroll up"
-          onClick={() => setShowRest(false)}
-        >
-          <ChevronUp className="w-8 h-8" />
-        </button>
-        <LaptopSection />
+
+      <div className="relative z-10 bg-main-bg">
         <FeaturesSection />
         <CircularHealthFeatures />
         <QRCodeSection />
