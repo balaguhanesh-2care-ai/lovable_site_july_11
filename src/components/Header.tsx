@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -7,11 +6,29 @@ import { Menu, X } from "lucide-react";
 interface HeaderProps {
   onLoginClick: () => void;
   onSignupClick: () => void;
+  minimal?: boolean;
+  logoSize?: string; // Add logoSize prop
 }
 
-const Header = ({ onLoginClick, onSignupClick }: HeaderProps) => {
+const Header = ({ onLoginClick, onSignupClick, minimal = false, logoSize = "h-12" }: HeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+
+  if (minimal) {
+    return (
+      <header className="bg-white shadow-lg sticky top-0 z-50 border-b border-light-outline">
+        <div className="container mx-auto px-4 py-4 flex items-center justify-center md:justify-start">
+          <Link to="/" className="flex items-center space-x-3 hover:scale-105 transition-transform duration-200">
+            <img 
+              src="/lovable-uploads/c0b20459-77f5-436c-a4c2-5abc339a3735.png" 
+              alt="2care.ai Logo"
+              className={logoSize}
+            />
+          </Link>
+        </div>
+      </header>
+    );
+  }
 
   const navItems = [
     { label: "Home", path: "/" },
@@ -27,24 +44,24 @@ const Header = ({ onLoginClick, onSignupClick }: HeaderProps) => {
 
   return (
     <header className="bg-white shadow-lg sticky top-0 z-50 border-b border-light-outline">
-      <div className="container mx-auto px-4 py-4">
+      <div className="container mx-auto px-4 py-3 sm:py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 hover:scale-105 transition-transform duration-200">
             <img 
               src="/lovable-uploads/c0b20459-77f5-436c-a4c2-5abc339a3735.png" 
               alt="2care.ai Logo"
-              className="h-12"
+              className={`h-9 sm:h-10 md:${logoSize} w-auto`}
             />
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8">
+          <nav className="hidden lg:flex items-center space-x-4 xl:space-x-8">
             {navItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
-                className={`text-sm font-semibold transition-all duration-200 hover:text-primary-custom hover:scale-105 relative ${
+                className={`text-sm md:text-base font-semibold transition-all duration-200 hover:text-primary-custom hover:scale-105 relative px-1 md:px-2 ${
                   isActive(item.path) 
                     ? "text-primary-custom after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-0.5 after:bg-primary-custom" 
                     : "text-secondary-custom hover:text-primary-custom"
@@ -56,23 +73,15 @@ const Header = ({ onLoginClick, onSignupClick }: HeaderProps) => {
           </nav>
 
           {/* Desktop Auth Buttons */}
-          <div className="hidden lg:flex items-center space-x-4">
-            {/* <Button
-              variant="outline"
-              onClick={onLoginClick}
-              className="border-2 border-primary-custom text-primary-custom hover:bg-primary-custom hover:text-white hover:scale-105 transition-all duration-300 font-semibold shadow-sm hover:shadow-md px-6 py-2"
-            >
-              Login
-            </Button> */}
+          <div className="hidden lg:flex items-center space-x-2 xl:space-x-4">
             <Button
-              // onClick={onSignupClick}
               onClick={() => {
                 window.open(
                   "https://api.whatsapp.com/send/?phone=916364872188&text=Hi&type=phone_number&app_absent=0",
                   "_blank"
                 );
               }}
-              className="bg-gradient-to-r from-primary-custom to-tertiary-custom hover:from-primary-custom/90 hover:to-tertiary-custom/90 text-white hover:scale-105 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl px-6 py-2"
+              className="bg-gradient-to-r from-primary-custom to-tertiary-custom hover:from-primary-custom/90 hover:to-tertiary-custom/90 text-white hover:scale-105 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl px-4 py-2 md:px-6"
             >
               Sign Up
             </Button>
@@ -84,56 +93,63 @@ const Header = ({ onLoginClick, onSignupClick }: HeaderProps) => {
             size="icon"
             className="lg:hidden hover:bg-primary-custom/10 text-primary-custom"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Open menu"
           >
             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </Button>
         </div>
-
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="lg:hidden mt-4 pb-4 border-t border-light-outline animate-fade-in">
-            <nav className="flex flex-col space-y-4 mt-4">
+      </div>
+      {/* Mobile Navigation Overlay */}
+      {isMenuOpen && (
+        <div className="fixed inset-0 z-50 bg-black/40 flex flex-col lg:hidden">
+          <div className="bg-white w-full shadow-lg border-b border-light-outline animate-fade-in px-6 py-6">
+            <div className="flex items-center justify-between mb-6">
+              <Link to="/" className="flex items-center space-x-3" onClick={() => setIsMenuOpen(false)}>
+                <img 
+                  src="/lovable-uploads/c0b20459-77f5-436c-a4c2-5abc339a3735.png" 
+                  alt="2care.ai Logo"
+                  className="h-9 w-auto"
+                />
+              </Link>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="text-primary-custom"
+                onClick={() => setIsMenuOpen(false)}
+                aria-label="Close menu"
+              >
+                <X className="w-7 h-7" />
+              </Button>
+            </div>
+            <nav className="flex flex-col space-y-4">
               {navItems.map((item) => (
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`text-sm font-semibold transition-colors hover:text-primary-custom py-2 ${
-                    isActive(item.path) ? "text-primary-custom" : "text-secondary-custom"
+                  className={`text-base font-semibold transition-colors hover:text-primary-custom py-2 px-2 rounded-lg ${
+                    isActive(item.path) ? "text-primary-custom bg-primary-custom/10" : "text-secondary-custom"
                   }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.label}
                 </Link>
               ))}
-              <div className="flex flex-col space-y-3 mt-6 pt-4 border-t border-light-outline">
-                {/* <Button
-                  variant="outline"
-                  onClick={() => {
-                    onLoginClick();
-                    setIsMenuOpen(false);
-                  }}
-                  className="border-2 border-primary-custom text-primary-custom hover:bg-primary-custom hover:text-white transition-all duration-300 font-semibold"
-                >
-                  Login
-                </Button> */}
-                <Button
-                  onClick={() => {
-                    // onSignupClick();
-                    window.open(
-                      "https://api.whatsapp.com/send/?phone=916364872188&text=Hi&type=phone_number&app_absent=0",
-                      "_blank"
-                    );
-                    setIsMenuOpen(false);
-                  }}
-                  className="bg-gradient-to-r from-primary-custom to-tertiary-custom hover:from-primary-custom/90 hover:to-tertiary-custom/90 text-white font-semibold shadow-lg"
-                >
-                  Sign Up
-                </Button>
-              </div>
+              <Button
+                onClick={() => {
+                  window.open(
+                    "https://api.whatsapp.com/send/?phone=916364872188&text=Hi&type=phone_number&app_absent=0",
+                    "_blank"
+                  );
+                  setIsMenuOpen(false);
+                }}
+                className="bg-gradient-to-r from-primary-custom to-tertiary-custom hover:from-primary-custom/90 hover:to-tertiary-custom/90 text-white font-semibold shadow-lg mt-4 py-3"
+              >
+                Sign Up
+              </Button>
             </nav>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </header>
   );
 };
