@@ -28,17 +28,17 @@ export default {
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))',
-					custom: '#45b7d1'
+					custom: '#40AFCA'
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
 					foreground: 'hsl(var(--secondary-foreground))',
-					custom: '#2b4570'
+					custom: '#2C456E'
 				},
 				tertiary: {
 					DEFAULT: 'hsl(var(--tertiary))',
 					foreground: 'hsl(var(--tertiary-foreground))',
-					custom: '#3fc4e2'
+					custom: '#3FC5E2'
 				},
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',
@@ -75,6 +75,9 @@ export default {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
+			},
+			backgroundImage: {
+				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
 			},
 			keyframes: {
 				'accordion-down': {

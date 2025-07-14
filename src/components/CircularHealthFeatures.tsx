@@ -149,8 +149,35 @@ const CircularHealthFeatures = () => {
           </div>
         </div>
       </div>
+      {/* Custom animation keyframes for card stack */}
+      <style>{`
+        .card-slide-in {
+          opacity: 0;
+          transform: translateX(-100%) scale(0.95);
+          animation: cardIn 0.6s cubic-bezier(0.4,0,0.2,1) forwards;
+        }
+        .card-slide-stay {
+          opacity: 1;
+          transform: translateX(0) scale(1);
+          transition: opacity 0.2s, transform 0.2s;
+        }
+        .card-slide-out {
+          opacity: 1;
+          transform: translateX(0) scale(1);
+          animation: cardOut 0.6s cubic-bezier(0.4,0,0.2,1) forwards;
+        }
+        @keyframes cardIn {
+          0% { opacity: 0; transform: translateX(-100%) scale(0.95); }
+          80% { opacity: 1; transform: translateX(8%) scale(1.04); }
+          100% { opacity: 1; transform: translateX(0) scale(1); }
+        }
+        @keyframes cardOut {
+          0% { opacity: 1; transform: translateX(0) scale(1); }
+          100% { opacity: 0; transform: translateX(100%) scale(0.95); }
+        }
+      `}</style>
     </section>
   );
 };
 
-export default CircularHealthFeatures;
+export default CardStackAnimation;
