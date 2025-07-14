@@ -4,10 +4,6 @@ if (!process.env.DATABASE_URL) {
   throw new Error("DATABASE_URL environment variable is not set in the production environment.");
 }
 
-// We are returning to this manual parsing method. The error "server does not allow
-// insecure connections" means we must explicitly build a configuration object
-// to force the SSL/TLS connection that PlanetScale requires.
-
 const connectionUrl = new URL(process.env.DATABASE_URL);
 
 const config = {
@@ -16,8 +12,7 @@ const config = {
   password: connectionUrl.password,
   database: connectionUrl.pathname.substring(1), // Removes the leading '/'
   port: connectionUrl.port || 3306,
-  // This is the critical part that solves the error.
-  // It explicitly tells the mysql2 client to use SSL/TLS.
+
   ssl: {
     // This enforces the secure connection.
     rejectUnauthorized: true,

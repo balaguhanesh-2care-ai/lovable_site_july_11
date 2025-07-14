@@ -22,7 +22,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
 
-  const { name, email, phone, firmName, industry, location, "cf-turnstile-response": turnstileToken } = req.body;
+  const { name, email, phone, message, "cf-turnstile-response": turnstileToken } = req.body;
 
   const isHuman = await verifyTurnstile(turnstileToken);
   if (!isHuman) {
