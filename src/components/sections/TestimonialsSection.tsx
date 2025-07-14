@@ -1,121 +1,159 @@
-
 import { Card, CardContent } from "@/components/ui/card";
-import { Star } from "lucide-react";
+import { motion, TargetAndTransition, useAnimation } from "framer-motion";
+import React, { useEffect, useMemo } from "react";
+import { User } from "lucide-react";
+import { FloatingBlobsBackgroundDark } from "../ui/FloatingBlobsBackgroundDark";
 
-const TestimonialsSection = () => {
-  const testimonials = [
-    {
-      name: "Ravi S",
-      role: "Son, San Jose, CA",
-      content: "I finally feel in control of my parents’ health without a single late-night call or confusing report.",
-      rating: 5
+const testimonials = [
+  {
+    name: "Ravi S",
+    role: "Son, San Jose, CA",
+    content: "I finally feel in control of my parents’ health without a single late-night call or confusing report.",
+    avatar: "",
+  },
+  {
+    name: "Anita Patel",
+    role: "Daughter, Ahmedabad",
+    content: "My elderly mother loves the daily health check-ins. The family connection feature keeps us all informed about her wellbeing.",
+    avatar: "",
+  },
+  {
+    name: "Priya Sharma",
+    role: "Caregiver, Mumbai",
+    content: "This service is a lifesaver. It simplifies managing multiple medications and appointments.",
+    avatar: "",
+  },
+  {
+    name: "Amit Kumar",
+    role: "Son, Delhi",
+    content: "The peace of mind this provides is invaluable. I can check on my father's vitals from anywhere.",
+    avatar: "",
+  },
+  {
+    name: "Sunita Reddy",
+    role: "Daughter, Bangalore",
+    content: "The AI alerts are incredibly accurate and have helped us prevent a couple of emergencies.",
+    avatar: "",
+  },
+  {
+    name: "Vikram Singh",
+    role: "Son, Kolkata",
+    content: "A must-have for anyone with elderly parents living alone. The user interface is so simple for them to use.",
+    avatar: "",
+  },
+];
+
+type Testimonial = typeof testimonials[number];
+
+const TestimonialCard = ({ testimonial }: { testimonial: Testimonial }) => {
+  return (
+    <Card className="bg-white/60 backdrop-blur-md border-white/20 text-slate-800 shadow-lg rounded-xl transition-all duration-300 group hover:bg-primary-custom hover:text-white hover:scale-105 hover:shadow-xl">
+      <CardContent className="p-4">
+        <div className="flex items-start gap-3">
+          <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary-custom flex items-center justify-center group-hover:bg-white transition-colors">
+            {testimonial.avatar ? (
+              <img src={testimonial.avatar} alt={testimonial.name} className="w-full h-full object-cover rounded-full" />
+            ) : (
+              <User className="w-5 h-5 text-white group-hover:text-primary-custom transition-colors" />
+            )}
+          </div>
+          <div className="flex-grow">
+            <p className="font-bold">{testimonial.name}</p>
+            <p className="text-sm text-gray-500 mb-2 group-hover:text-gray-200 transition-colors">{testimonial.role}</p>
+            <p className="text-slate-700 leading-relaxed group-hover:text-gray-100 transition-colors">{testimonial.content}</p>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+};
+interface TestimonialColumnProps {
+  testimonials: Testimonial[];
+  duration?: number;
+  direction?: 'up' | 'down';
+}
+
+const TestimonialColumn = ({ testimonials, duration = 60, direction = 'up' }: TestimonialColumnProps) => {
+  const controls = useAnimation();
+
+  const animationDefinition: TargetAndTransition = useMemo(() => ({
+    y: direction === 'up' ? ['0%', '-50%'] : ['-50%', '0%'],
+    transition: {
+      y: {
+        duration: duration,
+        ease: 'linear',
+        repeat: Infinity,
+      },
     },
-    {
-      name: "Anita Patel", 
-      role: "Daughter, Ahmedabad",
-      content: "My elderly mother loves the daily health check-ins. The family connection feature keeps us all informed about her wellbeing.",
-      rating: 5
-    }
-  ];
+  }), [direction, duration]);
+
+  useEffect(() => {
+    controls.start(animationDefinition);
+  }, [controls, animationDefinition]);
 
   return (
-    <section className="py-24 bg-gradient-to-br from-slate-50 to-white">
-      <div className="container mx-auto px-6 max-w-7xl">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6 leading-tight">
-            Trusted by Families Across India
-          </h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            See what families are saying about their experience with 2care.ai
-          </p>
-        </div>
-        
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-          {/* Left Testimonial */}
-          <div className="lg:mt-8">
-            <Card className="h-full bg-white border-0 shadow-xl hover:shadow-2xl transition-all duration-500 rounded-2xl overflow-hidden group hover:-translate-y-2">
-              <CardContent className="p-8">
-                <div className="flex items-center mb-6">
-                  {[...Array(testimonials[0].rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
-                  ))}
-                </div>
-                <blockquote className="text-slate-700 mb-8 text-lg leading-relaxed italic font-medium">
-                  "{testimonials[0].content}"
-                </blockquote>
-                <div className="border-t border-slate-100 pt-6">
-                  <p className="font-bold text-slate-800 text-lg">{testimonials[0].name}</p>
-                  <p className="text-slate-500 text-sm mt-1">{testimonials[0].role}</p>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+    <motion.div
+      onMouseEnter={() => controls.stop()}
+      onMouseLeave={() => controls.start(animationDefinition)}
+      className="flex flex-col gap-8"
+      animate={controls}
+    >
+      {[...testimonials, ...testimonials].map((testimonial, index) => (
+        <TestimonialCard key={`${testimonial.name}-${index}`} testimonial={testimonial} />
+      ))}
+    </motion.div>
+  );
+};
 
-          {/* Center YouTube Video */}
-          <div className="lg:mt-0">
-            <Card className="bg-white border-0 shadow-xl rounded-2xl overflow-hidden">
-              <CardContent className="p-2">
-                <div className="aspect-video rounded-xl overflow-hidden bg-slate-100">
-                  <iframe
-                    width="100%"
-                    height="100%"
-                    src="https://www.youtube.com/embed/v-tcho9xnaE?si=lgXbh37_4QhzBaCu&rel=0&showinfo=0&modestbranding=1"
-                    title="2care.ai Customer Experience"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
-                    className="w-full h-full"
-                  ></iframe>
-                </div>
-                <div className="p-6 text-center">
-                  <h3 className="text-lg font-bold text-slate-800 mb-2">
-                    Real Customer Experience
-                  </h3>
-                  <p className="text-slate-600 text-sm">
-                    Watch how 2care.ai transforms healthcare for Indian families
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+const TestimonialsSection = () => {
+  return (
+    <section className="py-20 container mx-auto px-4">
+      <div className="text-center mb-16">
+        <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 leading-tight">
+          Trusted by Families Across the Globe
+        </h2>
+        <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+          See what families are saying about their experience with 2care.ai
+        </p>
+      </div>
 
-          {/* Right Testimonial */}
-          <div className="lg:mt-8">
-            <Card className="h-full bg-white border-0 shadow-xl hover:shadow-2xl transition-all duration-500 rounded-2xl overflow-hidden group hover:-translate-y-2">
-              <CardContent className="p-8">
-                <div className="flex items-center mb-6">
-                  {[...Array(testimonials[1].rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
-                  ))}
-                </div>
-                <blockquote className="text-slate-700 mb-8 text-lg leading-relaxed italic font-medium">
-                  "{testimonials[1].content}"
-                </blockquote>
-                <div className="border-t border-slate-100 pt-6">
-                  <p className="font-bold text-slate-800 text-lg">{testimonials[1].name}</p>
-                  <p className="text-slate-500 text-sm mt-1">{testimonials[1].role}</p>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+        {/* Left Column - hidden on mobile */}
+        <div className="hidden px-3 lg:block relative h-[500px] overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)]">
+          <TestimonialColumn testimonials={testimonials} direction="up" />
         </div>
 
-        {/* Additional social proof */}
-        <div className="text-center mt-16">
-          <div className="flex items-center justify-center space-x-8 text-slate-500">
-            <div className="flex items-center space-x-2">
-              <div className="flex">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
-                ))}
+        {/* Center YouTube Video */}
+        <div className="mt-8 lg:mt-0">
+          <Card className="bg-white/60 backdrop-blur-md border-white/20 shadow-xl rounded-2xl overflow-hidden">
+            <CardContent className="p-2">
+              <div className="aspect-video rounded-xl overflow-hidden bg-slate-800">
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src="https://www.youtube.com/embed/v-tcho9xnaE?si=lgXbh37_4QhzBaCu&rel=0&showinfo=0&modestbranding=1"
+                  title="2care.ai Customer Experience"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  className="w-full h-full"
+                ></iframe>
               </div>
-              <span className="text-sm font-medium">4.9/5 Average Rating</span>
-            </div>
-            <div className="h-4 w-px bg-slate-300"></div>
-            <div className="text-sm font-medium">
-              10,000+ Families Trust 2care.ai
-            </div>
-          </div>
+              <div className="p-6 text-center">
+                <h3 className="text-lg font-bold text-slate-800 mb-2">
+                  Real Customer Experience
+                </h3>
+                <p className="text-slate-600 text-sm">
+                  Watch how 2care.ai transforms healthcare for families
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Right Column - hidden on mobile */}
+        <div className="hidden px-3 lg:block relative h-[500px] overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)]">
+          <TestimonialColumn testimonials={[...testimonials].reverse()} direction="down" />
         </div>
       </div>
     </section>

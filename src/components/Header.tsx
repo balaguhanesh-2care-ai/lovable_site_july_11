@@ -43,7 +43,7 @@ const Header = ({ onLoginClick, onSignupClick, minimal = false, logoSize = "h-12
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <header className="bg-white shadow-lg sticky top-0 z-50 border-b border-light-outline">
+    <header className="absolute top-0 left-0 right-0 z-50">
       <div className="container mx-auto px-4 py-3 sm:py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -61,10 +61,10 @@ const Header = ({ onLoginClick, onSignupClick, minimal = false, logoSize = "h-12
               <Link
                 key={item.path}
                 to={item.path}
-                className={`text-sm md:text-base font-semibold transition-all duration-200 hover:text-primary-custom hover:scale-105 relative px-1 md:px-2 ${
+                className={`text-sm md:text-base font-medium transition-all duration-200 transform hover:scale-105 relative px-1 md:px-2 ${
                   isActive(item.path) 
-                    ? "text-primary-custom after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-0.5 after:bg-primary-custom" 
-                    : "text-secondary-custom hover:text-primary-custom"
+                    ? "text-white font-semibold" 
+                    : "text-gray-300 hover:text-white"
                 }`}
               >
                 {item.label}
@@ -81,7 +81,7 @@ const Header = ({ onLoginClick, onSignupClick, minimal = false, logoSize = "h-12
                   "_blank"
                 );
               }}
-              className="bg-gradient-to-r from-primary-custom to-tertiary-custom hover:from-primary-custom/90 hover:to-tertiary-custom/90 text-white hover:scale-105 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl px-4 py-2 md:px-6"
+              className="bg-gradient-to-r from-primary-custom to-tertiary-custom text-white font-semibold rounded-full px-4 py-2 md:px-6 transition-all duration-300 transform hover:scale-110 hover:shadow-xl shadow-lg"
             >
               Sign Up
             </Button>
@@ -91,7 +91,7 @@ const Header = ({ onLoginClick, onSignupClick, minimal = false, logoSize = "h-12
           <Button
             variant="ghost"
             size="icon"
-            className="lg:hidden hover:bg-primary-custom/10 text-primary-custom"
+            className="lg:hidden text-white hover:bg-white/10"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Open menu"
           >

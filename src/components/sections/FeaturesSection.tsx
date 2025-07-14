@@ -57,17 +57,17 @@ const FeaturesSection = ({ scrollYProgress }: FeaturesSectionProps) => {
 
 
   return (
-    <motion.section style={{ scale, opacity }} className="h-full w-full flex items-center">
+    <motion.section style={{ scale }} className="h-full w-full flex items-center">
       <div className="container mx-auto px-4 h-full flex flex-col justify-center">
-        <div className="text-center">
+        <motion.div style={{ opacity }} className="text-center">
           <h2 className="text-2xl md:text-4xl font-bold text-secondary-custom mb-4">Why Choose 2care.ai?</h2>
           <p className="text-lg md:text-xl text-sub max-w-3xl mx-auto leading-relaxed">
             Complete healthcare solution combining AI technology with human expertise
           </p>
-        </div>
+        </motion.div>
         {/* The initial centering is now handled by padding on this container */}
         <div className="w-full overflow-hidden h-[350px]">
-          <motion.div style={{ x: cardsX }} className={`inline-flex h-full items-center ${isMobile ? 'space-x-6' : 'space-x-8'}`}>
+          <motion.div style={{ x: cardsX, opacity }} className={`inline-flex h-full items-center ${isMobile ? 'space-x-6' : 'space-x-8'}`}>
             {featuresData.map((feature, index) => (
               <motion.div
                 key={index}
