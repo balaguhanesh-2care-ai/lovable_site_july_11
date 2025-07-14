@@ -2,6 +2,7 @@ import { Resend } from 'resend';
 import { promises as fs } from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import pool, { initDatabase } from './db.mjs';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -52,6 +53,19 @@ export default async function handler(req, res) {
         html: htmlForUser
       });
 
+    // Add to database
+    await initDatabase(); // Ensures table exists
+    const connection = await pool.getConnection();
+    try {
+      await connection.query(
+        'INSERT INTO form_submissions (form_type, name, email, message) VALUES (?, ?, ?, ?)',
+        ['feature_request', name, email, message]
+      );
+    } finally {
+      connection.release();
+    }
+
+    
     return res.status(200).json({ success: true });
   } catch (err) {
     console.error('Email error:', err);
