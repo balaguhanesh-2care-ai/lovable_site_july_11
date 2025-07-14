@@ -1,61 +1,52 @@
-
-
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import DashboardSlideshow from "@/components/DashboardSlideshow";
+import CursorGlow from "@/components/CursorGlow";
+import TypewriterFamily from "@/components/TypewriterFamily";
 
 const HeroSection = () => {
   return (
-    <section 
-      className="text-white py-20 relative overflow-hidden"
-      style={{
-        backgroundImage: `url('/lovable-uploads/4ad1f5f3-794d-4cde-8aea-1d5acfac05b4.png')`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat'
-      }}
-    >
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-              <span className="text-primary-custom">AI-Powered Healthcare for Your Family</span>
-            </h1>
-            <p className="text-xl md:text-2xl mb-8 opacity-90 leading-relaxed max-w-4xl mx-auto text-secondary-custom">
-              Monitor your loved ones' health with Maya AI Health Agent and medical professionals, no matter the distance
-            </p>
-            <div className="flex justify-center">
+    <>
+      <CursorGlow />
+      <section 
+        className="relative overflow-hidden flex flex-col justify-center items-center min-h-screen w-full"
+        style={{ minHeight: '100vh', height: '100vh', width: '100vw' }}
+      >
+        {/* Galaxy Video Background */}
+        <video
+          className="absolute inset-0 w-full h-full object-cover z-0"
+          autoPlay
+          loop
+          muted
+          playsInline
+          poster="/placeholder.svg"
+          style={{ pointerEvents: 'none' }}
+        >
+          <source src="/galaxy.mp4" type="video/mp4" />
+        </video>
+        {/* Fading Overlay Layer */}
+        <div className="absolute inset-0 z-10 pointer-events-none" style={{
+          background: 'linear-gradient(180deg, rgba(20,30,50,0.85) 0%, rgba(20,30,50,0.45) 40%, rgba(20,30,50,0.15) 100%)'
+        }} />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-20 flex flex-col justify-center items-center h-full">
+          <div className="max-w-6xl mx-auto w-full flex flex-col justify-center items-center h-full">
+            <div className="text-center mb-8 flex flex-col justify-center items-center h-full pt-8 sm:pt-12 md:pt-16 lg:pt-10 pb-10 sm:pb-16">
+              <TypewriterFamily />
+              <p className="text-base xs:text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 opacity-90 leading-relaxed max-w-xs xs:max-w-md sm:max-w-2xl md:max-w-4xl mx-auto text-white">
+              Monitor your loved ones' health with Maya AI Health Agent and medical professionals, no matter the distance!
+              </p>
               <Button 
                 size="lg" 
-                className="bg-secondary-custom text-white hover:bg-secondary-custom/90 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl font-semibold px-12 py-6 text-lg"
+                className="w-full max-w-xs sm:max-w-fit bg-secondary-custom text-white hover:bg-secondary-custom/90 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl font-semibold px-8 py-4 sm:px-12 sm:py-6 text-base sm:text-lg"
                 onClick={() => window.open('https://api.whatsapp.com/send/?phone=916364872188&text=Hi&type=phone_number&app_absent=0', '_blank')}
               >
-                Get Started <ArrowRight className="ml-3 w-6 h-6" />
+                Get Started <ArrowRight className="ml-3 w-5 h-5 sm:w-6 sm:h-6" />
               </Button>
             </div>
           </div>
-          <div className="flex justify-center">
-            <div className="relative">
-              {/* Static Laptop mockup */}
-              <div className="relative bg-gray-200 rounded-t-2xl p-6 pb-0 shadow-2xl w-[800px]">
-                {/* Laptop screen bezel */}
-                <div className="bg-black rounded-t-xl p-4 h-[450px] overflow-hidden">
-                  <DashboardSlideshow />
-                </div>
-              </div>
-              {/* Laptop base */}
-              <div className="bg-gray-300 h-6 rounded-b-2xl mx-8 relative">
-                <div className="absolute left-1/2 transform -translate-x-1/2 -top-1 w-20 h-3 bg-gray-400 rounded-full"></div>
-              </div>
-              {/* Laptop shadow */}
-              <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 w-96 h-8 bg-black/20 rounded-full blur-lg"></div>
-            </div>
-          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 
 export default HeroSection;
-
