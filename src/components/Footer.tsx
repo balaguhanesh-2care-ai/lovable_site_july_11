@@ -16,7 +16,7 @@ const Footer = () => {
                 className="h-8"
               />
             </div>
-            <p className="text-gray-300 mb-4">
+            {/* <p className="text-gray-300 mb-4">
               Email: support@2care.ai
             </p>
             <p className="text-gray-300 mb-4">
@@ -25,7 +25,7 @@ const Footer = () => {
             <p className="text-gray-300 mb-4">
               Office Address: #17, 7th Main Road, 2nd floor, 
               II stage Indiranagar Bangalore - 560038
-            </p>
+            </p> */}
           </div>
 
           {/* Contact Us */}

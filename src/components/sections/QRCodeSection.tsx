@@ -12,10 +12,10 @@ const QRCodeSection = () => {
               How to get started?
             </h2>
             <p className="text-lg mb-2 text-gray-600">
-              (1) You can click on the whatsapp Icon on the Bottom left of the website.
+              (1) You can click on the WhatsApp icon on the bottom left of the website.
             </p>
             <p className="text-lg mb-2 text-gray-600">
-              (2) Reach us out through Whatsapp number <span className='font-bold'>+91 63648 72188</span>
+              (2) Reach us out through WhatsApp number <span className='font-bold'>+91 63648 72188</span>
             </p>
             <p className="text-lg text-gray-600 font-bold">
               (3) Scan the QR code to connect with us.
