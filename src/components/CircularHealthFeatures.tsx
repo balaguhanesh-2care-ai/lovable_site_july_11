@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { Activity, FileText, Heart, AlertTriangle, Phone, Stethoscope, Bot, History, Shield } from "lucide-react";
 
 interface FeatureData {
@@ -22,7 +22,7 @@ const features: FeatureData[] = [
   { id: "care", icon: Shield, title: "Always on Care 24/7", problem: "Health concerns arise outside of regular healthcare hours.", solution: "Round-the-clock monitoring and care availability." }
 ];
 
-const cardVariants = {
+const cardVariants: Variants = {
   initial: {
     x: 70,
     y: -20,
@@ -180,4 +180,4 @@ const CircularHealthFeatures = () => {
   );
 };
 
-export default CardStackAnimation;
+export default CircularHealthFeatures;
