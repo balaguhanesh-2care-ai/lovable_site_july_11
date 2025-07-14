@@ -1,8 +1,10 @@
 import { Resend } from 'resend';
 import { promises as fs } from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+
 
 async function verifyTurnstile(token) {
   const secretKey = process.env.CLOUDFLARE_TURNSTILE_SECRET_KEY;
@@ -39,7 +41,7 @@ export default async function handler(req, res) {
     //   subject: `New Feature Request from ${name}`,
     //   html: `<h1>New Feature Request</h1><p><strong>Name:</strong> ${name}</p><p><strong>Email:</strong> ${email}</p><p><strong>Request:</strong><br/>${message}</p>`
     // });
-    const templatePath = path.join(process.cwd(), 'api', 'feature-request-format.html');
+    const templatePath = path.join(process.cwd(), 'api', 'feature_request_format.html');
     const htmlTemplate = await fs.readFile(templatePath, 'utf-8');
     const htmlForUser = htmlTemplate.replace(/\$\{name\}/g, name);
     // Send confirmation to the user
