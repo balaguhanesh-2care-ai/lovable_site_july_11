@@ -62,7 +62,7 @@ const Index = () => {
   const laptopY = useTransform(scrollYProgress, [0.5, 0.9], ["100vh", "0vh"]);
 
   return (
-    <div className="min-h-screen bg-main-bg overflow-x-hidden">
+    <div className="min-h-screen bg-main-bg">
       <div ref={scrollRef} className="relative h-[200vh]">
         <motion.div style={{ opacity: heroOpacity }} className="sticky top-0 h-screen">
           <HeroSection />
