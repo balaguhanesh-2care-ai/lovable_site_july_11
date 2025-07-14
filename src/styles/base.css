@@ -46,6 +46,11 @@
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Custom health-tech colors */
+    --health-primary: 197 62% 55%; /* #40AFCA */
+    --health-secondary: 219 41% 31%; /* #2C456E */
+    --health-tertiary: 188 70% 57%; /* #3FC5E2 */
   }
 
   .dark {
@@ -85,6 +90,11 @@
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Custom health-tech colors for dark mode */
+    --health-primary: 197 62% 55%; /* #40AFCA */
+    --health-secondary: 219 41% 31%; /* #2C456E */
+    --health-tertiary: 188 70% 57%; /* #3FC5E2 */
   }
 }
 
@@ -120,10 +130,10 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #45b7d1;
+  background: #40AFCA;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #3fc4e2;
+  background: #3FC5E2;
 }
