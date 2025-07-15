@@ -2,8 +2,19 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import CursorGlow from "@/components/CursorGlow";
 import TypewriterFamily from "@/components/TypewriterFamily";
+import { usePostHog } from "posthog-js/react";
 
 const HeroSection = () => {
+  const posthog = usePostHog();
+
+  const handleGetStartedClick = () => {
+    posthog.capture("CTA_Click_GetStarted", {
+      location: "HeroSection",
+      plan: "default", // or specify which plan this defaults to
+      action: "open_whatsapp_chat"
+    });
+    window.open('https://api.whatsapp.com/send/?phone=916364872188&text=Hi&type=phone_number&app_absent=0', '_blank');
+  };
   return (
     <>
       <CursorGlow />
@@ -37,7 +48,7 @@ const HeroSection = () => {
               <Button 
                 size="lg" 
                 className="w-full max-w-xs sm:max-w-fit bg-secondary-custom text-white hover:bg-secondary-custom/90 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl font-semibold px-8 py-4 sm:px-12 sm:py-6 text-base sm:text-lg"
-                onClick={() => window.open('https://api.whatsapp.com/send/?phone=916364872188&text=Hi&type=phone_number&app_absent=0', '_blank')}
+                onClick={handleGetStartedClick}
               >
                 Get Started <ArrowRight className="ml-3 w-5 h-5 sm:w-6 sm:h-6" />
               </Button>

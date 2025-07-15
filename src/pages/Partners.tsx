@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { usePostHog } from "posthog-js/react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Users, Zap, Heart, TrendingUp, IndianRupee, Settings } from "lucide-react";
@@ -6,6 +7,11 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import PartnershipForm from "@/components/PartnershipForm";
 
 const Partners = () => {
+  const posthog = usePostHog();
+
+  useEffect(() => {
+    posthog.capture("Visit_Partners_Page");
+  }, []);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const partnershipSteps = [
     {

@@ -54,7 +54,7 @@ export default async function handler(req, res) {
     await resend.emails.send({
       from: 'info@support.2care.ai',
       to: email,
-      subject: '🤝 Thank You for Reaching Out — Excited to Partner with You!',
+      subject: '🤝 Thanks for Reaching Out — We’re Excited to Partner with You!',
       html: htmlForUser
     });
 

@@ -1,8 +1,9 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { MessageCircle, Upload, FileText } from "lucide-react";
+import { usePostHog } from "posthog-js/react";
 
 interface ReportAnalysisProps {
   onLoginClick: () => void;
@@ -10,6 +11,11 @@ interface ReportAnalysisProps {
 }
 
 const ReportAnalysis = ({ onLoginClick, onSignupClick }: ReportAnalysisProps) => {
+  const posthog = usePostHog();
+
+  useEffect(() => {
+    posthog.capture("Visit_ReportAnalysis_Page");
+  }, []);
   const [showUpload, setShowUpload] = useState(false);
 
   const handleStartChat = () => {

@@ -1,9 +1,15 @@
-
+import { useEffect } from "react";
+import { usePostHog } from "posthog-js/react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Quote } from "lucide-react";
 import LetsConnect from "@/components/LetsConnect";
 
 const OurStory = () => {
+  const posthog = usePostHog();
+
+  useEffect(() => {
+    posthog.capture("Visit_OurStory_Page");
+  }, []);
   return (
     <div className="min-h-screen py-12">
       <div className="container mx-auto px-4">

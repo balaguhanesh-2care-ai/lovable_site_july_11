@@ -1,5 +1,6 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { usePostHog } from "posthog-js/react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -11,6 +12,36 @@ import RazorpayButton from "@/components/RazorpayButton";
 import { Separator } from "@/components/ui/separator";
 
 const Pricing = () => {
+  const posthog = usePostHog();
+
+  useEffect(() => {
+    posthog.capture("Visit_Pricing_Page");
+  }, []);
+
+  const handlePaymentClick = (planName: string) => {
+    const isPremium = planName === 'Premium';
+    const eventProperties = {
+      plan: planName,
+      billing_period: isPremium ? billingPeriod : 'one-time',
+      location: 'PricingPage'
+    };
+
+    // Capture general CTA and Pay Now events
+    posthog.capture("CTA_Click_GetStarted", eventProperties);
+    posthog.capture("User_clicks_paynow", eventProperties);
+
+    // Capture specific payment click event
+    if (isPremium) {
+      if (billingPeriod === 'monthly') {
+        posthog.capture('Click_Payment_SubscriptionMonthly', eventProperties);
+      } else { // annual
+        posthog.capture('Click_Payment_SubscriptionYearly', eventProperties);
+      }
+    } else { // One-time doctor payment
+      posthog.capture('Click_Payment_OneTimeDoctor', eventProperties);
+    }
+  };
+
   const [knowMoreOpen, setKnowMoreOpen] = useState(false);
   const [billingPeriod, setBillingPeriod] = useState("monthly");
 
@@ -185,7 +216,7 @@ const Pricing = () => {
                 {/* <Button className="w-full bg-primary-custom hover:bg-primary-custom/90 text-white transition-all duration-300 hover:scale-105">
                   Get Started
                 </Button> */}
-                <div className="flex justify-center w-full">
+                <div className="flex justify-center w-full" onClick={() => handlePaymentClick('Free Forever')}>
                   <RazorpayButton type="payment" buttonId="pl_QrhRqK9f7BNU4h" />
                 </div>
               </CardContent>
@@ -231,7 +262,7 @@ const Pricing = () => {
                 {/* <Button className="w-full bg-gradient-to-r from-primary-custom to-tertiary-custom hover:opacity-90 text-white transition-all duration-300 hover:scale-105">
                   Get Started
                 </Button> */}
-                <div className="flex justify-center w-full">
+                <div className="flex justify-center w-full" onClick={() => handlePaymentClick('Premium')}>
                   <RazorpayButton type="subscription" buttonId="pl_Qrid48TjVkOoXD" />
                 </div>
               </CardContent>

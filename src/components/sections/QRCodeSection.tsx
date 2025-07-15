@@ -65,9 +65,7 @@ const QRCodeSection = () => {
   }, [videoMaskVisible, controls]);
 
   return (
-    <section className="py-20 relative overflow-hidden rounded-lg padding-3 border border-white/20" style={{ boxShadow: "0 0 32px 8px rgba(64,175,202,0.25), 0 0 0 8px rgba(255,255,255,0.08) inset", backdropFilter: "blur(8px)" }}>
-
-      <FloatingBlobsBackground />
+    <section className="py-20 relative overflow-hidden rounded-lg padding-3">
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col md:flex-row items-center justify-center md:space-x-8">

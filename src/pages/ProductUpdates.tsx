@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { usePostHog } from "posthog-js/react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -8,6 +9,11 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import FeatureRequestForm from "@/components/FeatureRequestForm";
 
 const ProductUpdates = () => {
+  const posthog = usePostHog();
+
+  useEffect(() => {
+    posthog.capture("Visit_ProductUpdates_Page");
+  }, []);
   const [selectedFilter, setSelectedFilter] = useState("all");
   const [isModalOpen, setIsModalOpen] = useState(false);
 

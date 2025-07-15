@@ -2,42 +2,131 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>📞 Demo Request Received — We're Excited to Connect!</title>
+  <title>📞 Your 2care.ai Demo Request is Confirmed!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Fonts: Poppins -->
   <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Poppins', Arial, sans-serif; background: #f7fafc; color: #22223b; margin: 0; padding: 0; }
-    .email-container { max-width: 480px; margin: 32px auto; background: #fff; box-shadow: 0 2px 12px rgba(0,0,0,0.07); padding: 32px 24px; text-align: left; }
-    .logo { display: block; margin: 0 auto 24px auto; max-width: 120px; }
-    .greeting { font-size: 1.2em; font-weight: 600; margin-bottom: 12px; color: #128C7E; }
-    .subject { font-size: 1.1em; color: #2d6cdf; font-weight: 500; margin: 18px 0 8px 0; }
-    .whatsapp-btn { display: inline-block; margin: 18px 0; padding: 12px 24px; background: #25D366; color: #fff !important; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 1em; box-shadow: 0 2px 6px rgba(37,211,102,0.12); transition: background 0.2s; }
-    .whatsapp-btn:hover { background: #128C7E; }
-    .footer { margin-top: 32px; font-size: 0.95em; color: #6c757d; text-align: center; }
+    body {
+      font-family: 'Poppins', Arial, sans-serif;
+      background: #f7fafc;
+      color: #2C456E;
+      margin: 0;
+      padding: 0;
+    }
+    .email-container {
+      max-width: 480px;
+      margin: 32px auto;
+      background: #fff;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      padding: 32px 24px;
+      text-align: left;
+      font-family: 'Poppins', Arial, sans-serif;
+    }
+    .logo {
+      display: block;
+      margin: 0 auto 24px auto;
+      max-width: 120px;
+    }
+    .greeting {
+      font-size: 1.2em;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #40AFCA;
+      font-family: 'Poppins', Arial, sans-serif;
+    }
+    .whatsapp-btn {
+      display: inline-block;
+      margin: 18px 0;
+      padding: 12px 24px;
+      background: #4CAF50;
+      color: #fff !important;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1em;
+      box-shadow: 0 2px 6px rgba(76, 175, 80, 0.2);
+      transition: background 0.2s;
+      font-family: 'Poppins', Arial, sans-serif;
+    }
+    .whatsapp-btn:hover {
+      background: #45a049;
+    }
+    .footer {
+      margin-top: 32px;
+      font-size: 0.95em;
+      color: #6c757d;
+      text-align: center;
+      font-family: 'Poppins', Arial, sans-serif;
+    }
+    .section-heading {
+      font-weight: 600;
+      margin-top: 24px;
+      font-size: 1.1em;
+    }
+    .links p {
+      line-height: 1.8;
+    }
+    .links a {
+      color:#2d6cdf;
+      text-decoration:underline;
+    }
+     ul {
+      padding-left: 20px; 
+      line-height: 1.6;
+    }
+    @media (max-width: 600px) {
+      .email-container {
+        padding: 18px 6px;
+      }
+      .logo {
+        max-width: 90px;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="email-container">
     <img src="https://lovable-site-july-11.vercel.app/logo/2care.png" alt="2Care Logo" class="logo">
-    <div class="greeting">Hey ${name}!</div>
+    <div class="greeting">Hey ${name},</div>
     <p>
-      Thank you for requesting a demo of 2care.ai. We're thrilled to show you how our platform can help you and your family.
+      Thank you for requesting a demo with 2care.ai — we’re excited to connect with you! 💙
     </p>
     <p>
-      We have received your request and will be in touch shortly to schedule a call at a time that works for you.
+      Our team has received your request and will be in touch shortly to confirm your preferred time slot.
     </p>
-    <p>Your feedback keeps us growing — together, we’re building a better way to care. 💙</p>
-    <p>If you ever want to chat more, our team is always available on WhatsApp:</p>
+    <p class="section-heading">💡 What You Can Expect</p>
+    <p>During the demo, we’ll walk you through how 2care.ai helps you:</p>
+    <ul>
+      <li>✅ Upload, digitize, and manage medical records effortlessly</li>
+      <li>✅ Book doctor consults and lab tests directly via WhatsApp</li>
+      <li>✅ Track vitals, receive reminders, and support your family’s care remotely</li>
+      <li>✅ Use AI-powered health summaries and alerts for proactive care</li>
+    </ul>
+    <p class="section-heading">Want to Chat Before the Demo?</p>
+    <p>We’re happy to answer any questions or assist with early setup:</p>
     <a href="https://api.whatsapp.com/send/?phone=916364872188&text=Hi&type=phone_number&app_absent=0" class="whatsapp-btn" target="_blank" rel="noopener">
       👉 Start Chat on WhatsApp
     </a>
-    <p>
-      You can also check out what’s new anytime at <a href="https://2care.ai" style="color:#2d6cdf;text-decoration:underline;">2care.ai</a>.
-    </p>
-    <p>Thank you for being part of the 2care family!</p>
+    <div class="links">
+        <p style="margin-top: 10px;">
+          📧 Email us: <a href="mailto:support@2care.ai">support@2care.ai</a><br>
+          📞 Call: <a href="tel:+917899953477">+91 78999 53477</a>
+        </p>
+      </div>
+    <p>We’ll follow up soon to confirm your demo details. Thank you again for your interest — we’re here to help make healthcare simple, connected, and stress-free. 🌿</p>
     <div class="footer">
-      With gratitude,<br>
-      Team 2care.ai
+      Warm regards,<br>
+      Team 2care.ai<br>
+      <div class="links" style="margin-top: 10px;">
+        <p>
+          <a href="https://2care.ai">www.2care.ai</a><br>
+          <a href="https://www.instagram.com/2care.ai/">Instagram</a> | 
+          <a href="https://www.facebook.com/profile.php?id=61577776422384#">Facebook</a> | 
+          <a href="https://www.linkedin.com/company/2careai/">LinkedIn</a><br>
+          <a href="https://chat.whatsapp.com/CaWWpjAGxMQHI0nkNgrCin?fbclid=PAZXh0bgNhZW0CMTEAAadY7EClBK62h2-902MVkYaRYznJOA5nUtF3JDfg095DmsudrAR6rMzf4Tvr1Q_aem_6xLvljYKn4HE4WPkfjMnmg">Join our WhatsApp Community</a>
+        </p>
+      </div>
     </div>
   </div>
 </body>

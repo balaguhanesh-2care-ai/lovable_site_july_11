@@ -46,17 +46,17 @@ export default async function handler(req, res) {
     await resend.emails.send({
       from: 'info@support.2care.ai',
       to: email,
-      subject: '💙 We’ve Got Your Message — We’re Here for You!',
+      subject: '👋 Thank You for Reaching Out to 2care.ai — Let’s Stay in Touch!',
       html: htmlForUser
     });
 
     // Send to support
-    await resend.emails.send({
-      from: 'info@support.2care.ai',
-      to: 'support@2care.ai',
-      subject: `New message from ${name}`,
-      html: `<p><strong>Name:</strong> ${name}</p><p><strong>Email:</strong> ${email}</p><p><strong>Phone:</strong> ${phone}</p><p><strong>Message:</strong><br/>${message}</p>`
-    });
+    // await resend.emails.send({
+    //   from: 'info@support.2care.ai',
+    //   to: 'support@2care.ai',
+    //   subject: `New message from ${name}`,
+    //   html: `<p><strong>Name:</strong> ${name}</p><p><strong>Email:</strong> ${email}</p><p><strong>Phone:</strong> ${phone}</p><p><strong>Message:</strong><br/>${message}</p>`
+    // });
 
     await initDatabase(); // Ensures table exists
     const connection = await pool.getConnection();

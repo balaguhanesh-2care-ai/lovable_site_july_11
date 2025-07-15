@@ -1,8 +1,9 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { motion, TargetAndTransition, useAnimation } from "framer-motion";
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { User } from "lucide-react";
 import { FloatingBlobsBackgroundDark } from "../ui/FloatingBlobsBackgroundDark";
+import { usePostHog } from "posthog-js/react";
 
 const testimonials = [
   {
@@ -46,6 +47,7 @@ const testimonials = [
 type Testimonial = typeof testimonials[number];
 
 const TestimonialCard = ({ testimonial }: { testimonial: Testimonial }) => {
+  
   return (
     <Card className="bg-white/60 backdrop-blur-md border-white/20 text-slate-800 shadow-lg rounded-xl transition-all duration-300 group hover:bg-primary-custom hover:text-white hover:scale-105 hover:shadow-xl">
       <CardContent className="p-4">
@@ -106,6 +108,19 @@ const TestimonialColumn = ({ testimonials, duration = 60, direction = 'up' }: Te
 };
 
 const TestimonialsSection = () => {
+  const posthog = usePostHog();
+  const [isVideoInteracted, setIsVideoInteracted] = useState(false);
+
+  const handleVideoClick = () => {
+    // Fire the event only on the first interaction
+    if (!isVideoInteracted) {
+      posthog.capture("CTA_Click_TestimonialVideo", {
+        section: "TestimonialsSection",
+        video_title: "2care.ai Customer Experience",
+      });
+      setIsVideoInteracted(true);
+    }
+  };
   return (
     <section className="py-20 container mx-auto px-4">
       <div className="text-center mb-16">
@@ -127,7 +142,11 @@ const TestimonialsSection = () => {
         <div className="mt-8 lg:mt-0">
           <Card className="bg-white/60 backdrop-blur-md border-white/20 shadow-xl rounded-2xl overflow-hidden">
             <CardContent className="p-2">
-              <div className="aspect-video rounded-xl overflow-hidden bg-slate-800">
+              <div className="aspect-video rounded-xl overflow-hidden bg-slate-800 relative" onClick={handleVideoClick}>
+                {/* Overlay to capture clicks */}
+                {!isVideoInteracted && (
+                  <div className="absolute inset-0 z-10 cursor-pointer"></div>
+                )}
                 <iframe
                   width="100%"
                   height="100%"

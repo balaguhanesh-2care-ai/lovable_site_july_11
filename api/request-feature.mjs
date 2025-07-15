@@ -49,7 +49,7 @@ export default async function handler(req, res) {
     await resend.emails.send({
         from: 'info@support.2care.ai',
         to: email,
-        subject: '🌟 Feature Request Received — Thanks for Helping Us Improve!',
+        subject: '💡 Thank You for Your Feedback — We’re Listening!',
         html: htmlForUser
       });
 
