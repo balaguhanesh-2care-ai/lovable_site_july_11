@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
@@ -72,8 +71,6 @@ const Index = () => {
           style={{ scale: laptopScale, y: laptopY }} 
           className="absolute top-0 w-full h-screen flex items-center justify-center"
         >
-          {/* You can replace this placeholder with your actual laptop image */}
-          {/* <img src="/placeholder.svg" alt="Laptop" className="w-3/4 h-3/4 object-contain" /> */}
           <MacbookFrame>
             <DashboardSlideshow />
           </MacbookFrame>

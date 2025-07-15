@@ -1,4 +1,3 @@
-
 import { Card, CardContent } from "@/components/ui/card";
 import { Quote } from "lucide-react";
 import LetsConnect from "@/components/LetsConnect";
@@ -59,14 +58,28 @@ const OurStory = () => {
 
           {/* Highlighted Quote */}
           <section className="mb-16">
-            <Card className="gradient-card text-white">
-              <CardContent className="p-12 text-center">
-                <Quote className="w-16 h-16 mx-auto mb-6 opacity-80" />
-                <blockquote className="text-2xl md:text-3xl font-bold">
-                  "Oh dad, you are our inspiration!"
-                </blockquote>
-              </CardContent>
-            </Card>
+            <div className="relative rounded-2xl overflow-hidden">
+              <video
+                className="absolute inset-0 w-full h-full object-cover z-0"
+                autoPlay
+                loop
+                muted
+                playsInline
+                poster="/blue-gradient.jpg"
+                style={{ pointerEvents: 'none' }}
+              >
+                <source src="/blue-gradient.mp4" type="video/mp4" />
+              </video>
+              <div className="absolute inset-0 z-0" style={{ background: 'rgba(20,30,50,0.45)' }} />
+              <Card className="bg-transparent text-white relative z-10 shadow-none">
+                <CardContent className="p-12 text-center">
+                  <Quote className="w-16 h-16 mx-auto mb-6 opacity-80" />
+                  <blockquote className="text-2xl md:text-3xl font-bold">
+                    "Oh dad, you are our inspiration!"
+                  </blockquote>
+                </CardContent>
+              </Card>
+            </div>
           </section>
 
           {/* Medical Advisors */}

@@ -5,8 +5,24 @@ import { Link } from "react-router-dom";
 
 const CallToActionSection = () => {
   return (
-    <section className="py-20 bg-gradient-to-r from-primary-custom via-tertiary-custom to-secondary-custom text-white">
-      <div className="container mx-auto px-4">
+    <section 
+      className="py-20 relative text-white overflow-hidden"
+    >
+      {/* Video background */}
+      <video
+        className="absolute inset-0 w-full h-full object-cover z-0"
+        autoPlay
+        loop
+        muted
+        playsInline
+        poster="/blue-gradient.jpg"
+        style={{ pointerEvents: 'none' }}
+      >
+        <source src="/blue-gradient.mp4" type="video/mp4" />
+      </video>
+      {/* Overlay to reduce video intensity */}
+      <div className="absolute inset-0 z-0" style={{ background: 'rgba(20,30,50,0.45)' }} />
+      <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Ready to Start Your Healthcare Journey?

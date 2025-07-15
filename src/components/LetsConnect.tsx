@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Send, Phone, Mail, MapPin } from "lucide-react";
 import { Turnstile } from "@marsidev/react-turnstile";
+import { FaWhatsapp } from 'react-icons/fa';
 
 
 const LetsConnect = () => {
@@ -223,11 +224,11 @@ const LetsConnect = () => {
                 <Card className="feature-card">
                   <CardContent className="p-6 flex items-center space-x-4">
                     <div className="w-12 h-12 bg-secondary-custom rounded-full flex items-center justify-center">
-                      <MapPin className="w-6 h-6 text-white" />
+                      <FaWhatsapp className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-secondary-custom">Availability</h4>
-                      <p className="text-primary-custom font-medium">24/7 Support Available</p>
+                      <h4 className="font-semibold text-secondary-custom">Whatsapp Support</h4>
+                      <p className="text-primary-custom font-medium">+91 63648 72188</p>
                     </div>
                   </CardContent>
                 </Card>

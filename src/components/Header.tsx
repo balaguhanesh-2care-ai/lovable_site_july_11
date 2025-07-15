@@ -63,7 +63,7 @@ const Header = ({ onLoginClick, onSignupClick, minimal = false, logoSize = "h-12
                 to={item.path}
                 className={`text-sm md:text-base font-semibold transition-all duration-200 hover:text-primary-custom hover:scale-105 relative px-1 md:px-2 ${
                   isActive(item.path) 
-                    ? "text-primary-custom after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-0.5 after:bg-primary-custom" 
+                    ? "text-primary-custom" 
                     : "text-secondary-custom hover:text-primary-custom"
                 }`}
               >
