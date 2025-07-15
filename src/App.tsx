@@ -1,10 +1,12 @@
-
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useState } from "react";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+import { Toaster } from "./components/ui/toaster";
+import { Toaster as Sonner } from "./components/ui/sonner";
+import { TooltipProvider } from "./components/ui/tooltip";
+import BackgroundBlobs from "./components/BackgroundBlobs.tsx";
+
 import Layout from "./components/Layout";
 import Index from "./pages/Index";
 import Solutions from "./pages/Solutions";
@@ -21,7 +23,16 @@ import NotFound from "./pages/NotFound";
 import LoginModal from "./components/LoginModal";
 import SignupModal from "./components/SignupModal";
 
+import 'swiper/css';
+import 'swiper/css/autoplay';
+
 const queryClient = new QueryClient();
+
+// Wrapper to use useLocation inside BrowserRouter
+function BlobsConditional() {
+  const { pathname } = useLocation();
+  return pathname === "/product-updates" ? <BackgroundBlobs /> : null;
+}
 
 const App = () => {
   const [showLogin, setShowLogin] = useState(false);
@@ -33,6 +44,7 @@ const App = () => {
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <BlobsConditional />
           <Routes>
             <Route 
               path="/" 

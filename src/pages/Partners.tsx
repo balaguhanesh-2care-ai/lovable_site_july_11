@@ -5,9 +5,34 @@ import { Users, Zap, Heart, TrendingUp, IndianRupee, Settings } from "lucide-rea
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import PartnershipForm from "@/components/PartnershipForm";
 
+// Swiper Imports
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, EffectCoverflow } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/autoplay";
+import "swiper/css/effect-coverflow";
+import clsx from "clsx";
+
 const Partners = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   const partnershipSteps = [
+    {
+      icon: <Users className="w-12 h-12 text-primary-custom" />,
+      title: "Reach Out",
+      description: "Fill out our simple partnership inquiry form with your organization's details. Our team will contact you within 24 hours to discuss potential collaboration."
+    },
+    {
+      icon: <Zap className="w-12 h-12 text-primary-custom" />,
+      title: "Connect",
+      description: "Schedule a personalized demo where we'll show you how 2care.ai works and discuss how we can customize our platform to meet your specific needs."
+    },
+    {
+      icon: <TrendingUp className="w-12 h-12 text-primary-custom" />,
+      title: "Grow",
+      description: "After agreeing on partnership terms, we'll help you integrate our platform into your workflow, train your staff, and start connecting you with families who need your services."
+    },
+    // Duplicate
     {
       icon: <Users className="w-12 h-12 text-primary-custom" />,
       title: "Reach Out",
@@ -40,10 +65,42 @@ const Partners = () => {
       icon: <Heart className="w-12 h-12 text-primary-custom" />,
       title: "Continuity of Care",
       description: "Seamless transition for elderly patients between hospital and home care"
+    },
+    // Duplicate
+    {
+      icon: <Users className="w-12 h-12 text-primary-custom" />,
+      title: "Reach Out",
+      description: "Connect with an untapped market of NRI families seeking quality care for their parents"
+    },
+    {
+      icon: <Zap className="w-12 h-12 text-primary-custom" />,
+      title: "World Class Tech Infrastructure",
+      description: "Offer technology-enabled care coordination powered by AI as a competitive advantage"
+    },
+    {
+      icon: <Heart className="w-12 h-12 text-primary-custom" />,
+      title: "Continuity of Care",
+      description: "Seamless transition for elderly patients between hospital and home care"
     }
   ];
 
   const offeringsFeatures = [
+    {
+      icon: <Users className="w-12 h-12 text-primary-custom" />,
+      title: "Get More Quality Customers",
+      description: "Access a growing network of families seeking trusted healthcare providers"
+    },
+    {
+      icon: <IndianRupee className="w-12 h-12 text-primary-custom" />,
+      title: "Direct Revenue Impact",
+      description: "Increase your revenue through our referral system and expanded client base"
+    },
+    {
+      icon: <Settings className="w-12 h-12 text-primary-custom" />,
+      title: "Have AI Tech Layer to Your Services",
+      description: "Enhance your existing services with cutting-edge AI technology"
+    },
+    // Duplicate
     {
       icon: <Users className="w-12 h-12 text-primary-custom" />,
       title: "Get More Quality Customers",
@@ -68,7 +125,11 @@ const Partners = () => {
           {/* Header */}
           <div className="text-center mb-16">
             <h1 className="text-4xl md:text-5xl font-bold text-secondary-custom mb-4">
-              Join Us for a World Where Distance Never Stands Between Family and Care
+              Join Us for a World Where
+              <br />
+              <span className="block text-2xl md:text-3xl font-semibold mt-2 text-secondary-custom/90">
+                Distance Never Stands Between Family and Care!
+              </span>
             </h1>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-8">
               Our partners drive growth and impact for themselves and their patients with exclusive access inside 2care.ai technology and tools. Join us as home healthcare providers, geriatric clinics, multi-specialty hospitals, nursing homes, and ambulance services.
@@ -80,75 +141,109 @@ const Partners = () => {
             </DialogTrigger>
           </div>
 
-        {/* How To Partner With Us */}
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold text-secondary-custom mb-4 text-center">How to Partner With Us</h2>
-          <p className="text-lg text-gray-600 text-center mb-12 max-w-2xl mx-auto">Simple steps to join our healthcare network</p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {partnershipSteps.map((step, index) => (
-              <Card key={index} className="text-center border-2 border-light-outline hover:border-primary-custom transition-all duration-300 card-hover">
-                <CardContent className="p-8">
-                  <div className="flex justify-center mb-6">{step.icon}</div>
-                  <h3 className="text-xl font-bold text-secondary-custom mb-4">{step.title}</h3>
-                  <p className="text-gray-600">{step.description}</p>
+          {/* Reusable Section Carousel */}
+          {[{
+            title: "How to Partner With Us",
+            subtitle: "Simple steps to join our healthcare network",
+            data: partnershipSteps
+          }, {
+            title: "Why Partner With Us",
+            subtitle: "Unlock new opportunities and enhance your healthcare services",
+            data: whyPartnerFeatures
+          }, {
+            title: "What 2care.ai Offers to You",
+            subtitle: "Comprehensive benefits for our healthcare partners",
+            data: offeringsFeatures
+          }].map((section, index) => (
+            <section className="mb-20" key={index}>
+              <h2 className="text-3xl font-bold text-secondary-custom mb-4 text-center">{section.title}</h2>
+              <p className="text-lg text-gray-600 text-center mb-12 max-w-2xl mx-auto">{section.subtitle}</p>
+              <Swiper
+                modules={[Autoplay, EffectCoverflow]}
+                effect="coverflow"
+                coverflowEffect={{
+                  rotate: 50,
+                  stretch: 0,
+                  depth: 200,
+                  modifier: 1,
+                  slideShadows: false,
+                  scale: 0.85
+                }}
+                spaceBetween={-60}
+                loop={true}
+                autoplay={{ delay: 2000, disableOnInteraction: false }}
+                speed={900}
+                slidesPerView={1}
+                slidesPerGroup={1}
+                allowTouchMove={false}
+                centeredSlides={true}
+                breakpoints={{
+                  0: { slidesPerView: 1, slidesPerGroup: 1 },
+                  640: { slidesPerView: 2, slidesPerGroup: 1 },
+                  1024: { slidesPerView: 3, slidesPerGroup: 1 },
+                }}
+                className="w-full max-w-[1200px] mx-auto"
+              >
+                {section.data.map((item, idx) => (
+                  <SwiperSlide key={idx}>
+                    {({ isActive, isNext, isPrev }) => (
+                      <Card
+                        className={clsx(
+                          "w-full max-w-[300px] border-2 border-light-outline transition-transform duration-300 bg-white shadow-xl",
+                          {
+                            "opacity-100 scale-100 z-30": isActive,
+                            "opacity-80 scale-95 z-20": isNext || isPrev,
+                            "opacity-60 scale-90 z-0": !isActive && !isNext && !isPrev,
+                          }
+                        )}
+                      >
+                        <CardContent className="flex flex-col items-center justify-center h-full p-8 text-center">
+                          <div className="flex justify-center mb-6">{item.icon}</div>
+                          <h3 className="text-xl font-bold text-secondary-custom mb-4">{item.title}</h3>
+                          <p className="text-gray-600">{item.description}</p>
+                        </CardContent>
+                      </Card>
+                    )}
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </section>
+          ))}
+
+          {/* CTA Section */}
+          <section>
+            <div className="relative rounded-2xl overflow-hidden">
+              <video
+                className="absolute inset-0 w-full h-full object-cover z-0"
+                autoPlay
+                loop
+                muted
+                playsInline
+                poster="/blue-gradient.jpg"
+                style={{ pointerEvents: 'none' }}
+              >
+                <source src="/blue-gradient.mp4" type="video/mp4" />
+              </video>
+              <div className="absolute inset-0 z-0" style={{ background: 'rgba(20,30,50,0.45)' }} />
+              <Card className="bg-transparent text-white relative z-10 shadow-none">
+                <CardContent className="p-12 text-center">
+                  <h2 className="text-3xl font-bold mb-4">Ready to Transform Healthcare Together?</h2>
+                  <p className="text-xl mb-8 opacity-90">
+                    Join our growing network of healthcare partners and make a difference in families' lives
+                  </p>
+                  <DialogTrigger asChild>
+                    <Button className="bg-white text-primary-custom hover:bg-gray-100 px-8 py-3 text-lg">
+                      Start Partnership Application
+                    </Button>
+                  </DialogTrigger>
                 </CardContent>
               </Card>
-            ))}
-          </div>
-        </section>
+            </div>
+          </section>
+        </div>
 
-        {/* Why Partner With Us */}
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold text-secondary-custom mb-4 text-center">Why Partner With Us</h2>
-          <p className="text-lg text-gray-600 text-center mb-12 max-w-2xl mx-auto">Unlock new opportunities and enhance your healthcare services</p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {whyPartnerFeatures.map((feature, index) => (
-              <Card key={index} className="text-center border-2 border-light-outline hover:border-primary-custom transition-all duration-300 card-hover">
-                <CardContent className="p-8">
-                  <div className="flex justify-center mb-6">{feature.icon}</div>
-                  <h3 className="text-xl font-bold text-secondary-custom mb-4">{feature.title}</h3>
-                  <p className="text-gray-600">{feature.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
-
-        {/* What 2care.ai Offers To You */}
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold text-secondary-custom mb-4 text-center">What 2care.ai Offers to You</h2>
-          <p className="text-lg text-gray-600 text-center mb-12 max-w-2xl mx-auto">Comprehensive benefits for our healthcare partners</p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {offeringsFeatures.map((offering, index) => (
-              <Card key={index} className="text-center border-2 border-light-outline hover:border-primary-custom transition-all duration-300 card-hover group">
-                <CardContent className="p-8">
-                  <div className="flex justify-center mb-6 group-hover:scale-110 transition-transform duration-300">{offering.icon}</div>
-                  <h3 className="text-xl font-bold text-secondary-custom mb-4">{offering.title}</h3>
-                  <p className="text-gray-600">{offering.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section>
-          <Card className="bg-gradient-to-r from-primary-custom to-tertiary-custom text-white">
-            <CardContent className="p-12 text-center">
-              <h2 className="text-3xl font-bold mb-4">Ready to Transform Healthcare Together?</h2>
-              <p className="text-xl mb-8 opacity-90">
-                Join our growing network of healthcare partners and make a difference in families' lives
-              </p>
-              <DialogTrigger asChild>
-                <Button className="bg-white text-primary-custom hover:bg-gray-100 px-8 py-3 text-lg">
-                  Start Partnership Application
-                </Button>
-              </DialogTrigger>
-            </CardContent>
-          </Card>
-        </section>
-      </div>
-    <DialogContent className="sm:max-w-2xl p-6">
+        {/* Modal */}
+        <DialogContent className="sm:max-w-2xl p-6">
           <DialogHeader>
             <DialogTitle className="text-2xl font-bold text-secondary-custom">Partnership Application</DialogTitle>
           </DialogHeader>

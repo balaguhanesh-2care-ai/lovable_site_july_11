@@ -67,4 +67,78 @@
   .feature-card {
     @apply bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-light-outline hover:border-primary/30;
   }
+
+  .animated-gradient {
+    background-size: 200% 200%;
+    transition: background-position 1.2s cubic-bezier(0.4,0,0.2,1);
+    background-position: 0% 50%;
+  }
+  .animated-gradient.active {
+    background-position: 100% 50%;
+  }
+  .fade-in-section {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1), transform 0.8s cubic-bezier(0.4,0,0.2,1);
+  }
+  .fade-in-section.is-visible {
+    opacity: 1;
+    transform: none;
+  }
 }
+
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1);
+}
+.fade-in-up.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes carousel-row1 {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(50%); }
+}
+@keyframes carousel-row2 {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-carousel-row1 {
+  animation: carousel-row1 24s linear infinite;
+}
+.animate-carousel-row2 {
+  animation: carousel-row2 24s linear infinite;
+}
+
+@keyframes bubble-1 {
+  0% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-40px) scale(1.1); }
+  100% { transform: translateY(0) scale(1); }
+}
+@keyframes bubble-2 {
+  0% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-30px) scale(0.95); }
+  100% { transform: translateY(0) scale(1); }
+}
+@keyframes bubble-3 {
+  0% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(30px) scale(1.05); }
+  100% { transform: translateY(0) scale(1); }
+}
+@keyframes bubble-4 {
+  0% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-20px) scale(1.15); }
+  100% { transform: translateY(0) scale(1); }
+}
+@keyframes bubble-5 {
+  0% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(40px) scale(0.9); }
+  100% { transform: translateY(0) scale(1); }
+}
+.animate-bubble-1 { animation: bubble-1 8s ease-in-out infinite; }
+.animate-bubble-2 { animation: bubble-2 10s ease-in-out infinite; }
+.animate-bubble-3 { animation: bubble-3 12s ease-in-out infinite; }
+.animate-bubble-4 { animation: bubble-4 9s ease-in-out infinite; }
+.animate-bubble-5 { animation: bubble-5 11s ease-in-out infinite; }

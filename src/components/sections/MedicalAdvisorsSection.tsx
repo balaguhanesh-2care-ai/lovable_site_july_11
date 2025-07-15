@@ -1,9 +1,18 @@
 
 import { Card, CardContent } from "@/components/ui/card";
+import { motion } from 'framer-motion';
+import { useInView } from '../../hooks/useInView';
 
 const MedicalAdvisorsSection = () => {
+  const [ref, inView] = useInView(0.3);
   return (
-    <section className="py-20 bg-gradient-to-r from-primary-custom/5 to-tertiary-custom/5">
+    <motion.section
+      ref={ref}
+      initial={{ x: 200, opacity: 0 }}
+      animate={inView ? { x: 0, opacity: 1 } : { x: 200, opacity: 0 }}
+      transition={{ duration: 0.9, ease: 'easeOut' }}
+      className="py-20 bg-gradient-to-r from-primary-custom/5 to-tertiary-custom/5"
+    >
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-secondary-custom mb-4">
@@ -54,7 +63,7 @@ const MedicalAdvisorsSection = () => {
           </Card>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

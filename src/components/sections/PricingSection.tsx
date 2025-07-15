@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -277,6 +276,28 @@ const PricingSection = () => {
           </Card>
         </div>
       </div>
+      {/* CTA Section (if present) */}
+      <section className="mt-16">
+        <div className="relative rounded-2xl overflow-hidden max-w-5xl mx-auto">
+          <video
+            className="absolute inset-0 w-full h-full object-cover z-0"
+            autoPlay
+            loop
+            muted
+            playsInline
+            poster="/blue-gradient.jpg"
+            style={{ pointerEvents: 'none' }}
+          >
+            <source src="/blue-gradient.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 z-0" style={{ background: 'rgba(20,30,50,0.45)' }} />
+          <div className="relative z-10 p-12 text-center text-white">
+            <h2 className="text-3xl font-bold mb-4">Stay connected and up-to-date with your parents' healthcare today.</h2>
+            <p className="text-xl mb-4 opacity-90">Have Questions?<br/>Contact our support team.</p>
+            <div className="text-2xl font-bold">+91 78999 53477</div>
+          </div>
+        </div>
+      </section>
     </section>
   );
 };

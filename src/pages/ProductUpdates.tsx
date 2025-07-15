@@ -2,10 +2,10 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Check, Clock, Lightbulb } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import FeatureRequestForm from "@/components/FeatureRequestForm";
+import { useInView } from "@/hooks/useInView";
 
 const ProductUpdates = () => {
   const [selectedFilter, setSelectedFilter] = useState("all");
@@ -23,6 +23,34 @@ const ProductUpdates = () => {
       month: "July'25",
       title: "AI Summary",
       description: "Maya, your personal AI health agent, provides a concise overview of the entire dashboard, summarizing vitals, reports, and medical advice for quick insights, saving you time and helping you feel more informed and in control.",
+      status: "prototype",
+      icon: <Check className="w-5 h-5" />
+    },
+    {
+      month: "July'25",
+      title: "Weekly Health AI Summary",
+      description: "Receive comprehensive weekly health summaries powered by AI, providing insights into health trends, patterns, and recommendations for your family members' wellbeing.",
+      status: "prototype",
+      icon: <Check className="w-5 h-5" />
+    },
+    {
+      month: "July'25",
+      title: "Emergency Virtual Patient Support",
+      description: "24/7 emergency virtual support system that connects patients with healthcare professionals instantly during critical situations, ensuring immediate assistance when needed most.",
+      status: "prototype",
+      icon: <Check className="w-5 h-5" />
+    },
+    {
+      month: "July'25",
+      title: "Partnership with Major Diagnostic Companies",
+      description: "Seamless integration with leading diagnostic laboratories for direct report access, automated result interpretation, and streamlined healthcare data management.",
+      status: "prototype",
+      icon: <Check className="w-5 h-5" />
+    },
+    {
+      month: "July'25",
+      title: "Regular Monitoring",
+      description: "Stay proactive with regular vital monitoring to maintain wellness and prevent potential health issues with continuous health tracking and alerts.",
       status: "prototype",
       icon: <Check className="w-5 h-5" />
     },
@@ -79,13 +107,6 @@ const ProductUpdates = () => {
       month: "Aug'25",
       title: "Customised Vitals",
       description: "Want to monitor specific health metrics? Create your own custom vital board to track the vitals that matter to you, anytime and in any way you prefer.",
-      status: "coming-up",
-      icon: <Clock className="w-5 h-5" />
-    },
-    {
-      month: "Aug'25",
-      title: "Regular Monitoring",
-      description: "Stay proactive with regular vital monitoring to maintain wellness and prevent potential health issues.",
       status: "coming-up",
       icon: <Clock className="w-5 h-5" />
     },
@@ -164,35 +185,41 @@ const ProductUpdates = () => {
             
             {/* Timeline Items */}
             <div className="space-y-8">
-              {filteredUpdates.map((update, index) => (
-                <div key={index} className="relative flex items-start space-x-6">
-                  {/* Timeline Dot */}
-                  <div className="flex-shrink-0 w-8 h-8 bg-primary-custom rounded-full flex items-center justify-center text-white relative z-10">
-                    {update.icon}
-                  </div>
-                  
-                  {/* Content */}
-                  <Card className="flex-1 card-hover border-2 border-light-outline hover:border-primary-custom">
-                    <CardContent className="p-6">
-                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
-                        <div>
-                          <Badge variant="outline" className="mb-2 text-primary-custom border-primary-custom">
-                            {update.month}
+              {filteredUpdates.map((update, index) => {
+                const [ref, inView] = useInView(0.3);
+                return (
+                  <div
+                    key={index}
+                    ref={ref}
+                    className={`relative flex items-start space-x-6 fade-in-up${inView ? ' in-view' : ''}`}
+                  >
+                    {/* Timeline Dot */}
+                    <div className="flex-shrink-0 w-8 h-8 bg-primary-custom rounded-full flex items-center justify-center text-white relative z-10">
+                      {update.icon}
+                    </div>
+                    {/* Content */}
+                    <Card className="flex-1 card-hover border-2 border-light-outline hover:border-primary-custom">
+                      <CardContent className="p-6">
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
+                          <div>
+                            <Badge variant="outline" className="mb-2 text-primary-custom border-primary-custom">
+                              {update.month}
+                            </Badge>
+                            <h3 className="text-xl font-semibold text-secondary-custom">{update.title}</h3>
+                          </div>
+                          <Badge 
+                            variant={update.status === "prototype" ? "default" : "secondary"}
+                            className={update.status === "prototype" ? "bg-green-100 text-green-800" : "bg-yellow-100 text-yellow-800"}
+                          >
+                            {update.status === "prototype" ? "Live" : "Coming Soon"}
                           </Badge>
-                          <h3 className="text-xl font-semibold text-secondary-custom">{update.title}</h3>
                         </div>
-                        <Badge 
-                          variant={update.status === "prototype" ? "default" : "secondary"}
-                          className={update.status === "prototype" ? "bg-green-100 text-green-800" : "bg-yellow-100 text-yellow-800"}
-                        >
-                          {update.status === "prototype" ? "Live" : "Coming Soon"}
-                        </Badge>
-                      </div>
-                      <p className="text-gray-600">{update.description}</p>
-                    </CardContent>
-                  </Card>
-                </div>
-              ))}
+                        <p className="text-gray-600">{update.description}</p>
+                      </CardContent>
+                    </Card>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
