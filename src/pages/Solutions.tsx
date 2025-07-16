@@ -137,9 +137,9 @@ const Solutions = () => {
         <div className="absolute w-10 h-10 sm:w-14 sm:h-14 bg-blue-100 rounded-full blur-2xl opacity-30 animate-bubble-5" style={{ bottom: '10%', right: '20%' }} />
       </div>
       {/* Heading section */}
-      <div className="container mx-auto px-4 pt-12 pb-8">
+      <div className="container mx-auto px-4 pt-12 pb-2">
         <div className="text-center mb-8">
-          <h1 className="text-5xl mt-10 font-extrabold text-secondary-custom mb-10">
+          <h1 className="text-5xl mt-10 font-extrabold text-secondary-custom mb-5">
             Our Solutions & Services
           </h1>
           <p className="text-lg text-sub max-w-4xl mx-auto leading-relaxed">
@@ -149,7 +149,7 @@ const Solutions = () => {
       </div>
 
       {/* Animated Platform Features Section */}
-      <div className="mt-[-1.5rem]">{/* negative margin to pull up the section */}
+      <div className="mt-[0.1rem]">{/* reduced negative margin to pull up the section less aggressively */}
         <AnimatedSolutionsShowcase />
       </div>
 

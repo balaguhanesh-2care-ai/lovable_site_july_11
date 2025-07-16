@@ -2,7 +2,7 @@
 import { MessageCircle, Upload, FileText } from "lucide-react";
 import { usePostHog } from "posthog-js/react";
 import { useState, useRef, useEffect } from "react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";  
 import { Card, CardContent } from "@/components/ui/card";
 
 
@@ -102,11 +102,11 @@ const ReportAnalysis = ({ onLoginClick, onSignupClick }: ReportAnalysisProps) =>
     <div className="min-h-screen py-12 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <h1 className="text-5xl font-extrabold text-secondary-custom mt-8 mb-8">
+          <div className="text-center mb-6">
+            <h1 className="text-5xl font-extrabold text-secondary-custom mt-10 mb-2">
               Medical Report Analysis
             </h1>
-            <p className="text-lg text-gray-600">
+            <p className="text-lg text-gray-600 mb-2">
               Get instant AI-powered analysis of your medical reports
             </p>
           </div>
@@ -115,20 +115,26 @@ const ReportAnalysis = ({ onLoginClick, onSignupClick }: ReportAnalysisProps) =>
           <Card className="bg-white border-2 border-light-outline shadow-lg overflow-hidden max-w-2xl mx-auto w-full sm:w-[90%] md:w-[80%]">
             <CardContent className="p-0 relative">
               {/* Chat Header */}
-              <div className="bg-[#128C7E] text-white p-4 flex items-center space-x-3 z-10 relative">
-                <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-                  <span className="text-[#128C7E] font-bold">M</span>
+              <div className="bg-[#128C7E] text-white p-4 flex items-center space-x-3 z-10 relative rounded-t-xl">
+                <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-[#128C7E] font-bold text-lg border-2 border-white shadow">
+                  M
                 </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-secondary-custom mb-4">2care.ai</h3>
-                  <p className="text-sm opacity-90">Online</p>
+                <div className="flex flex-col justify-center">
+                  <span className="text-xl font-semibold text-green leading-tight">2care.ai</span>
+                  <span className="text-sm text-white/90 leading-tight">Online</span>
                 </div>
               </div>
 
               {/* Chat Area with Demo Conversation or CTA */}
               <div
-                className={`flex flex-col justify-end items-center relative transition-opacity duration-700 ${fade ? 'opacity-100' : 'opacity-0'} ${showChat ? '' : 'pointer-events-none'} w-full bg-white`}
-                style={{ minHeight: '320px', maxHeight: '60vh', height: 'min(420px,60vh)', overflowY: 'auto' }}
+                className={`flex flex-col justify-end items-center relative transition-opacity duration-700 ${fade ? 'opacity-100' : 'opacity-0'} w-full`}
+                style={{
+                  minHeight: '320px',
+                  maxHeight: '60vh',
+                  height: 'min(420px,60vh)',
+                  overflowY: 'auto',
+                  background: 'linear-gradient(135deg, #ece5dd 0%, #fff 100%)'
+                }}
               >
                 {showChat ? (
                   <div className="w-full flex flex-col justify-end px-2 sm:px-4 py-4 sm:py-8">
@@ -139,15 +145,12 @@ const ReportAnalysis = ({ onLoginClick, onSignupClick }: ReportAnalysisProps) =>
                           className={`flex ${msg.sender === 'maya' ? 'justify-start' : 'justify-end'}`}
                         >
                           <div
-                            className={`rounded-2xl px-3 py-2 sm:px-4 sm:py-3 shadow-md text-sm sm:text-base whitespace-pre-line break-words ${
-                              msg.sender === 'maya'
-                                ? 'bg-[#e7f9f3] text-gray-800 max-w-[90vw] sm:max-w-[80%]'
-                                : 'bg-[#25D366] text-white max-w-[80vw] sm:max-w-[70%]'
-                            }`}
-                            style={{
-                              borderTopLeftRadius: msg.sender === 'maya' ? 0 : '1rem',
-                              borderTopRightRadius: msg.sender === 'user' ? 0 : '1rem',
-                            }}
+                            className={
+                              `px-4 py-2 rounded-2xl shadow max-w-[80vw] sm:max-w-[60%] mb-2 text-sm sm:text-base whitespace-pre-line break-words ` +
+                              (msg.sender === 'maya'
+                                ? 'bg-white text-gray-800 rounded-bl-none border border-gray-200'
+                                : 'bg-[#dcf8c6] text-gray-900 rounded-br-none border border-[#b2e59e]')
+                            }
                           >
                             {msg.text}
                           </div>
@@ -164,14 +167,19 @@ const ReportAnalysis = ({ onLoginClick, onSignupClick }: ReportAnalysisProps) =>
                     <h3 className="text-xl sm:text-2xl font-semibold mb-4 text-center drop-shadow-lg" style={{ color: '#25D366' }}>
                       You Have Not Started Any Conversations Yet
                     </h3>
-                    <a
-                      href="https://api.whatsapp.com/send/?phone=916364872188&text=Hi&type=phone_number&app_absent=0"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-[#25D366] hover:bg-[#128C7E] text-white px-6 py-2 sm:px-8 sm:py-3 text-base sm:text-lg shadow-lg rounded inline-block text-center transition-colors duration-200"
+                    <Button
+                      asChild
+                      className="bg-[#25D366] hover:bg-[#128C7E] text-white px-6 py-2 sm:px-8 sm:py-3 text-base sm:text-lg shadow-lg rounded transition-colors duration-200"
                     >
-                      Click Here to Start a Chat
-                    </a>
+                      <a
+                        href="https://api.whatsapp.com/send/?phone=916364872188&text=Hi&type=phone_number&app_absent=0"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ textDecoration: "none" }}
+                      >
+                        Click here to start a chat!
+                      </a>
+                    </Button>
                   </div>
                 )}
               </div>
