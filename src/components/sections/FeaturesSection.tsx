@@ -22,6 +22,8 @@ const CARD_ANIMATION_DELAY = 0.4; // seconds
 const CARD_ANIMATION_DURATION = 0.6; // seconds
 const PAUSE_AFTER_ALL_VISIBLE = 1.2; // seconds
 
+// ... existing imports and code ...
+
 const FeaturesSection = () => {
   const controlsArray = [
     useAnimation(),
@@ -36,7 +38,6 @@ const FeaturesSection = () => {
 
     async function animateLoop() {
       while (!isCancelled) {
-        // Animate in one by one
         for (let i = 0; i < controlsArray.length; i++) {
           controlsArray[i].start({
             opacity: 1,
@@ -45,17 +46,13 @@ const FeaturesSection = () => {
           });
           await new Promise(res => timeoutIds.push(setTimeout(res, CARD_ANIMATION_DELAY * 1000)));
         }
-        // Pause with all visible
         await new Promise(res => timeoutIds.push(setTimeout(res, PAUSE_AFTER_ALL_VISIBLE * 1000)));
-        // Instantly reset all
         for (let i = 0; i < controlsArray.length; i++) {
           controlsArray[i].set({ opacity: 0, scale: 0.8 });
         }
-        // Short pause before next loop
         await new Promise(res => timeoutIds.push(setTimeout(res, 400)));
       }
     }
-    // Initialize all hidden
     for (let i = 0; i < controlsArray.length; i++) {
       controlsArray[i].set({ opacity: 0, scale: 0.8 });
     }
@@ -67,22 +64,20 @@ const FeaturesSection = () => {
   }, [controlsArray]);
 
   return (
-    <motion.section style={{ scale:1 }} className="h-full w-full flex items-center">
-      <div className="container mx-auto px-4 h-full flex flex-col justify-center">
-        <motion.div style={{ opacity:1 }} className="text-center">
+    <motion.section style={{ scale:1 }} className="h-full w-full flex flex-col items-center justify-center">
+      <div className="container mx-auto px-4 h-full flex flex-col items-center justify-center">
+        <motion.div style={{ opacity:1 }} className="text-center mb-10">
           <h2 className="text-2xl md:text-4xl font-bold text-secondary-custom mb-4">Why Choose 2care.ai?</h2>
           <p className="text-lg md:text-xl text-sub max-w-3xl mx-auto leading-relaxed">
             Complete healthcare solution combining AI technology with human expertise
           </p>
         </motion.div>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 w-full max-w-6xl">
           {features.map((feature, index) => (
             <motion.div
               key={index}
               animate={controlsArray[index]}
               initial={{ opacity: 0, scale: 0.8 }}
-              className=""
             >
               <Card className="group hover:shadow-2xl hover:scale-105 transition-all duration-300 border-2 border-light-outline hover:border-primary-custom/30">
                 <CardContent className="p-8 text-center h-full flex flex-col">
@@ -99,6 +94,7 @@ const FeaturesSection = () => {
               </Card>
             </motion.div>
           ))}
+        </div>
       </div>
     </motion.section>
   );
