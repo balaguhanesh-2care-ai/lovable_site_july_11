@@ -91,7 +91,7 @@ export default function MayaAI() {
         >
           <video
             className="absolute inset-0 w-full h-full object-cover z-0 opacity-90"
-            src="/galaxy.mp4"
+            src="/parallax.mp4"
             autoPlay
             loop
             muted
