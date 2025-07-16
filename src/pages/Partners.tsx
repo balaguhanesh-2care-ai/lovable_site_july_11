@@ -5,6 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Users, Zap, Heart, TrendingUp, IndianRupee, Settings } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import PartnershipForm from "@/components/PartnershipForm";
+import { FloatingBlobsBackground } from "@/components/ui/FloatingBlobsBackground";
 
 // Swiper Imports
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -126,8 +127,10 @@ const Partners = () => {
 
   return (
     <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-      <div className="min-h-screen py-12">
-        <div className="container mx-auto px-4">
+      <div className="relative min-h-screen py-12 overflow-hidden">
+        {/* Floating Blobs Background */}
+        <FloatingBlobsBackground />
+        <div className="container mx-auto px-4 relative z-10">
           {/* Header */}
           <div className="text-center mb-16">
             <h1 className="text-4xl md:text-5xl font-extrabold text-secondary-custom my-10">

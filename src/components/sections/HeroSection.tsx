@@ -29,7 +29,7 @@ const HeroSection = () => {
           loop
           muted
           playsInline
-          poster="/placeholder.svg"
+          poster="/placeholder.png"
           style={{ pointerEvents: 'none' }}
         >
           <source src="videos/galaxy.mp4" type="video/mp4" />

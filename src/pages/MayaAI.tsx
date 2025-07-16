@@ -169,7 +169,7 @@ export default function MayaAI() {
             {/* Maya AI Heading */}
             <h1 className="text-5xl font-bold text-secondary-custom text-center my-10 sm:mb-12 drop-shadow-lg">Maya AI</h1>
             <div className="relative z-10 max-w-5xl w-[96%] sm:w-[90%] mx-auto rounded-[24px] sm:rounded-[40px] overflow-hidden border border-white/20 shadow-2xl backdrop-blur-lg bg-black/80">
-              {/* Video Layer inside the Card */}
+              {/* Video Layer inside the Card */}.
               <video
                 className="absolute top-0 left-0 w-full h-full object-cover z-0 opacity-50"
                 src="/parallax.mp4"

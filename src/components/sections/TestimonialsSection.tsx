@@ -162,10 +162,10 @@ const TestimonialsSection = () => {
   return (
     <section className="py-20 container mx-auto px-4">
       <div className="text-center mb-16">
-        <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 leading-tight">
+        <h2 className="text-4xl md:text-5xl font-bold text-secondary-custom mb-6 leading-tight">
           Trusted by Families Across the Globe
         </h2>
-        <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+        <p className="text-xl text-secondary-custom max-w-3xl mx-auto leading-relaxed">
           See what families are saying about their experience with 2care.ai
         </p>
       </div>

@@ -8,8 +8,9 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Check, X, ChevronDown, ChevronUp } from "lucide-react";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
-import RazorpayButton from "@/components/RazorpayButton";
+import { RazorpayMonthlyButton, RazorpayYearlyButton, RazorpayPaymentButton } from "@/components/RazorpayButton";
 import { Separator } from "@/components/ui/separator";
+import { RazorpayModal } from "@/components/RazorpayModal";
 
 const Pricing = () => {
   const posthog = usePostHog();
@@ -44,6 +45,8 @@ const Pricing = () => {
 
   const [knowMoreOpen, setKnowMoreOpen] = useState(false);
   const [billingPeriod, setBillingPeriod] = useState("monthly");
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState<"monthly" | "yearly" | "free">("monthly");
 
   const features = [
     {
@@ -127,7 +130,7 @@ const Pricing = () => {
       return {
         current: "₹3999",
         original: "₹7999",
-        duration: "for 3 months",
+        duration: "for 1 month",
         perDay: "₹133 per day",
       };
     }
@@ -209,17 +212,27 @@ const Pricing = () => {
               </CardHeader>
               
               <CardContent className="space-y-4 flex flex-col justify-center items-center">
-                <Separator />
-                <p className="text-center text-sub">
-                  For one time doctor's appointments.
-                </p>
-                {/* <Button className="w-full bg-primary-custom hover:bg-primary-custom/90 text-white transition-all duration-300 hover:scale-105">
-                  Get Started
-                </Button> */}
-                <div className="flex justify-center w-full" onClick={() => handlePaymentClick('Free Forever')}>
-                  <RazorpayButton type="payment" buttonId="pl_QrhRqK9f7BNU4h" />
-                </div>
-              </CardContent>
+  {/* ... Free features ... */}
+
+  {/* One-Time Doctor Appointment Section */}
+  <div className="w-full mt-6">
+    <div className="rounded-lg border border-primary-custom bg-primary-custom/5 p-4 flex flex-col items-center shadow-sm">
+      <div className="font-semibold text-primary-custom mb-1">Need a Doctor Now?</div>
+      <div className="text-sm text-sub mb-2">Book a one-time doctor appointment for just <span className="font-bold text-main">₹499</span>.</div>
+      <Button
+        className="w-full bg-primary-custom hover:bg-primary-custom/90 text-white transition-all duration-300 hover:scale-105"
+        onClick={() => {
+          setSelectedPlan("free");
+          setModalOpen(true);
+          handlePaymentClick('Free Forever');
+        }}
+      >
+        Pay Now
+      </Button>
+    </div>
+  </div>
+</CardContent>
+              
             </Card>
 
             {/* Premium Plan */}
@@ -259,11 +272,17 @@ const Pricing = () => {
               </CardHeader>
               
               <CardContent className="space-y-4 flex justify-center items-center">
-                {/* <Button className="w-full bg-gradient-to-r from-primary-custom to-tertiary-custom hover:opacity-90 text-white transition-all duration-300 hover:scale-105">
-                  Get Started
-                </Button> */}
-                <div className="flex justify-center w-full" onClick={() => handlePaymentClick('Premium')}>
-                  <RazorpayButton type="subscription" buttonId="pl_Qrid48TjVkOoXD" />
+                <div className="flex justify-center w-full">
+                  <Button
+                    className="w-full bg-gradient-to-r from-primary-custom to-tertiary-custom hover:opacity-90 text-white transition-all duration-300 hover:scale-105"
+                    onClick={() => {
+                      setSelectedPlan(billingPeriod === "monthly" ? "monthly" : "yearly");
+                      setModalOpen(true);
+                      handlePaymentClick('Premium');
+                    }}
+                  >
+                    Pay Now
+                  </Button>
                 </div>
               </CardContent>
             </Card>
@@ -372,6 +391,9 @@ const Pricing = () => {
           </Card>
         </section>
       </div>
+      {modalOpen && (
+        <RazorpayModal open={modalOpen} onClose={() => setModalOpen(false)} planType={selectedPlan} />
+      )}
     </div>
   );
 };

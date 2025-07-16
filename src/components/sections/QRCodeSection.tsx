@@ -28,7 +28,7 @@ const QRCodeSection = () => {
     >
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center justify-center md:space-x-12">
-          <div className="text-center md:text-left mb-8 md:mb-0 max-w-lg">
+          <div className="text-center md:text-left mb-8 md:mb-0">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-secondary-custom">
               How to get started?
             </h2>

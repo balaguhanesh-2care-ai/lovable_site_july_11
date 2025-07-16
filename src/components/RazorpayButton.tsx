@@ -1,47 +1,57 @@
 import { useEffect, useRef } from "react";
 
-interface RazorpayButtonProps {
-  type: 'payment' | 'subscription';
-  buttonId: string;
-}
-
-const RazorpayButton = ({ type, buttonId }: RazorpayButtonProps) => {
+// Monthly Subscription Button
+export const RazorpayMonthlyButton = () => {
   const formRef = useRef<HTMLFormElement>(null);
-
   useEffect(() => {
-    const scriptId = `razorpay-script-${buttonId}`;
-    
-    // Clean up previous script if it exists
+    const scriptId = `razorpay-script-monthly`;
     const existingScript = document.getElementById(scriptId);
-    if (existingScript) {
-      existingScript.remove();
-    }
-    
-    // Clear the form to prevent duplicate buttons
-    if (formRef.current) {
-      formRef.current.innerHTML = '';
-    }
-
+    if (existingScript) existingScript.remove();
+    if (formRef.current) formRef.current.innerHTML = '';
     const script = document.createElement("script");
     script.id = scriptId;
     script.async = true;
-
-    if (type === 'payment') {
-      script.src = "https://checkout.razorpay.com/v1/payment-button.js";
-      script.setAttribute("data-payment_button_id", buttonId);
-    } else { // subscription
-      script.src = "https://cdn.razorpay.com/static/widget/subscription-button.js";
-      script.setAttribute("data-subscription_button_id", buttonId);
-      script.setAttribute("data-button_theme", "rzp-outline-standard");
-    }
-
-    if (formRef.current) {
-      formRef.current.appendChild(script);
-    }
-    
-  }, [type, buttonId]);
-
+    script.src = "https://cdn.razorpay.com/static/widget/subscription-button.js";
+    script.setAttribute("data-subscription_button_id", "pl_QticDJhCCSYmai");
+    script.setAttribute("data-button_theme", "rzp-outline-standard");
+    if (formRef.current) formRef.current.appendChild(script);
+  }, []);
   return <form ref={formRef}></form>;
 };
 
-export default RazorpayButton;
+// Yearly Subscription Button
+export const RazorpayYearlyButton = () => {
+  const formRef = useRef<HTMLFormElement>(null);
+  useEffect(() => {
+    const scriptId = `razorpay-script-yearly`;
+    const existingScript = document.getElementById(scriptId);
+    if (existingScript) existingScript.remove();
+    if (formRef.current) formRef.current.innerHTML = '';
+    const script = document.createElement("script");
+    script.id = scriptId;
+    script.async = true;
+    script.src = "https://cdn.razorpay.com/static/widget/subscription-button.js";
+    script.setAttribute("data-subscription_button_id", "pl_Qtideo8ZUygoYM");
+    script.setAttribute("data-button_theme", "rzp-outline-standard");
+    if (formRef.current) formRef.current.appendChild(script);
+  }, []);
+  return <form ref={formRef}></form>;
+};
+
+// One-time Payment Button
+export const RazorpayPaymentButton = () => {
+  const formRef = useRef<HTMLFormElement>(null);
+  useEffect(() => {
+    const scriptId = `razorpay-script-payment`;
+    const existingScript = document.getElementById(scriptId);
+    if (existingScript) existingScript.remove();
+    if (formRef.current) formRef.current.innerHTML = '';
+    const script = document.createElement("script");
+    script.id = scriptId;
+    script.async = true;
+    script.src = "https://checkout.razorpay.com/v1/payment-button.js";
+    script.setAttribute("data-payment_button_id", "pl_QrhRqK9f7BNU4h");
+    if (formRef.current) formRef.current.appendChild(script);
+  }, []);
+  return <form ref={formRef}></form>;
+};
