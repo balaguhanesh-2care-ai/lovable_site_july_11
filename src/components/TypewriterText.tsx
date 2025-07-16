@@ -8,6 +8,7 @@ interface TypewriterTextProps {
   deletingSpeed?: number;
   pauseDuration?: number;
   className?: string;
+  onDone?: () => void;
 }
 
 const TypewriterText = ({ 
@@ -16,7 +17,8 @@ const TypewriterText = ({
   typingSpeed = 150, 
   deletingSpeed = 100, 
   pauseDuration = 2000,
-  className = ''
+  className = '',
+  onDone
 }: TypewriterTextProps) => {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [currentText, setCurrentText] = useState('');
@@ -48,6 +50,10 @@ const TypewriterText = ({
         }, typingSpeed);
         return () => clearTimeout(timeout);
       } else if (!isDeleting && currentText.length === currentWord.length) {
+        // Call onDone only for the first word, only once
+        if (currentWordIndex === 0 && typeof onDone === 'function') {
+          onDone();
+        }
         const timeout = setTimeout(() => setIsDeleting(true), pauseDuration);
         return () => clearTimeout(timeout);
       } else if (isDeleting && currentText.length > 0) {
@@ -60,7 +66,7 @@ const TypewriterText = ({
         setCurrentWordIndex((prevIndex) => (prevIndex + 1) % animatedWords.length);
       }
     }
-  }, [currentText, isDeleting, currentWordIndex, animatedWords, typingSpeed, deletingSpeed, pauseDuration, staticText, staticTextCurrent, hasInitiallyTyped]);
+  }, [currentText, isDeleting, currentWordIndex, animatedWords, typingSpeed, deletingSpeed, pauseDuration, staticText, staticTextCurrent, hasInitiallyTyped, onDone]);
 
   return (
     <span className={className}>
