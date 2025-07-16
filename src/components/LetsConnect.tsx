@@ -227,8 +227,8 @@ const LetsConnect = () => {
                         <MapPin className="w-6 h-6 text-white" />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-secondary-custom">Availability</h4>
-                        <p className="text-primary-custom font-medium">24/7 Support Available</p>
+                        <h4 className="font-semibold text-secondary-custom">Whatsapp Support</h4>
+                        <p className="text-primary-custom font-medium">+91 63648 72188</p>
                       </div>
                     </CardContent>
                   </Card>
