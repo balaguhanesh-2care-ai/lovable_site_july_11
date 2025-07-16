@@ -119,7 +119,7 @@ const ReportAnalysis = ({ onLoginClick, onSignupClick }: ReportAnalysisProps) =>
 
               {/* Chat Area with Demo Conversation or CTA */}
               <div
-                className={`flex flex-col justify-end items-center relative transition-opacity duration-700 ${fade ? 'opacity-100' : 'opacity-0'} ${showChat ? '' : 'pointer-events-none'} w-full bg-white`}
+                className={`flex flex-col justify-end items-center relative transition-opacity duration-700 ${fade ? 'opacity-100' : 'opacity-0'} w-full bg-white`}
                 style={{ minHeight: '320px', maxHeight: '60vh', height: 'min(420px,60vh)', overflowY: 'auto' }}
               >
                 {showChat ? (
@@ -156,12 +156,14 @@ const ReportAnalysis = ({ onLoginClick, onSignupClick }: ReportAnalysisProps) =>
                     <h3 className="text-xl sm:text-2xl font-semibold mb-4 text-center drop-shadow-lg" style={{ color: '#25D366' }}>
                       You Have Not Started Any Conversations Yet
                     </h3>
-                    <Button
-                      onClick={handleStartChat}
-                      className="bg-[#25D366] hover:bg-[#128C7E] text-white px-6 py-2 sm:px-8 sm:py-3 text-base sm:text-lg shadow-lg"
+                    <a
+                      href="https://api.whatsapp.com/send/?phone=916364872188&text=Hi&type=phone_number&app_absent=0"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-[#25D366] hover:bg-[#128C7E] text-white px-6 py-2 sm:px-8 sm:py-3 text-base sm:text-lg shadow-lg rounded inline-block text-center transition-colors duration-200"
                     >
                       Click Here to Start a Chat
-                    </Button>
+                    </a>
                   </div>
                 )}
               </div>

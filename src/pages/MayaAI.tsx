@@ -91,7 +91,7 @@ export default function MayaAI() {
         >
           <video
             className="absolute inset-0 w-full h-full object-cover z-0 opacity-90"
-            src="/parallax.mp4"
+            src="/galaxy.mp4"
             autoPlay
             loop
             muted
@@ -154,7 +154,7 @@ export default function MayaAI() {
               {/* Video Layer inside the Card */}
               <video
                 className="absolute top-0 left-0 w-full h-full object-cover z-0 opacity-50"
-                src="/parallax.mp4"
+                src="/galaxy.mp4"
                 autoPlay
                 loop
                 muted
