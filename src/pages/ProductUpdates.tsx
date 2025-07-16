@@ -1,12 +1,15 @@
-import { useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePostHog } from "posthog-js/react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Check, Clock, Lightbulb } from "lucide-react";
+import { Check, Clock, Lightbulb, Sparkles } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import FeatureRequestForm from "@/components/FeatureRequestForm";
 import { useInView } from "@/hooks/useInView";
+import { Link } from "react-router-dom";
+
+const MAX_UPDATES = 15; // Set to the max number of updates you expect
 
 const ProductUpdates = () => {
   const posthog = usePostHog();
@@ -127,23 +130,41 @@ const ProductUpdates = () => {
 
   const filteredUpdates = selectedFilter === "all" ? updates : updates.filter(update => update.status === selectedFilter);
 
+  // FIX: Use a fixed number of useInView hooks
+  const inViewPairs = [
+    useInView(0.3),
+    useInView(0.3),
+    useInView(0.3),
+    useInView(0.3),
+    useInView(0.3),
+    useInView(0.3),
+    useInView(0.3),
+    useInView(0.3),
+    useInView(0.3),
+    useInView(0.3),
+    useInView(0.3),
+    useInView(0.3),
+    useInView(0.3),
+    useInView(0.3),
+    useInView(0.3)
+  ];
+
   return (
-    <div className="min-h-screen py-12">
+    <div className="min-h-screen py-12 bg-gradient-to-br from-blue-50 via-white to-blue-100">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-secondary-custom mb-4">
+        <div className="text-center mb-8">
+          <h1 className="text-5xl md:text-6xl font-extrabold text-secondary-custom mb-2 drop-shadow-lg">
             Keep Up With Our Updates
           </h1>
-          <p className="text-xl text-gray-600 mb-8">
+          <p className="text-2xl text-gray-600 mb-4 font-light">
             We are creating new things just for you!
           </p>
-          
           {/* Filter Buttons */}
-          <div className="flex flex-wrap justify-center gap-4 mb-8">
+          <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 mb-6">
             <Button
               variant={selectedFilter === "prototype" ? "default" : "outline"}
               onClick={() => setSelectedFilter("prototype")}
-              className={selectedFilter === "prototype" ? "bg-primary-custom hover:bg-primary-custom/90" : ""}
+              className={`transition-all duration-200 ${selectedFilter === "prototype" ? "bg-green-500 text-white scale-105 shadow-lg" : "hover:bg-green-100 hover:text-green-800"}`}
             >
               <Check className="w-4 h-4 mr-2" />
               Prototype
@@ -151,24 +172,32 @@ const ProductUpdates = () => {
             <Button
               variant={selectedFilter === "coming-up" ? "default" : "outline"}
               onClick={() => setSelectedFilter("coming-up")}
-              className={selectedFilter === "coming-up" ? "bg-primary-custom hover:bg-primary-custom/90" : ""}
+              className={`transition-all duration-200 ${selectedFilter === "coming-up" ? "bg-yellow-400 text-white scale-105 shadow-lg" : "hover:bg-yellow-100 hover:text-yellow-800"}`}
             >
               <Clock className="w-4 h-4 mr-2" />
               Coming Up
             </Button>
+            <Link to="/maya-ai">
+              <Button
+                variant="outline"
+                className="flex items-center border-primary-custom text-primary-custom hover:bg-blue-100 hover:text-blue-800 transition-all duration-200"
+              >
+                <Sparkles className="w-4 h-4 mr-2 text-blue-400" />
+                Maya AI
+              </Button>
+            </Link>
           </div>
-
           {/* Request Feature */}
-          <Card className="max-w-md mx-auto border-2 border-primary-custom">
-            <CardContent className="p-6">
-              <div className="flex items-center justify-center mb-4">
-                <Lightbulb className="w-8 h-8 text-primary-custom" />
+          <Card className="max-w-md mx-auto border-none shadow-2xl bg-gradient-to-br from-white via-blue-50 to-blue-100 rounded-xl">
+            <CardContent className="p-8">
+              <div className="flex items-center justify-center mb-3">
+                <Lightbulb className="w-10 h-10 text-primary-custom animate-pulse drop-shadow-lg" />
               </div>
-              <h3 className="text-lg font-semibold text-secondary-custom mb-2">Request a Feature</h3>
-              <p className="text-gray-600 mb-4">Have an idea? Let us know what you'd like to see!</p>
+              <h3 className="text-2xl font-bold text-secondary-custom mb-1">Request a Feature</h3>
+              <p className="text-gray-500 mb-4 font-light">Have an idea? Let us know what you'd like to see! Your feedback helps us build a better experience for you.</p>
               <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
                 <DialogTrigger asChild>
-                  <Button className="bg-primary-custom hover:bg-primary-custom/90 text-white">
+                  <Button className="bg-primary-custom hover:bg-blue-700 text-white transition-transform transform hover:scale-105 shadow-md">
                     Request Feature
                   </Button>
                 </DialogTrigger>
@@ -182,47 +211,51 @@ const ProductUpdates = () => {
             </CardContent>
           </Card>
         </div>
-
         {/* Timeline */}
         <div className="max-w-4xl mx-auto">
           <div className="relative">
             {/* Timeline Line */}
-            <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-primary-custom"></div>
-            
+            <div className="hidden sm:block absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-primary-custom via-blue-200 to-blue-100 rounded-full"></div>
             {/* Timeline Items */}
-            <div className="space-y-8">
+            <div className="space-y-16">
               {filteredUpdates.map((update, index) => {
-                const [ref, inView] = useInView(0.3);
+                const [ref, inView] = inViewPairs[index];
+                // Alternate left/right for desktop
+                const isLeft = index % 2 === 0;
                 return (
                   <div
                     key={index}
                     ref={ref}
-                    className={`relative flex items-start space-x-6 fade-in-up${inView ? ' in-view' : ''}`}
+                    className={`relative flex flex-col sm:flex-row items-center sm:items-stretch ${isLeft ? "sm:justify-start" : "sm:justify-end"} group transition-all duration-300 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
                   >
                     {/* Timeline Dot */}
-                    <div className="flex-shrink-0 w-8 h-8 bg-primary-custom rounded-full flex items-center justify-center text-white relative z-10">
+                    <div className={`absolute sm:static left-1/2 sm:left-auto transform sm:transform-none -translate-x-1/2 sm:translate-x-0 z-10 flex-shrink-0 w-12 h-12 ${update.status === "prototype" ? "bg-green-500" : "bg-yellow-400"} rounded-full flex items-center justify-center text-white shadow-lg border-4 border-white transition-all duration-300 group-hover:scale-110`}>
                       {update.icon}
                     </div>
                     {/* Content */}
-                    <Card className="flex-1 card-hover border-2 border-light-outline hover:border-primary-custom">
-                      <CardContent className="p-6">
-                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
-                          <div>
-                            <Badge variant="outline" className="mb-2 text-primary-custom border-primary-custom">
-                              {update.month}
-                            </Badge>
-                            <h3 className="text-xl font-semibold text-secondary-custom">{update.title}</h3>
+                    <div className={`w-full sm:w-1/2 ${isLeft ? "sm:pr-12 sm:pl-0" : "sm:pl-12 sm:pr-0"} mt-16 sm:mt-0`}> 
+                      <Card className="flex-1 card-hover border-none shadow-xl bg-white/80 hover:shadow-2xl transition-all duration-300">
+                        <CardContent className="p-8">
+                          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
+                            <div>
+                              <Badge variant="outline" className="mb-2 text-primary-custom border-primary-custom bg-white/70">
+                                {update.month}
+                              </Badge>
+                              <h3 className="text-xl font-bold text-secondary-custom">{update.title}</h3>
+                            </div>
+                            <div className="flex items-center gap-2 flex-wrap">
+                              <Badge 
+                                variant={update.status === "prototype" ? "default" : "secondary"}
+                                className={update.status === "prototype" ? "bg-green-100 text-green-800" : "bg-yellow-100 text-yellow-800"}
+                              >
+                                {update.status === "prototype" ? "Live" : "Coming Soon"}
+                              </Badge>
+                            </div>
                           </div>
-                          <Badge 
-                            variant={update.status === "prototype" ? "default" : "secondary"}
-                            className={update.status === "prototype" ? "bg-green-100 text-green-800" : "bg-yellow-100 text-yellow-800"}
-                          >
-                            {update.status === "prototype" ? "Live" : "Coming Soon"}
-                          </Badge>
-                        </div>
-                        <p className="text-gray-600">{update.description}</p>
-                      </CardContent>
-                    </Card>
+                          <p className="text-gray-600 font-light text-base">{update.description}</p>
+                        </CardContent>
+                      </Card>
+                    </div>
                   </div>
                 );
               })}

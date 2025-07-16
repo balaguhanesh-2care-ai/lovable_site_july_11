@@ -22,6 +22,10 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import NotFound from "./pages/NotFound";
 import LoginModal from "./components/LoginModal";
 import SignupModal from "./components/SignupModal";
+import MayaAI from "./pages/MayaAI";
+
+import 'swiper/css';
+import 'swiper/css/autoplay';
 
 import 'swiper/css';
 import 'swiper/css/autoplay';
@@ -77,6 +81,7 @@ const App = () => {
                     <Route path="/shipping-delivery" element={<ShippingDelivery />} />
                     <Route path="/terms-conditions" element={<TermsConditions />} />
                     <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                    <Route path="/maya-ai" element={<MayaAI />} />
                     <Route path="*" element={<NotFound />} />
                   </Routes>
                 </Layout>

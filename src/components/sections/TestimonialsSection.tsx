@@ -77,7 +77,6 @@ interface TestimonialColumnProps {
 
 const TestimonialColumn = ({ testimonials, duration = 60, direction = 'up' }: TestimonialColumnProps) => {
   const controls = useAnimation();
-
   const animationDefinition: TargetAndTransition = useMemo(() => ({
     y: direction === 'up' ? ['0%', '-50%'] : ['-50%', '0%'],
     transition: {
@@ -95,10 +94,8 @@ const TestimonialColumn = ({ testimonials, duration = 60, direction = 'up' }: Te
 
   return (
     <motion.div
-      onMouseEnter={() => controls.stop()}
-      onMouseLeave={() => controls.start(animationDefinition)}
-      className="flex flex-col gap-8"
       animate={controls}
+      className="flex flex-col gap-8"
     >
       {[...testimonials, ...testimonials].map((testimonial, index) => (
         <TestimonialCard key={`${testimonial.name}-${index}`} testimonial={testimonial} />
@@ -106,6 +103,47 @@ const TestimonialColumn = ({ testimonials, duration = 60, direction = 'up' }: Te
     </motion.div>
   );
 };
+
+const testimonialsRight = [
+  {
+    name: "Anita Patel",
+    role: "Daughter, Ahmedabad",
+    content: "The family connection feature keeps us all informed about my mother’s wellbeing.",
+    rating: 5
+  },
+  {
+    name: "Deepak Joshi",
+    role: "Son, Indore",
+    content: "The AI health monitoring is accurate and easy to use. Highly recommended!",
+    rating: 5
+  },
+  {
+    name: "Meera Nair",
+    role: "Daughter, Thiruvananthapuram",
+    content: "I can track my parents’ health anytime. The reports are simple to understand.",
+    rating: 5
+  },
+  {
+    name: "Rahul Deshmukh",
+    role: "Son, Nagpur",
+    content: "24/7 support is real! The team responds instantly in emergencies.",
+    rating: 5
+  },
+  {
+    name: "Kavita Reddy",
+    role: "Daughter, Hyderabad",
+    content: "The app is user-friendly and the support is excellent. My family feels safer.",
+    rating: 4
+  }
+];
+
+const marqueeAnimation = `animate-[marquee-vertical_18s_linear_infinite]`;
+const marqueeReverseAnimation = `animate-[marquee-vertical-reverse_18s_linear_infinite]`;
+
+// Add keyframes for vertical marquee in global CSS if not present
+// @keyframes marquee-vertical { 0% { transform: translateY(0); } 100% { transform: translateY(-50%); } }
+// @keyframes marquee-vertical-reverse { 0% { transform: translateY(-50%); } 100% { transform: translateY(0); } }
+
 
 const TestimonialsSection = () => {
   const posthog = usePostHog();

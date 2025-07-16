@@ -4,7 +4,6 @@ import { useInView } from '../../hooks/useInView';
 
 const MedicalAdvisorsSection = () => {
   const [ref, inView] = useInView(0.3);
-
   return (
     <motion.section
       ref={ref}
