@@ -130,14 +130,14 @@ const Partners = () => {
         <div className="container mx-auto px-4">
           {/* Header */}
           <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-bold text-secondary-custom mb-4">
+            <h1 className="text-4xl md:text-5xl font-extrabold text-secondary-custom my-10">
               Join Us for a World Where
               <br />
               <span className="block text-2xl md:text-3xl font-semibold mt-2 text-secondary-custom/90">
                 Distance Never Stands Between Family and Care!
               </span>
             </h1>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto mb-8">
+            <p className="text-lg text-gray-600 max-w-4xl mx-auto mb-8">
               Our partners drive growth and impact for themselves and their patients with exclusive access inside 2care.ai technology and tools. Join us as home healthcare providers, geriatric clinics, multi-specialty hospitals, nursing homes, and ambulance services.
             </p>
             <DialogTrigger asChild>
@@ -162,8 +162,8 @@ const Partners = () => {
             data: offeringsFeatures
           }].map((section, index) => (
             <section className="mb-20" key={index}>
-              <h2 className="text-3xl font-bold text-secondary-custom mb-4 text-center">{section.title}</h2>
-              <p className="text-lg text-gray-600 text-center mb-12 max-w-2xl mx-auto">{section.subtitle}</p>
+              <h2 className="text-2xl md:text-3xl font-bold text-secondary-custom mb-6 text-center">{section.title}</h2>
+              <p className="text-base text-gray-600 text-center mb-12 max-w-2xl mx-auto">{section.subtitle}</p>
               <Swiper
                 modules={[Autoplay, EffectCoverflow]}
                 effect="coverflow"
@@ -205,7 +205,7 @@ const Partners = () => {
                       >
                         <CardContent className="flex flex-col items-center justify-center h-full p-8 text-center">
                           <div className="flex justify-center mb-6">{item.icon}</div>
-                          <h3 className="text-xl font-bold text-secondary-custom mb-4">{item.title}</h3>
+                          <h3 className="text-xl font-semibold text-secondary-custom mb-4">{item.title}</h3>
                           <p className="text-gray-600">{item.description}</p>
                         </CardContent>
                       </Card>
@@ -233,8 +233,8 @@ const Partners = () => {
               <div className="absolute inset-0 z-0" style={{ background: 'rgba(20,30,50,0.45)' }} />
               <Card className="bg-transparent text-white relative z-10 shadow-none">
                 <CardContent className="p-12 text-center">
-                  <h2 className="text-3xl font-bold mb-4">Ready to Transform Healthcare Together?</h2>
-                  <p className="text-xl mb-8 opacity-90">
+                  <h2 className="text-2xl font-bold mb-4">Ready to Transform Healthcare Together?</h2>
+                  <p className="text-lg mb-8 opacity-90">
                     Join our growing network of healthcare partners and make a difference in families' lives
                   </p>
                   <DialogTrigger asChild>

@@ -11,7 +11,7 @@ const cardData = [
     bg: "/white-gradient.jpg",
     content: (
       <>
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center" style={{ color: '#2b4570' }}>AI Health Monitoring</h2>
+        <h2 className="text-2xl md:text-4xl font-bold mb-4 text-center" style={{ color: '#2b4570' }}>AI Health Monitoring</h2>
         <p className="text-lg font-bold text-center mb-8 max-w-2xl mx-auto" style={{ color: '#2b4570' }}>Advanced AI technology to monitor your loved ones' health in real-time</p>
         <div className="flex justify-center">
           <img 
@@ -139,10 +139,10 @@ const Solutions = () => {
       {/* Heading section */}
       <div className="container mx-auto px-4 pt-12 pb-8">
         <div className="text-center mb-8">
-          <h1 className="text-4xl md:text-6xl font-bold text-secondary-custom mb-4">
+          <h1 className="text-5xl mt-10 font-extrabold text-secondary-custom mb-10">
             Our Solutions & Services
           </h1>
-          <p className="text-xl text-sub max-w-4xl mx-auto leading-relaxed">
+          <p className="text-lg text-sub max-w-4xl mx-auto leading-relaxed">
             Comprehensive healthcare management powered by Maya AI Health Agent and qualified medical professionals. From real-time vital monitoring to 24/7 support, we simplify healthcare for your family.
           </p>
         </div>

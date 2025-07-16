@@ -145,13 +145,13 @@ const Pricing = () => {
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-16 animate-fade-in">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-secondary-custom mb-6">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-secondary-custom my-10">
             Complete Health Care
           </h1>
-          <h2 className="text-xl md:text-2xl lg:text-3xl text-secondary-custom mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold text-secondary-custom mb-6">
             Maya AI Health Agent + Personal Doctor Attention
           </h2>
-          <p className="text-base md:text-lg text-sub max-w-4xl mx-auto">
+          <p className="text-sm md:text-base text-sub max-w-4xl mx-auto">
             Doctor-supervised and AI monitoring for chronic conditions, no matter the distance
           </p>
         </div>
@@ -186,7 +186,7 @@ const Pricing = () => {
             <Card className="relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 animate-slide-up hover:border-primary-custom">
               <CardHeader className="text-center pb-4">
               {/* ({getPriceDetails("free", billingPeriod).current}) */}
-                <CardTitle className="text-2xl font-bold text-secondary-custom mb-2">Free Forever </CardTitle>
+                <CardTitle className="text-xl font-semibold text-secondary-custom mb-4">Free Forever </CardTitle>
                 <p className="text-sub mb-4">WhatsApp + AI Analysis</p>
                 
                 <div className="mt-4 space-y-2">
@@ -230,7 +230,7 @@ const Pricing = () => {
               </div>
               
               <CardHeader className="text-center pb-4">
-                <CardTitle className="text-3xl font-bold text-secondary-custom">Premium</CardTitle>
+                <CardTitle className="text-2xl font-bold text-secondary-custom mb-4">Premium</CardTitle>
                 <div className="my-2">
                     <span className="text-4xl font-extrabold text-secondary-custom">{getPriceDetails("premium", billingPeriod).current}</span>
                     <span className="text-2xl text-gray-400 line-through ml-2">{getPriceDetails("premium", billingPeriod).original}</span>

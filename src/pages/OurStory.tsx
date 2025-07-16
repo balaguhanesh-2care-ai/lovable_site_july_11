@@ -17,18 +17,18 @@ const OurStory = () => {
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-bold text-secondary-custom mb-6">
+            <h1 className="text-4xl md:text-5xl font-extrabold text-secondary-custom mb-8 mt-10">
               Our Story
             </h1>
-            <p className="text-xl text-sub max-w-2xl mx-auto">
+            <p className="text-lg text-sub max-w-2xl mx-auto">
               Born from personal experience, built for families worldwide
             </p>
           </div>
 
           {/* Father's Cancer Journey */}
           <section className="mb-16">
-            <h2 className="text-3xl font-bold text-secondary-custom mb-4">Our Father's Cancer Journey</h2>
-            <p className="text-lg text-sub mb-6">A personal experience that inspired our mission</p>
+            <h2 className="text-2xl md:text-3xl font-bold text-secondary-custom mb-6">Our Father's Cancer Journey</h2>
+            <p className="text-base text-sub mb-6">A personal experience that inspired our mission</p>
             <div className="prose prose-lg max-w-none text-sub space-y-6">
               <p>
                 When our father was diagnosed with cancer in 2020, we experienced firsthand challenges of coordinating care from overseas. Saket was in Germany and Pawan was in Ireland. We faced many challenges:
@@ -92,8 +92,8 @@ const OurStory = () => {
 
           {/* Medical Advisors */}
           <section className="mb-16">
-            <h2 className="text-3xl font-bold text-secondary-custom mb-4">Meet Our Medical Advisors</h2>
-            <p className="text-lg text-sub mb-8">World-class medical expertise guiding your family's health decisions</p>
+            <h2 className="text-2xl md:text-3xl font-bold text-secondary-custom mb-6">Meet Our Medical Advisors</h2>
+            <p className="text-base text-sub mb-8">World-class medical expertise guiding your family's health decisions</p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* Dr. Nilesh Mehta */}
               <Card className="feature-card group">
@@ -105,7 +105,7 @@ const OurStory = () => {
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                     />
                   </div>
-                  <h3 className="text-xl font-bold text-secondary-custom mb-2">Dr. Nilesh Mehta</h3>
+                  <h3 className="text-xl font-semibold text-secondary-custom mb-4">Dr. Nilesh Mehta</h3>
                   <p className="text-primary-custom font-semibold mb-2">Phoenix Cancer Center</p>
                   <p className="text-sub mb-4">Medical Oncologist</p>
                   <p className="text-main">
@@ -124,7 +124,7 @@ const OurStory = () => {
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                     />
                   </div>
-                  <h3 className="text-xl font-bold text-secondary-custom mb-2">Dr. Vivek Arora</h3>
+                  <h3 className="text-xl font-semibold text-secondary-custom mb-4">Dr. Vivek Arora</h3>
                   <p className="text-primary-custom font-semibold mb-2">Aurora Health Care</p>
                   <p className="text-sub mb-4">Internal Medicine</p>
                   <p className="text-main">

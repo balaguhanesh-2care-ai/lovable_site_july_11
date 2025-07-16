@@ -153,10 +153,10 @@ const ProductUpdates = () => {
     <div className="min-h-screen py-12 bg-gradient-to-br from-blue-50 via-white to-blue-100">
       <div className="container mx-auto px-4">
         <div className="text-center mb-8">
-          <h1 className="text-5xl md:text-6xl font-extrabold text-secondary-custom mb-2 drop-shadow-lg">
+          <h1 className="text-5xl font-bold text-secondary-custom mb-10 drop-shadow-lg mt-10">
             Keep Up With Our Updates
           </h1>
-          <p className="text-2xl text-gray-600 mb-4 font-light">
+          <p className="text-xl text-gray-600 mb-4 font-light">
             We are creating new things just for you!
           </p>
           {/* Filter Buttons */}
@@ -193,7 +193,7 @@ const ProductUpdates = () => {
               <div className="flex items-center justify-center mb-3">
                 <Lightbulb className="w-10 h-10 text-primary-custom animate-pulse drop-shadow-lg" />
               </div>
-              <h3 className="text-2xl font-bold text-secondary-custom mb-1">Request a Feature</h3>
+              <h3 className="text-2xl font-bold text-secondary-custom mb-6">Request a Feature</h3>
               <p className="text-gray-500 mb-4 font-light">Have an idea? Let us know what you'd like to see! Your feedback helps us build a better experience for you.</p>
               <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
                 <DialogTrigger asChild>
@@ -241,7 +241,7 @@ const ProductUpdates = () => {
                               <Badge variant="outline" className="mb-2 text-primary-custom border-primary-custom bg-white/70">
                                 {update.month}
                               </Badge>
-                              <h3 className="text-xl font-bold text-secondary-custom">{update.title}</h3>
+                              <h3 className="text-xl font-semibold text-secondary-custom mb-4">{update.title}</h3>
                             </div>
                             <div className="flex items-center gap-2 flex-wrap">
                               <Badge 

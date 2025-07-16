@@ -103,10 +103,10 @@ const ReportAnalysis = ({ onLoginClick, onSignupClick }: ReportAnalysisProps) =>
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-secondary-custom mb-6">
+            <h1 className="text-5xl font-extrabold text-secondary-custom mt-8 mb-8">
               Medical Report Analysis
             </h1>
-            <p className="text-xl text-gray-600">
+            <p className="text-lg text-gray-600">
               Get instant AI-powered analysis of your medical reports
             </p>
           </div>
@@ -120,7 +120,7 @@ const ReportAnalysis = ({ onLoginClick, onSignupClick }: ReportAnalysisProps) =>
                   <span className="text-[#128C7E] font-bold">M</span>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-base sm:text-lg">2care.ai</h3>
+                  <h3 className="text-xl font-semibold text-secondary-custom mb-4">2care.ai</h3>
                   <p className="text-sm opacity-90">Online</p>
                 </div>
               </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useMemo } from "react";
 import { motion, useInView } from "framer-motion";
 import TypewriterText from "../components/TypewriterText";
 
@@ -63,6 +63,24 @@ export default function MayaAI() {
   const [fade, setFade] = useState(false);
   const [typeDone, setTypeDone] = useState(false);
   const [waiting, setWaiting] = useState(true);
+
+  // Declare refs and inView hooks for each section (7 sections)
+  const ref0 = useRef(null);
+  const ref1 = useRef(null);
+  const ref2 = useRef(null);
+  const ref3 = useRef(null);
+  const ref4 = useRef(null);
+  const ref5 = useRef(null);
+  const ref6 = useRef(null);
+  const inView0 = useInView(ref0, { once: true, amount: 0.3 });
+  const inView1 = useInView(ref1, { once: true, amount: 0.3 });
+  const inView2 = useInView(ref2, { once: true, amount: 0.3 });
+  const inView3 = useInView(ref3, { once: true, amount: 0.3 });
+  const inView4 = useInView(ref4, { once: true, amount: 0.3 });
+  const inView5 = useInView(ref5, { once: true, amount: 0.3 });
+  const inView6 = useInView(ref6, { once: true, amount: 0.3 });
+  const sectionRefs = [ref0, ref1, ref2, ref3, ref4, ref5, ref6];
+  const sectionInViews = [inView0, inView1, inView2, inView3, inView4, inView5, inView6];
 
   // Wait before typing starts
   useEffect(() => {
@@ -145,11 +163,11 @@ export default function MayaAI() {
             src="/robot%20corner.png"
             alt="Robot corner"
             className="hidden md:block absolute z-30 w-64 lg:w-80 xl:w-[28rem] pointer-events-none select-none robot-flicker"
-            style={{ top: '10rem', right: '-5rem', transform: 'translateY(-30%) rotate(15deg)' }}
+            style={{ top: '13rem', right: '-1rem', transform: 'translateY(-30%) rotate(15deg)' }}
           />
           <div className="flex-1 flex flex-col">
             {/* Maya AI Heading */}
-            <h1 className="text-secondary-custom text-3xl sm:text-5xl md:text-6xl font-extrabold text-center mb-8 sm:mb-12 drop-shadow-lg">Maya AI</h1>
+            <h1 className="text-5xl font-bold text-secondary-custom text-center my-10 sm:mb-12 drop-shadow-lg">Maya AI</h1>
             <div className="relative z-10 max-w-5xl w-[96%] sm:w-[90%] mx-auto rounded-[24px] sm:rounded-[40px] overflow-hidden border border-white/20 shadow-2xl backdrop-blur-lg bg-black/80">
               {/* Video Layer inside the Card */}
               <video
@@ -162,35 +180,30 @@ export default function MayaAI() {
               />
               {/* Scrollable Content */}
               <div className="relative z-10 max-h-[90vh] overflow-y-auto scroll-smooth px-4 sm:px-10 py-6 sm:py-8 space-y-8 sm:space-y-14">
-                {sections.map((section, idx) => {
-                  const ref = useRef(null);
-                  const inView = useInView(ref, { once: true, amount: 0.3 });
-
-                  return (
-                    <motion.div
-                      key={idx}
-                      ref={ref}
-                      initial={{ opacity: 0, y: 50 }}
-                      animate={inView ? { opacity: 1, y: 0 } : {}}
-                      transition={{ duration: 0.8, delay: idx * 0.1 }}
-                      className="text-white text-center"
-                    >
-                      <div className="mb-2 font-mono text-white/80 text-sm tracking-widest flex items-center justify-center gap-2">
-                        <span>{section.number}</span>
-                        <span className="text-xl">{section.emoji}</span>
-                      </div>
-                      <h2 className="text-primary-custom text-2xl sm:text-3xl md:text-4xl font-extrabold mb-3 sm:mb-4 drop-shadow">
-                        {section.heading}
-                      </h2>
-                      <p className="text-lg md:text-xl font-medium mb-4 italic text-indigo-100">
-                        {section.tagline}
-                      </p>
-                      <p className="text-base md:text-lg text-white/90 max-w-3xl mx-auto">
-                        {section.text}
-                      </p>
-                    </motion.div>
-                  );
-                })}
+                {sections.map((section, idx) => (
+                  <motion.div
+                    key={idx}
+                    ref={sectionRefs[idx]}
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={sectionInViews[idx] ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.8, delay: idx * 0.1 }}
+                    className="text-white text-center"
+                  >
+                    <div className="mb-2 font-mono text-white/80 text-sm tracking-widest flex items-center justify-center gap-2">
+                      <span>{section.number}</span>
+                      <span className="text-xl">{section.emoji}</span>
+                    </div>
+                    <h2 className="text-3xl md:text-4xl font-bold text-primary-custom mb-6 drop-shadow">
+                      {section.heading}
+                    </h2>
+                    <p className="text-base md:text-lg font-medium mb-4 italic text-indigo-100">
+                      {section.tagline}
+                    </p>
+                    <p className="text-sm md:text-base text-white/90 max-w-3xl mx-auto">
+                      {section.text}
+                    </p>
+                  </motion.div>
+                ))}
               </div>
             </div>
           </div>
