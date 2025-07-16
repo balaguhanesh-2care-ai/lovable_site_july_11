@@ -1,5 +1,4 @@
-
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -7,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Send, Phone, Mail, MapPin } from "lucide-react";
 import { Turnstile } from "@marsidev/react-turnstile";
 import { FloatingBlobsBackground } from "@/components/ui/FloatingBlobsBackground";
+
 const LetsConnect = () => {
   const [formData, setFormData] = useState({
     name: "",

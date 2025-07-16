@@ -119,7 +119,7 @@ const Index = () => {
 
           {/* SCENE 2: Features */}
           <motion.div style={{ opacity: featuresOpacity, y: featuresY, pointerEvents: featuresPointerEvents }} className="absolute inset-0 h-full">
-            <FeaturesSection scrollYProgress={featuresProgress} />
+             <FeaturesSection />
           </motion.div>
           
           {/* SCENE 3: Circular Health */}

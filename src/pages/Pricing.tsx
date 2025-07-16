@@ -145,13 +145,13 @@ const Pricing = () => {
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-16 animate-fade-in">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-secondary-custom mb-6">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-secondary-custom mb-6">
             Complete Health Care
           </h1>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl text-secondary-custom mb-6">
+          <h2 className="text-xl md:text-2xl lg:text-3xl text-secondary-custom mb-6">
             Maya AI Health Agent + Personal Doctor Attention
           </h2>
-          <p className="text-xl md:text-2xl text-sub max-w-4xl mx-auto">
+          <p className="text-base md:text-lg text-sub max-w-4xl mx-auto">
             Doctor-supervised and AI monitoring for chronic conditions, no matter the distance
           </p>
         </div>
