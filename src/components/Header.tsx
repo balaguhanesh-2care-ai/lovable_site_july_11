@@ -91,7 +91,7 @@ const Header = ({ onLoginClick, onSignupClick, minimal = false, logoSize = "h-12
           <Button
             variant="ghost"
             size="icon"
-            className="lg:hidden text-white hover:bg-white/10"
+            className="lg:hidden text-secondary-custom hover:bg-white/10"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Open menu"
           >

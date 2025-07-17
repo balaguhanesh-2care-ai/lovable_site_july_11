@@ -153,18 +153,26 @@ const ProductUpdates = () => {
     <div className="min-h-screen py-12 bg-gradient-to-br from-blue-50 via-white to-blue-100">
       <div className="container mx-auto px-4">
         <div className="text-center mb-8">
-          <h1 className="text-5xl font-bold text-secondary-custom mb-10 drop-shadow-lg mt-10">
+          <h1 className="text-5xl font-bold text-secondary-custom mb-2 drop-shadow-lg mt-10">
             Keep Up With Our Updates
           </h1>
-          <p className="text-xl text-gray-600 mb-4 font-light">
+          <p className="text-xl text-gray-600 mb-3 font-light mt-2">
             We are creating new things just for you!
           </p>
           {/* Filter Buttons */}
           <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 mb-6">
             <Button
+              variant={selectedFilter === "all" ? "default" : "outline"}
+              onClick={() => setSelectedFilter("all")}
+              className={`transition-all duration-200 ease-in-out ${selectedFilter === "all" ? "bg-blue-500 text-white scale-105 shadow-lg border-2 border-blue-500" : "hover:bg-blue-100 hover:text-blue-800 border-2 border-blue-300 text-blue-500"}`}
+            >
+              <Sparkles className="w-4 h-4 mr-2 text-blue-400" />
+              All
+            </Button>
+            <Button
               variant={selectedFilter === "prototype" ? "default" : "outline"}
               onClick={() => setSelectedFilter("prototype")}
-              className={`transition-all duration-200 ${selectedFilter === "prototype" ? "bg-green-500 text-white scale-105 shadow-lg" : "hover:bg-green-100 hover:text-green-800"}`}
+              className={`transition-all duration-200 ease-in-out ${selectedFilter === "prototype" ? "bg-green-500 text-white scale-105 shadow-lg border-2 border-green-500" : "hover:bg-green-100 hover:text-green-800 border-2 border-green-300 text-green-600"}`}
             >
               <Check className="w-4 h-4 mr-2" />
               Prototype
@@ -172,7 +180,7 @@ const ProductUpdates = () => {
             <Button
               variant={selectedFilter === "coming-up" ? "default" : "outline"}
               onClick={() => setSelectedFilter("coming-up")}
-              className={`transition-all duration-200 ${selectedFilter === "coming-up" ? "bg-yellow-400 text-white scale-105 shadow-lg" : "hover:bg-yellow-100 hover:text-yellow-800"}`}
+              className={`transition-all duration-200 ease-in-out ${selectedFilter === "coming-up" ? "bg-yellow-400 text-white scale-105 shadow-lg border-2 border-yellow-400" : "hover:bg-yellow-100 hover:text-yellow-800 border-2 border-yellow-300 text-yellow-600"}`}
             >
               <Clock className="w-4 h-4 mr-2" />
               Coming Up
@@ -180,9 +188,9 @@ const ProductUpdates = () => {
             <Link to="/maya-ai">
               <Button
                 variant="outline"
-                className="flex items-center border-primary-custom text-primary-custom hover:bg-blue-100 hover:text-blue-800 transition-all duration-200"
+                className="flex items-center border-2 border-blue-400 text-blue-400 hover:bg-blue-100 hover:text-blue-800 transition-all duration-200 ease-in-out"
               >
-                <Sparkles className="w-4 h-4 mr-2 text-blue-400" />
+                <Sparkles className="w-4 h-4 mr-2 text-blue-400 animate-pulse" />
                 Maya AI
               </Button>
             </Link>
@@ -226,22 +234,23 @@ const ProductUpdates = () => {
                   <div
                     key={index}
                     ref={ref}
-                    className={`relative flex flex-col sm:flex-row items-center sm:items-stretch ${isLeft ? "sm:justify-start" : "sm:justify-end"} group transition-all duration-300 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+                    className={`relative flex flex-col sm:flex-row items-center sm:items-stretch ${isLeft ? "sm:justify-start" : "sm:justify-end"} group transition-all duration-700 ease-in-out will-change-transform will-change-opacity futuristic-timeline-card ${inView ? "opacity-100 translate-y-0 blur-0" : "opacity-0 translate-y-8 blur-sm"}`}
+                    style={{ transitionDelay: `${index * 80}ms`, transitionDuration: '150ms' }}
                   >
                     {/* Timeline Dot */}
-                    <div className={`absolute sm:static left-1/2 sm:left-auto transform sm:transform-none -translate-x-1/2 sm:translate-x-0 z-10 flex-shrink-0 w-12 h-12 ${update.status === "prototype" ? "bg-green-500" : "bg-yellow-400"} rounded-full flex items-center justify-center text-white shadow-lg border-4 border-white transition-all duration-300 group-hover:scale-110`}>
+                    <div className={`absolute sm:static left-1/2 sm:left-auto transform sm:transform-none -translate-x-1/2 sm:translate-x-0 z-10 flex-shrink-0 w-12 h-12 ${update.status === "prototype" ? "bg-gradient-to-br from-green-400 via-blue-400 to-purple-400" : "bg-gradient-to-br from-yellow-400 via-pink-400 to-purple-400"} rounded-full flex items-center justify-center text-white shadow-2xl border-4 border-white transition-all duration-500 group-hover:scale-110`}> 
                       {update.icon}
                     </div>
                     {/* Content */}
                     <div className={`w-full sm:w-1/2 ${isLeft ? "sm:pr-12 sm:pl-0" : "sm:pl-12 sm:pr-0"} mt-16 sm:mt-0`}> 
-                      <Card className="flex-1 card-hover border-none shadow-xl bg-white/80 hover:shadow-2xl transition-all duration-300">
+                      <Card className="flex-1 card-hover border-none shadow-2xl bg-white/80 hover:shadow-3xl transition-all duration-500 futuristic-card">
                         <CardContent className="p-8">
                           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
                             <div>
-                              <Badge variant="outline" className="mb-2 text-primary-custom border-primary-custom bg-white/70">
+                              <Badge variant="outline" className="mb-2 text-primary-custom border-primary-custom bg-white/70 futuristic-badge">
                                 {update.month}
                               </Badge>
-                              <h3 className="text-xl font-semibold text-secondary-custom mb-4">{update.title}</h3>
+                              <h3 className="text-xl font-semibold text-secondary-custom mb-4 futuristic-title">{update.title}</h3>
                             </div>
                             <div className="flex items-center gap-2 flex-wrap">
                               <Badge 
@@ -252,7 +261,7 @@ const ProductUpdates = () => {
                               </Badge>
                             </div>
                           </div>
-                          <p className="text-gray-600 font-light text-base">{update.description}</p>
+                          <p className="text-gray-600 font-light text-base futuristic-desc">{update.description}</p>
                         </CardContent>
                       </Card>
                     </div>

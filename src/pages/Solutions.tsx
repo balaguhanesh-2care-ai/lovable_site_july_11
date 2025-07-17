@@ -110,10 +110,10 @@ const Solutions = () => {
 
   const platformFeatures = [
     { title: "Customized Vital Monitoring", image: "/lovable-uploads/9a9d9580-d25f-4620-b250-03f494970ed8.png" },
+    { title: "Watch Our Platform Overview", youtube: true, videoUrl: "https://www.youtube.com/embed/KqudCo3Yljw?si=EGy9W8d95_8dlJ1B" },
     { title: "Centralized Health Records", image: "/lovable-uploads/a1bd954a-2031-405e-94f8-286c3ba3f062.png" },
     { title: "Lab Appointment Booking", image: "/lovable-uploads/00fc7a11-e1c7-40fe-9c00-b65d858b5cbe.png" },
     { title: "Appointment Management", image: "/lovable-uploads/806c00b5-ce2d-479a-95b8-5527dfe632c2.png" },
-    { title: "Prescription Management", image: "/lovable-uploads/9d3c08bc-28cc-4026-a688-3c605d5e87c0.png" },
     { title: "Medical Progress Notes", image: "/lovable-uploads/32917b9d-d7f3-4f0e-bc3a-28874bbc5a59.png" }
   ];
 
@@ -137,9 +137,9 @@ const Solutions = () => {
         <div className="absolute w-10 h-10 sm:w-14 sm:h-14 bg-blue-100 rounded-full blur-2xl opacity-30 animate-bubble-5" style={{ bottom: '10%', right: '20%' }} />
       </div>
       {/* Heading section */}
-      <div className="container mx-auto px-4 pt-12 pb-8">
+      <div className="container mx-auto px-4 pt-12 pb-2">
         <div className="text-center mb-8">
-          <h1 className="text-5xl mt-10 font-extrabold text-secondary-custom mb-10">
+          <h1 className="text-5xl mt-10 font-extrabold text-secondary-custom mb-5">
             Our Solutions & Services
           </h1>
           <p className="text-lg text-sub max-w-4xl mx-auto leading-relaxed">
@@ -149,7 +149,7 @@ const Solutions = () => {
       </div>
 
       {/* Animated Platform Features Section */}
-      <div className="mt-[-1.5rem]">{/* negative margin to pull up the section */}
+      <div className="mt-[0.1rem]">{/* reduced negative margin to pull up the section less aggressively */}
         <AnimatedSolutionsShowcase />
       </div>
 
