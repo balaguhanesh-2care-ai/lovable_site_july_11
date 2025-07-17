@@ -36,12 +36,12 @@ export default async function handler(req, res) {
 
   try {
     // Send notification to your team
-    // await resend.emails.send({
-    //   from: 'info@support.2care.ai',
-    //   to: 'support@2care.ai',
-    //   subject: `New Feature Request from ${name}`,
-    //   html: `<h1>New Feature Request</h1><p><strong>Name:</strong> ${name}</p><p><strong>Email:</strong> ${email}</p><p><strong>Request:</strong><br/>${message}</p>`
-    // });
+    await resend.emails.send({
+      from: 'info@support.2care.ai',
+      to: 'support@2care.ai',
+      subject: `New Feature Request from submission${name}`,
+      html: `<p><strong>form_type: feature_request</strong></p><h1>New Feature Request</h1><p><strong>Name:</strong> ${name}</p><p><strong>Email:</strong> ${email}</p><p><strong>Request:</strong><br/>${message}</p>`
+    });
     const templatePath = path.join(process.cwd(), 'api', 'feature_request_format.html');
     const htmlTemplate = await fs.readFile(templatePath, 'utf-8');
     const htmlForUser = htmlTemplate.replace(/\$\{name\}/g, name);
