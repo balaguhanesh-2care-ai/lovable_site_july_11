@@ -93,10 +93,10 @@ const CircularHealthFeatures = () => {
             {/* Left side - Text content */}
             <div className="w-full lg:w-5/12 space-y-6 text-center lg:text-left lg:pl-10">
               <div>
-                <h2 className="text-3xl md:text-4xl font-bold text-secondary-custom mb-4">
+                <h2 className="text-2xl font-bold text-secondary-custom mb-4">
                   A Comprehensive Health Ecosystem
                 </h2>
-                <p className="text-lg text-sub leading-relaxed">
+                <p className="text-md text-sub leading-relaxed">
                   Experience the future of healthcare with our integrated AI system. From real-time monitoring to emergency response, we provide complete peace of mind.
                 </p>
               </div>

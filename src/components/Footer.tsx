@@ -39,14 +39,14 @@ const Footer = () => {
               <div className="flex items-center space-x-2">
                 <Phone className="w-4 h-4 text-primary-custom" />
                 <div className="text-gray-300">
-                  <p>For Support: +91 6364872188 / 7899953477</p>
+                  <p>For Support: +91 6364872188</p>
                 </div>
               </div>
               <div className="flex items-start space-x-2">
                 <MapPin className="w-4 h-4 text-primary-custom mt-1" />
                 <span className="text-gray-300">
                   Office Address: #17, 7th Main Road, 2nd floor, 
-                  II stage Indiranagar Bangalore - 560038
+                  II Stage Indiranagar Bangalore - 560038
                 </span>
               </div>
             </div>

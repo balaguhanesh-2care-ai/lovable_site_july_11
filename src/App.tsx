@@ -23,9 +23,9 @@ import NotFound from "./pages/NotFound";
 import LoginModal from "./components/LoginModal";
 import SignupModal from "./components/SignupModal";
 import MayaAI from "./pages/MayaAI";
-import Countdown from "./pages/Countdown";
-import ThankYou from "./pages/ThankYou";
-import Consult499 from "./pages/Consult499";
+import CountdownPage from "./pages/Countdown.tsx";
+import ThankYou from "./pages/ThankYou.tsx";
+import Consult499 from "./pages/Consult499.tsx";
 
 import 'swiper/css';
 import 'swiper/css/autoplay';
@@ -87,7 +87,7 @@ export default function App() {
                     <Route path="/terms-conditions" element={<TermsConditions />} />
                     <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                     <Route path="/maya-ai" element={<MayaAI />} />
-                    <Route path="/countdown" element={<Countdown />} />
+                    <Route path="/countdown" element={<CountdownPage />} />
                     <Route path="/thank-you" element={<ThankYou />} />
                     <Route path="/consult-499" element={<Consult499 />} />
                     <Route path="*" element={<NotFound />} />

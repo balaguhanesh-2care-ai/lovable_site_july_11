@@ -10,9 +10,16 @@ const CursorGlow = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isVisible, setIsVisible] = useState(false);
   const [trail, setTrail] = useState<TrailPosition[]>([]);
+  const [isMobile, setIsMobile] = useState(false);
   const animationFrameRef = useRef<number>();
 
   useEffect(() => {
+    // Basic mobile check
+    const isMobileDevice = window.innerWidth < 768 || /Mobi|Android/i.test(navigator.userAgent);
+    setIsMobile(isMobileDevice);
+
+    if (isMobileDevice) return;
+
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
       setIsVisible(true);
@@ -36,25 +43,22 @@ const CursorGlow = () => {
 
   // Create trailing effect
   useEffect(() => {
-    if (!isVisible) return;
+    if (!isVisible || isMobile) return;
 
     const updateTrail = () => {
       setTrail(prevTrail => {
         const newTrail = [...prevTrail];
-        
-        // Add current position to trail
+
         newTrail.unshift({
           x: mousePosition.x,
           y: mousePosition.y,
-          opacity: 0.15
+          opacity: 0.15,
         });
 
-        // Update existing trail positions with fade effect
         for (let i = 1; i < newTrail.length; i++) {
-          newTrail[i].opacity *= 0.85; // Faster fade
+          newTrail[i].opacity *= 0.85;
         }
 
-        // Keep only recent positions (shorter trail)
         return newTrail.slice(0, 8).filter(pos => pos.opacity > 0.01);
       });
 
@@ -68,9 +72,9 @@ const CursorGlow = () => {
         cancelAnimationFrame(animationFrameRef.current);
       }
     };
-  }, [mousePosition, isVisible]);
+  }, [mousePosition, isVisible, isMobile]);
 
-  if (!isVisible) return null;
+  if (isMobile || !isVisible) return null;
 
   return (
     <>
@@ -83,7 +87,6 @@ const CursorGlow = () => {
           opacity: 0.15,
         }}
       >
-        {/* Primary glow - largest */}
         <div
           className="absolute w-24 h-24 rounded-full"
           style={{
@@ -91,7 +94,6 @@ const CursorGlow = () => {
             filter: 'blur(15px)',
           }}
         />
-        {/* Secondary glow - medium */}
         <div
           className="absolute w-16 h-16 rounded-full"
           style={{
@@ -101,7 +103,6 @@ const CursorGlow = () => {
             filter: 'blur(10px)',
           }}
         />
-        {/* Accent glow - smallest */}
         <div
           className="absolute w-12 h-12 rounded-full"
           style={{
