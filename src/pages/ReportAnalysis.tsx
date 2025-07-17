@@ -102,7 +102,7 @@ const ReportAnalysis = ({ onLoginClick, onSignupClick }: ReportAnalysisProps) =>
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-6">
-            <h1 className="text-5xl font-extrabold text-secondary-custom mt-10 mb-2">
+            <h1 className="text-4xl md:text-5xl font-extrabold text-secondary-custom mb-5 mt-10">
               Medical Report Analysis
             </h1>
             <p className="text-lg text-gray-600 mb-2">

@@ -6,6 +6,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Send, Phone, Mail, MapPin } from "lucide-react";
 import { Turnstile } from "@marsidev/react-turnstile";
 import { FloatingBlobsBackground } from "@/components/ui/FloatingBlobsBackground";
+import { FaWhatsapp } from "react-icons/fa";
+import PhoneInput from 'react-phone-input-2';
 
 const LetsConnect = () => {
   const [formData, setFormData] = useState({
@@ -72,7 +74,7 @@ const LetsConnect = () => {
               <h2 className="text-4xl md:text-5xl font-bold text-secondary-custom mb-6">
                 Let's Connect
               </h2>
-              <p className="text-xl text-sub max-w-3xl mx-auto">
+              <p className="text-xl text-primary-custom-bold max-w-3xl mx-auto">
                 Have questions about our healthcare solutions? We're here to help you every step of the way.
               </p>
             </div>
@@ -104,7 +106,7 @@ const LetsConnect = () => {
                       <Input
                         type="email"
                         name="email"
-                        placeholder="xyz@mail.com"
+                        placeholder="yourname@gmail.com"
                         value={formData.email}
                         onChange={handleChange}
                         className="w-full"
@@ -116,21 +118,23 @@ const LetsConnect = () => {
                       <label className="block text-sm font-medium text-secondary-custom mb-2">
                         WhatsApp Number
                       </label>
-                      <div className="flex">
-                        <div className="flex items-center px-3 border border-r-0 border-gray-300 bg-gray-50 rounded-l-md">
-                          <span className="text-sm">🇮🇳 +91</span>
-                        </div>
-                        <Input
-                          type="tel"
-                          name="phone"
-                          placeholder="81234 56789"
-                          value={formData.phone}
-                          onChange={handleChange}
-                          className="flex-1 rounded-l-none"
-                          required
-                        />
-                      </div>
-                    </div>
+                      <PhoneInput
+                        country={'in'}
+                        value={formData.phone}
+                        onChange={(phone) => setFormData({ ...formData, phone })}
+                        inputProps={{
+                          name: 'phone',
+                          required: true,
+                          autoFocus: true,
+                        }}
+                        placeholder="98765 43210"
+                        inputClass="!w-full !bg-[#f1f7fd] !text-[#607399] !text-base !rounded-md !border !border-[#d1dce5] !py-3 !pl-16 !pr-4 focus:!outline-none focus:!ring-2 focus:!ring-[#3fb7dd]"
+                        containerClass="!w-full !bg-[#f1f7fd] !rounded-md !border !border-[#d1dce5]"
+                        buttonClass="!bg-[#f1f7fd] !border-r !border-[#d1dce5] !rounded-l-md"
+                        dropdownClass="!z-[1000]"
+                        enableSearch
+                      />
+                                  </div>
 
                     <div>
                       <label className="block text-sm font-medium text-secondary-custom mb-2">
@@ -191,7 +195,7 @@ const LetsConnect = () => {
                   <h3 className="text-2xl font-bold text-secondary-custom mb-4">
                     Get in Touch
                   </h3>
-                  <p className="text-sub mb-8">
+                  <p className="text-secondary-custom mb-8">
                     Our team is ready to assist you with any questions about our AI-powered healthcare solutions.
                   </p>
                 </div>
@@ -204,7 +208,7 @@ const LetsConnect = () => {
                       </div>
                       <div>
                         <h4 className="font-semibold text-secondary-custom">Phone Support</h4>
-                        <p className="text-primary-custom font-medium">+91 78999 53477</p>
+                        <p className="text-primary-custom font-medium">+91 63648 72188</p>
                       </div>
                     </CardContent>
                   </Card>
@@ -214,22 +218,32 @@ const LetsConnect = () => {
                       <div className="w-12 h-12 bg-tertiary-custom rounded-full flex items-center justify-center">
                         <Mail className="w-6 h-6 text-white" />
                       </div>
-                      <div>
+                      <a href="mailto:support@2care.ai" className="block">
+                      <div className="cursor-pointer">
                         <h4 className="font-semibold text-secondary-custom">Email Support</h4>
                         <p className="text-primary-custom font-medium">support@2care.ai</p>
                       </div>
+                    </a>
                     </CardContent>
                   </Card>
 
                   <Card className="feature-card">
                     <CardContent className="p-6 flex items-center space-x-4">
                       <div className="w-12 h-12 bg-secondary-custom rounded-full flex items-center justify-center">
-                        <MapPin className="w-6 h-6 text-white" />
+                        <FaWhatsapp className="w-6 h-6 text-white" />
                       </div>
-                      <div>
-                        <h4 className="font-semibold text-secondary-custom">Whatsapp Support</h4>
-                        <p className="text-primary-custom font-medium">+91 63648 72188</p>
-                      </div>
+                        <a
+                          href="https://api.whatsapp.com/send/?phone=917899953477&text=Hi&type=phone_number&app_absent=0"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block"
+                        >
+                          <div className="cursor-pointer">
+                            <h4 className="font-semibold text-secondary-custom">Whatsapp Support</h4>
+                            <p className="text-primary-custom font-medium">+91 63648 72188</p>
+                          </div>
+                        </a>
+
                     </CardContent>
                   </Card>
                 </div>

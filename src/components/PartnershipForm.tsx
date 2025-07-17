@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Send } from "lucide-react";
 import { Turnstile } from "@marsidev/react-turnstile";
 import { Textarea } from "@/components/ui/textarea";
+import PhoneInput from 'react-phone-input-2';
 
 interface PartnershipFormProps {
   onSuccess?: () => void;
@@ -77,12 +78,27 @@ const PartnershipForm = ({ onSuccess }: PartnershipFormProps) => {
         </div>
         <div>
           <label className="block text-sm font-medium text-secondary-custom mb-1">Email</label>
-          <Input type="email" name="email" placeholder="you@company.com" value={formData.email} onChange={handleChange} required />
+          <Input type="email" name="email" placeholder="name@company.com" value={formData.email} onChange={handleChange} required />
         </div>
       </div>
       <div>
         <label className="block text-sm font-medium text-secondary-custom mb-1">Phone Number</label>
-        <Input type="tel" name="phone" placeholder="+91 12345 67890" value={formData.phone} onChange={handleChange} required />
+        <PhoneInput
+          country={'in'}
+          value={formData.phone}
+          onChange={(phone) => setFormData({ ...formData, phone })}
+          inputProps={{
+            name: 'phone',
+            required: true,
+            autoFocus: true,
+          }}
+          placeholder="98765 43210"
+          inputClass="!w-full !bg-[#f1f7fd] !text-[#607399] !text-base !rounded-md !border !border-[#d1dce5] !py-3 !pl-16 !pr-4 focus:!outline-none focus:!ring-2 focus:!ring-[#3fb7dd]"
+          containerClass="!w-full !bg-[#f1f7fd] !rounded-md !border !border-[#d1dce5]"
+          buttonClass="!bg-[#f1f7fd] !border-r !border-[#d1dce5] !rounded-l-md"
+          dropdownClass="!z-[1000]"
+          enableSearch
+        />
       </div>
       <div>
         <label className="block text-sm font-medium text-secondary-custom mb-1">Your Message</label>

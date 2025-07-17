@@ -169,8 +169,8 @@ const TestimonialsSection = () => {
   };
   return (
     <section className="py-20 container mx-auto px-4">
-      <div className="text-center mb-16">
-        <h2 className="text-4xl md:text-5xl font-bold text-secondary-custom mb-6 leading-tight">
+      <div className="text-center mb-5">
+        <h2 className="text-2xl md:text-3xl font-bold text-secondary-custom mb-4">
           Trusted by Families Across the Globe
         </h2>
         <p className="text-xl text-secondary-custom max-w-3xl mx-auto leading-relaxed">
@@ -200,7 +200,7 @@ const TestimonialsSection = () => {
                 <iframe
                   width="100%"
                   height="100%"
-                  src="https://www.youtube.com/embed/v-tcho9xnaE?si=lgXbh37_4QhzBaCu&rel=0&showinfo=0&modestbranding=1"
+                  src="https://www.youtube.com/embed/EB7yWdg_ZKg?si=AxrnfLwaLkkEE1lE"
                   title="2care.ai Customer Experience"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

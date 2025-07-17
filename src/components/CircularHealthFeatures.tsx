@@ -80,7 +80,7 @@ const CircularHealthFeatures = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveIndex((prevIndex) => (prevIndex + 1) % features.length);
-    }, 3000);
+    }, 2000);
     return () => clearInterval(interval);
   }, []);
 
@@ -91,7 +91,7 @@ const CircularHealthFeatures = () => {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-20">
             {/* Left side - Text content */}
-            <div className="w-full lg:w-5/12 space-y-6 text-center lg:text-left">
+            <div className="w-full lg:w-5/12 space-y-6 text-center lg:text-left lg:pl-10">
               <div>
                 <h2 className="text-3xl md:text-4xl font-bold text-secondary-custom mb-4">
                   A Comprehensive Health Ecosystem
@@ -103,19 +103,19 @@ const CircularHealthFeatures = () => {
               <div className="space-y-4 mt-6">
                 <div className="flex items-center space-x-3">
                   <div className="w-6 h-6 rounded-full bg-primary-custom flex items-center justify-center"><span className="text-white text-sm font-bold">✓</span></div>
-                  <span className="text-sub">Personalized health insights powered by AI</span>
+                  <span className="text-sub-bold">AI-Powered Health Summaries</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <div className="w-6 h-6 rounded-full bg-primary-custom flex items-center justify-center"><span className="text-white text-sm font-bold">✓</span></div>
-                  <span className="text-sub">Personalized health insights powered by AI</span>
+                  <span className="text-sub-bold">Instant Critical Alerts</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <div className="w-6 h-6 rounded-full bg-primary-custom flex items-center justify-center"><span className="text-white text-sm font-bold">✓</span></div>
-                  <span className="text-sub">24/7 continuous monitoring and support</span>
+                  <span className="text-sub-bold">24/7 Emergency Support</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <div className="w-6 h-6 rounded-full bg-primary-custom flex items-center justify-center"><span className="text-white text-sm font-bold">✓</span></div>
-                  <span className="text-sub">Seamless integration with healthcare providers</span>
+                  <span className="text-sub-bold">Seamless Healthcare Integration</span>
                 </div>
               </div>
             </div>

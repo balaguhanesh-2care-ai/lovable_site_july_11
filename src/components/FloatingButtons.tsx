@@ -48,7 +48,7 @@ const FloatingButtons = () => {
         size="icon"
       >
         {/* <MessageCircle className="w-6 h-6" /> */}
-        <FaWhatsapp className="w-15 h-15" />
+        <FaWhatsapp className="w-10 h-10" />
       </Button>
 
       {/* Schedule Call Button - Only on Pricing Page */}

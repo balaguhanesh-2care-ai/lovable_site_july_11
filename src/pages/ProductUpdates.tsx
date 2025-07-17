@@ -153,14 +153,15 @@ const ProductUpdates = () => {
     <div className="min-h-screen py-12 bg-gradient-to-br from-blue-50 via-white to-blue-100">
       <div className="container mx-auto px-4">
         <div className="text-center mb-8">
-          <h1 className="text-5xl font-bold text-secondary-custom mb-2 drop-shadow-lg mt-10">
-            Keep Up With Our Updates
+          <h1 className="text-4xl md:text-5xl font-extrabold text-secondary-custom mb-5 mt-10">
+            Our Product Updates
           </h1>
           <p className="text-xl text-gray-600 mb-3 font-light mt-2">
             We are creating new things just for you!
           </p>
           {/* Filter Buttons */}
-          <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 mb-6">
+          <div className="flex flex-wrap justify-center items-center gap-3 mb-6">
+
             <Button
               variant={selectedFilter === "all" ? "default" : "outline"}
               onClick={() => setSelectedFilter("all")}
@@ -235,7 +236,10 @@ const ProductUpdates = () => {
                     key={index}
                     ref={ref}
                     className={`relative flex flex-col sm:flex-row items-center sm:items-stretch ${isLeft ? "sm:justify-start" : "sm:justify-end"} group transition-all duration-700 ease-in-out will-change-transform will-change-opacity futuristic-timeline-card ${inView ? "opacity-100 translate-y-0 blur-0" : "opacity-0 translate-y-8 blur-sm"}`}
-                    style={{ transitionDelay: `${index * 80}ms`, transitionDuration: '150ms' }}
+                    style={{
+                      transition: 'all 80ms ease-in-out',
+                      transitionDelay: `${index * 20}ms`,
+                    }}
                   >
                     {/* Timeline Dot */}
                     <div className={`absolute sm:static left-1/2 sm:left-auto transform sm:transform-none -translate-x-1/2 sm:translate-x-0 z-10 flex-shrink-0 w-12 h-12 ${update.status === "prototype" ? "bg-gradient-to-br from-green-400 via-blue-400 to-purple-400" : "bg-gradient-to-br from-yellow-400 via-pink-400 to-purple-400"} rounded-full flex items-center justify-center text-white shadow-2xl border-4 border-white transition-all duration-500 group-hover:scale-110`}> 

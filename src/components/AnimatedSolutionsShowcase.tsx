@@ -26,11 +26,6 @@ const featureGrid = [
     image: "/lovable-uploads/9a9d9580-d25f-4620-b250-03f494970ed8.png",
   },
   {
-    title: "Watch Our Platform Overview",
-    youtube: true,
-    videoUrl: "https://www.youtube.com/embed/KqudCo3Yljw?si=EGy9W8d95_8dlJ1B",
-  },
-  {
     title: "Centralized Health Records",
     image: "/lovable-uploads/a1bd954a-2031-405e-94f8-286c3ba3f062.png",
   },
@@ -42,7 +37,10 @@ const featureGrid = [
     title: "Appointment Management",
     image: "/lovable-uploads/806c00b5-ce2d-479a-95b8-5527dfe632c2.png",
   },
-  
+  {
+    title: "Prescription Management",
+    image: "/lovable-uploads/9d3c08bc-28cc-4026-a688-3c605d5e87c0.png",
+  },
   {
     title: "Medical Progress Notes",
     image: "/lovable-uploads/32917b9d-d7f3-4f0e-bc3a-28874bbc5a59.png",
@@ -99,7 +97,7 @@ const AnimatedSolutionsShowcase: React.FC = () => {
             transition={{ duration: 0.7, ease: "easeInOut" }}
           >
             <motion.h2
-              className="text-xl md:text-4xl font-extrabold text-center text-[#1A3557] mb-8"
+              className="text-xl md:text-3xl font-extrabold text-center text-[#1A3557] mb-8"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1.02 }}
               transition={{ delay: 0.2, duration: 0.6 }}
@@ -108,45 +106,28 @@ const AnimatedSolutionsShowcase: React.FC = () => {
             </motion.h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 w-full max-w-screen-xl">
-              {featureGrid.map((feature, idx) => {
-                const isHighlighted = feature.youtube;
-                return (
-                  <motion.div
-                    key={feature.title}
-                    className={`relative bg-white border border-gray-200 shadow-xl rounded-2xl flex flex-col items-center justify-between h-full min-h-[350px] overflow-hidden transform transition-transform duration-300 ease-in-out ${
-                      isHighlighted
-                        ? 'border-4 border-cyan-400 shadow-[0_0_32px_0_rgba(34,211,238,0.35),0_0_0_6px_rgba(224,242,254,0.7)] scale-105 z-10 opacity-85'
-                        : ''
-                    }`}
-                    initial={{ opacity: 0, scale: isHighlighted ? 1.05 : 0.85 }}
-                    animate={{ opacity: isHighlighted ? 0.85 : 1, scale: isHighlighted ? 1.08 : 1 }}
-                    transition={{ duration: 0.5 }}
-                    whileHover={{ scale: isHighlighted ? 1.12 : 1.08, boxShadow: isHighlighted ? '0 0 48px 0 rgba(34,211,238,0.45), 0 0 0 8px #e0f2fe' : '0 0 32px 0 rgba(66, 165, 245, 0.25), 0 0 0 4px #e0f2fe', opacity: isHighlighted ? 0.8 : 0.5 }}
-                  >
-                    <div className="w-full h-[280px] flex justify-center items-center px-4 pt-6">
-                      {feature.youtube ? (
-                        <iframe
-                          src={feature.videoUrl}
-                          title={feature.title}
-                          frameBorder="0"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          allowFullScreen
-                          className="w-full h-full rounded-xl"
-                        ></iframe>
-                      ) : (
-                        <img
-                          src={feature.image}
-                          alt={feature.title}
-                          className="h-full w-full object-contain"
-                        />
-                      )}
-                    </div>
-                    <div className="text-center text-lg font-bold text-gray-800 p-6">
-                      {feature.title}
-                    </div>
-                  </motion.div>
-                );
-              })}
+              {featureGrid.map((feature) => (
+                <motion.div
+                  key={feature.title}
+                  className="relative bg-white border border-gray-200 shadow-xl rounded-2xl flex flex-col items-center justify-between h-full min-h-[350px] overflow-hidden transform transition-transform duration-300 ease-in-out"
+                  initial={{ opacity: 0, scale: 0.85 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5 }}
+                  whileHover={{ scale: 1.08, boxShadow: '0 0 32px 0 rgba(66, 165, 245, 0.25), 0 0 0 4px #e0f2fe' }}
+                >
+                  {/* Removed hover popup layer */}
+                  <div className="w-full h-[280px] flex justify-center items-center px-4 pt-6">
+                    <img
+                      src={feature.image}
+                      alt={feature.title}
+                      className="h-full w-full object-contain"
+                    />
+                  </div>
+                  <div className="text-center text-lg font-bold text-gray-800 p-6">
+                    {feature.title}
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </motion.div>
         )}
