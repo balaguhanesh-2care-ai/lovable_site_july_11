@@ -233,7 +233,7 @@ const LetsConnect = () => {
                         <FaWhatsapp className="w-6 h-6 text-white" />
                       </div>
                         <a
-                          href="https://api.whatsapp.com/send/?phone=917899953477&text=Hi&type=phone_number&app_absent=0"
+                          href="https://api.whatsapp.com/send/?phone=916364872188&text=Hi&type=phone_number&app_absent=0"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="block"

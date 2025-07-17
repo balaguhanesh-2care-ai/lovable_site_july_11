@@ -183,7 +183,7 @@ const Partners = () => {
               <div className="absolute inset-0 z-0" style={{ background: 'rgba(20,30,50,0.45)' }} />
               <Card className="bg-transparent text-white relative z-10 shadow-none">
                 <CardContent className="p-12 text-center">
-                  <h2 className="text-2xl font-bold mb-4">Ready to Transform Healthcare Together?</h2>
+                  <h2 className="text-2xl font-bold mb-4">Ready to Transform Healthcare With Us?</h2>
                   <p className="text-lg mb-8 opacity-90">
                     Join our growing network of healthcare partners and make a difference in families' lives
                   </p>

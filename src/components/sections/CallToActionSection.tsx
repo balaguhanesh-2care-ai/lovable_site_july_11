@@ -43,11 +43,8 @@ const CallToActionSection = () => {
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Ready to Start Your Healthcare Journey?
           </h2>
-          <p className="text-lg opacity-90">
-            Join thousands of families who trust 2care.ai
-          </p>
-          <p className="text-lg mb-8 opacity-90 leading-relaxed">
-            for comprehensive healthcare management
+          <p className="text-lg opacity-90 mb-5">
+            Join thousands of families who trust 2care.ai for comprehensive healthcare management
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="bg-white text-primary-custom hover:bg-gray-100 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl font-semibold px-8 py-4" onClick={handlePricingClick}>

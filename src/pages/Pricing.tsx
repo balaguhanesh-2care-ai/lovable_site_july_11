@@ -392,7 +392,7 @@ const Pricing = () => {
                   variant="outline" 
                   className="w-full bg-primary-custom hover:bg-primary-custom/90 text-white border-primary-custom hover:border-primary-custom/90 transition-all duration-300 hover:scale-105 py-4"
                 >
-                  <span className="font-medium text-lg">KNOW MORE</span>
+                  <span className="font-bold text-2xl">KNOW MORE</span>
                   {knowMoreOpen ? (
                     <ChevronUp className="w-5 h-5 ml-2 transition-transform duration-300" />
                   ) : (
