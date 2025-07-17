@@ -7,6 +7,7 @@ import { Send, Phone, Mail, MapPin } from "lucide-react";
 import { Turnstile } from "@marsidev/react-turnstile";
 import { FloatingBlobsBackground } from "@/components/ui/FloatingBlobsBackground";
 import { FaWhatsapp } from "react-icons/fa";
+import PhoneInput from 'react-phone-input-2';
 
 const LetsConnect = () => {
   const [formData, setFormData] = useState({
@@ -117,21 +118,23 @@ const LetsConnect = () => {
                       <label className="block text-sm font-medium text-secondary-custom mb-2">
                         WhatsApp Number
                       </label>
-                      <div className="flex">
-                        <div className="flex items-center px-3 border border-r-0 border-gray-300 bg-gray-50 rounded-l-md">
-                          <span className="text-sm">🇮🇳 +91</span>
-                        </div>
-                        <Input
-                          type="tel"
-                          name="phone"
-                          placeholder="81234 56789"
-                          value={formData.phone}
-                          onChange={handleChange}
-                          className="flex-1 rounded-l-none"
-                          required
-                        />
-                      </div>
-                    </div>
+                      <PhoneInput
+                        country={'in'}
+                        value={formData.phone}
+                        onChange={(phone) => setFormData({ ...formData, phone })}
+                        inputProps={{
+                          name: 'phone',
+                          required: true,
+                          autoFocus: true,
+                        }}
+                        placeholder="98765 43210"
+                        inputClass="!w-full !bg-[#f1f7fd] !text-[#607399] !text-base !rounded-md !border !border-[#d1dce5] !py-3 !pl-16 !pr-4 focus:!outline-none focus:!ring-2 focus:!ring-[#3fb7dd]"
+                        containerClass="!w-full !bg-[#f1f7fd] !rounded-md !border !border-[#d1dce5]"
+                        buttonClass="!bg-[#f1f7fd] !border-r !border-[#d1dce5] !rounded-l-md"
+                        dropdownClass="!z-[1000]"
+                        enableSearch
+                      />
+                                  </div>
 
                     <div>
                       <label className="block text-sm font-medium text-secondary-custom mb-2">
@@ -205,7 +208,7 @@ const LetsConnect = () => {
                       </div>
                       <div>
                         <h4 className="font-semibold text-secondary-custom">Phone Support</h4>
-                        <p className="text-primary-custom font-medium">+91 78999 53477</p>
+                        <p className="text-primary-custom font-medium">+91 63648 72188</p>
                       </div>
                     </CardContent>
                   </Card>

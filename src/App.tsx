@@ -30,6 +30,8 @@ import 'swiper/css/autoplay';
 import 'swiper/css';
 import 'swiper/css/autoplay';
 
+import 'react-phone-input-2/lib/style.css';
+
 const queryClient = new QueryClient();
 
 // Wrapper to use useLocation inside BrowserRouter

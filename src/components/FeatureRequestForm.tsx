@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Send } from "lucide-react";
 import { Turnstile } from "@marsidev/react-turnstile";
+import PhoneInput from 'react-phone-input-2';
 
 interface FeatureRequestFormProps {
   onSuccess?: () => void;
@@ -13,6 +14,7 @@ const FeatureRequestForm = ({ onSuccess }: FeatureRequestFormProps) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
     message: "",
   });
 
@@ -46,7 +48,7 @@ const FeatureRequestForm = ({ onSuccess }: FeatureRequestFormProps) => {
 
       if (response.ok) {
         setSubmissionStatus('success');
-        setFormData({ name: "", email: "", message: "" });
+        setFormData({ name: "", email: "", phone: "", message: "" });
         if (onSuccess) {
             // Wait 2 seconds before closing to allow user to read the message
             setTimeout(() => onSuccess(), 2000);
@@ -80,6 +82,25 @@ const FeatureRequestForm = ({ onSuccess }: FeatureRequestFormProps) => {
       <div>
         <label className="block text-sm font-medium text-secondary-custom mb-1">Your Email</label>
         <Input type="email" name="email" placeholder="yourname@gmail.com" value={formData.email} onChange={handleChange} required />
+      </div>
+      <div>
+        <label className="block text-sm font-medium text-secondary-custom mb-1">Phone Number</label>
+        <PhoneInput
+          country={'in'}
+          value={formData.phone}
+          onChange={(phone) => setFormData({ ...formData, phone })}
+          inputProps={{
+            name: 'phone',
+            required: true,
+            autoFocus: true,
+          }}
+          placeholder="98765 43210"
+          inputClass="!w-full !bg-[#f1f7fd] !text-[#607399] !text-base !rounded-md !border !border-[#d1dce5] !py-3 !pl-16 !pr-4 focus:!outline-none focus:!ring-2 focus:!ring-[#3fb7dd]"
+          containerClass="!w-full !bg-[#f1f7fd] !rounded-md !border !border-[#d1dce5]"
+          buttonClass="!bg-[#f1f7fd] !border-r !border-[#d1dce5] !rounded-l-md"
+          dropdownClass="!z-[1000]"
+          enableSearch
+        />
       </div>
       <div>
         <label className="block text-sm font-medium text-secondary-custom mb-1">Your Feature Idea</label>
