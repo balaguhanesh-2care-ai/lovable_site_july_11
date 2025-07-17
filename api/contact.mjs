@@ -37,6 +37,7 @@ export default async function handler(req, res) {
   if (!isHuman) {
     return res.status(403).json({ error: 'CAPTCHA verification failed.' });
   }
+  
 
   try {
     // Read and prepare the email template
@@ -80,15 +81,18 @@ export default async function handler(req, res) {
     console.log("SPREADSHEET_ID:", process.env.SPREADSHEET_ID);
     console.log("SHEET_GID_0:", process.env.SHEET_GID_0);
 
-    const privateKey = process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n');
-    const auth = new google.auth.JWT(
-      process.env.GOOGLE_CLIENT_EMAIL,
-      null,
-      privateKey,
-      ['https://www.googleapis.com/auth/spreadsheets']
-    );
+    const privateKey = process.env.GOOGLE_PRIVATE_KEY ? process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n') : undefined;
+const clientEmail = process.env.GOOGLE_CLIENT_EMAIL;
+console.log("clientEmail used for JWT:", clientEmail);
+console.log("privateKey starts with:", privateKey ? privateKey.slice(0, 30) : "undefined");
 
-    console.log("Auth client email:", auth.email);
+const auth = new google.auth.JWT(
+  clientEmail,
+  null,
+  privateKey,
+  ['https://www.googleapis.com/auth/spreadsheets']
+);
+console.log("Auth client email after JWT:", auth.email);
 
     const sheets = google.sheets({ version: 'v4', auth });
     const spreadsheetId = process.env.SPREADSHEET_ID;
