@@ -97,7 +97,7 @@ const CancerGlobeStory: React.FC = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: index * 0.3, duration: 0.6, ease: 'easeOut' }}
             whileHover={{ scale: 1.05, boxShadow: '0 0 15px rgba(69, 183, 209, 0.8)' }}
-            className="border-2 border-white text-white font-semibold px-5 py-1 mb-0 mt-3 rounded-xl cursor-pointer shadow-lg transition duration-300 hover:bg-primary-custom hover:text-white"
+            className="text-white font-semibold px-5 py-1 mb-0 mt-3 rounded-xl cursor-pointer shadow-lg transition duration-300 hover:bg-primary-custom hover:text-white"
           >
             {text}
           </motion.div>
