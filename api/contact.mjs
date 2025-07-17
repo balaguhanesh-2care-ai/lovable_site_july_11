@@ -74,6 +74,12 @@ export default async function handler(req, res) {
     if (!process.env.GOOGLE_PRIVATE_KEY) {
       throw new Error("GOOGLE_PRIVATE_KEY is not set in environment variables");
     }
+
+    console.log("GOOGLE_CLIENT_EMAIL:", process.env.GOOGLE_CLIENT_EMAIL);
+    console.log("GOOGLE_PRIVATE_KEY present:", !!process.env.GOOGLE_PRIVATE_KEY);
+    console.log("SPREADSHEET_ID:", process.env.SPREADSHEET_ID);
+    console.log("SHEET_GID_0:", process.env.SHEET_GID_0);
+
     const privateKey = process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n');
     const auth = new google.auth.JWT(
       process.env.GOOGLE_CLIENT_EMAIL,
@@ -81,6 +87,8 @@ export default async function handler(req, res) {
       privateKey,
       ['https://www.googleapis.com/auth/spreadsheets']
     );
+
+    console.log("Auth client email:", auth.email);
 
     const sheets = google.sheets({ version: 'v4', auth });
     const spreadsheetId = process.env.SPREADSHEET_ID;
@@ -125,6 +133,12 @@ export default async function handler(req, res) {
     return res.status(200).json({ success: true, message: 'Data saved to spreadsheet' });
   } catch (err) {
     console.error('Error:', err);
+if (err && err.response && err.response.data) {
+  console.error('Google API error data:', err.response.data);
+}
+if (err && err.config) {
+  console.error('Google API error config:', err.config);
+}
     return res.status(500).json({ error: 'Failed to process request' });
   }
 }
