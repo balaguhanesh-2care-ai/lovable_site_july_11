@@ -1,12 +1,15 @@
-import { useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePostHog } from "posthog-js/react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Check, Clock, Lightbulb } from "lucide-react";
+import { Check, Clock, Lightbulb, Sparkles } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import FeatureRequestForm from "@/components/FeatureRequestForm";
+import { useInView } from "@/hooks/useInView";
+import { Link } from "react-router-dom";
+
+const MAX_UPDATES = 15; // Set to the max number of updates you expect
 
 const ProductUpdates = () => {
   const posthog = usePostHog();
@@ -29,6 +32,34 @@ const ProductUpdates = () => {
       month: "July'25",
       title: "AI Summary",
       description: "Maya, your personal AI health agent, provides a concise overview of the entire dashboard, summarizing vitals, reports, and medical advice for quick insights, saving you time and helping you feel more informed and in control.",
+      status: "prototype",
+      icon: <Check className="w-5 h-5" />
+    },
+    {
+      month: "July'25",
+      title: "Weekly Health AI Summary",
+      description: "Receive comprehensive weekly health summaries powered by AI, providing insights into health trends, patterns, and recommendations for your family members' wellbeing.",
+      status: "prototype",
+      icon: <Check className="w-5 h-5" />
+    },
+    {
+      month: "July'25",
+      title: "Emergency Virtual Patient Support",
+      description: "24/7 emergency virtual support system that connects patients with healthcare professionals instantly during critical situations, ensuring immediate assistance when needed most.",
+      status: "prototype",
+      icon: <Check className="w-5 h-5" />
+    },
+    {
+      month: "July'25",
+      title: "Partnership with Major Diagnostic Companies",
+      description: "Seamless integration with leading diagnostic laboratories for direct report access, automated result interpretation, and streamlined healthcare data management.",
+      status: "prototype",
+      icon: <Check className="w-5 h-5" />
+    },
+    {
+      month: "July'25",
+      title: "Regular Monitoring",
+      description: "Stay proactive with regular vital monitoring to maintain wellness and prevent potential health issues with continuous health tracking and alerts.",
       status: "prototype",
       icon: <Check className="w-5 h-5" />
     },
@@ -90,13 +121,6 @@ const ProductUpdates = () => {
     },
     {
       month: "Aug'25",
-      title: "Regular Monitoring",
-      description: "Stay proactive with regular vital monitoring to maintain wellness and prevent potential health issues.",
-      status: "coming-up",
-      icon: <Clock className="w-5 h-5" />
-    },
-    {
-      month: "Aug'25",
       title: "Analysis & Trends",
       description: "Track and analyze your vital trends for a comprehensive view of your health.",
       status: "coming-up",
@@ -106,23 +130,50 @@ const ProductUpdates = () => {
 
   const filteredUpdates = selectedFilter === "all" ? updates : updates.filter(update => update.status === selectedFilter);
 
+  // FIX: Use a fixed number of useInView hooks
+  const inViewPairs = [
+    useInView(0.3),
+    useInView(0.3),
+    useInView(0.3),
+    useInView(0.3),
+    useInView(0.3),
+    useInView(0.3),
+    useInView(0.3),
+    useInView(0.3),
+    useInView(0.3),
+    useInView(0.3),
+    useInView(0.3),
+    useInView(0.3),
+    useInView(0.3),
+    useInView(0.3),
+    useInView(0.3)
+  ];
+
   return (
-    <div className="min-h-screen py-12">
+    <div className="min-h-screen py-12 bg-gradient-to-br from-blue-50 via-white to-blue-100">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-secondary-custom mb-4">
-            Keep Up With Our Updates
+        <div className="text-center mb-8">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-secondary-custom mb-5 mt-10">
+            Our Product Updates
           </h1>
-          <p className="text-xl text-gray-600 mb-8">
+          <p className="text-xl text-gray-600 mb-3 font-light mt-2">
             We are creating new things just for you!
           </p>
-          
           {/* Filter Buttons */}
-          <div className="flex flex-wrap justify-center gap-4 mb-8">
+          <div className="flex flex-wrap justify-center items-center gap-3 mb-6">
+
+            <Button
+              variant={selectedFilter === "all" ? "default" : "outline"}
+              onClick={() => setSelectedFilter("all")}
+              className={`transition-all duration-200 ease-in-out ${selectedFilter === "all" ? "bg-blue-500 text-white scale-105 shadow-lg border-2 border-blue-500" : "hover:bg-blue-100 hover:text-blue-800 border-2 border-blue-300 text-blue-500"}`}
+            >
+              <Sparkles className="w-4 h-4 mr-2 text-blue-400" />
+              All
+            </Button>
             <Button
               variant={selectedFilter === "prototype" ? "default" : "outline"}
               onClick={() => setSelectedFilter("prototype")}
-              className={selectedFilter === "prototype" ? "bg-primary-custom hover:bg-primary-custom/90" : ""}
+              className={`transition-all duration-200 ease-in-out ${selectedFilter === "prototype" ? "bg-green-500 text-white scale-105 shadow-lg border-2 border-green-500" : "hover:bg-green-100 hover:text-green-800 border-2 border-green-300 text-green-600"}`}
             >
               <Check className="w-4 h-4 mr-2" />
               Prototype
@@ -130,24 +181,32 @@ const ProductUpdates = () => {
             <Button
               variant={selectedFilter === "coming-up" ? "default" : "outline"}
               onClick={() => setSelectedFilter("coming-up")}
-              className={selectedFilter === "coming-up" ? "bg-primary-custom hover:bg-primary-custom/90" : ""}
+              className={`transition-all duration-200 ease-in-out ${selectedFilter === "coming-up" ? "bg-yellow-400 text-white scale-105 shadow-lg border-2 border-yellow-400" : "hover:bg-yellow-100 hover:text-yellow-800 border-2 border-yellow-300 text-yellow-600"}`}
             >
               <Clock className="w-4 h-4 mr-2" />
               Coming Up
             </Button>
+            <Link to="/maya-ai">
+              <Button
+                variant="outline"
+                className="flex items-center border-2 border-blue-400 text-blue-400 hover:bg-blue-100 hover:text-blue-800 transition-all duration-200 ease-in-out"
+              >
+                <Sparkles className="w-4 h-4 mr-2 text-blue-400 animate-pulse" />
+                Maya AI
+              </Button>
+            </Link>
           </div>
-
           {/* Request Feature */}
-          <Card className="max-w-md mx-auto border-2 border-primary-custom">
-            <CardContent className="p-6">
-              <div className="flex items-center justify-center mb-4">
-                <Lightbulb className="w-8 h-8 text-primary-custom" />
+          <Card className="max-w-md mx-auto border-none shadow-2xl bg-gradient-to-br from-white via-blue-50 to-blue-100 rounded-xl">
+            <CardContent className="p-8">
+              <div className="flex items-center justify-center mb-3">
+                <Lightbulb className="w-10 h-10 text-primary-custom animate-pulse drop-shadow-lg" />
               </div>
-              <h3 className="text-lg font-semibold text-secondary-custom mb-2">Request a Feature</h3>
-              <p className="text-gray-600 mb-4">Have an idea? Let us know what you'd like to see!</p>
+              <h3 className="text-2xl font-bold text-secondary-custom mb-6">Request a Feature</h3>
+              <p className="text-gray-500 mb-4 font-light">Have an idea? Let us know what you'd like to see! Your feedback helps us build a better experience for you.</p>
               <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
                 <DialogTrigger asChild>
-                  <Button className="bg-primary-custom hover:bg-primary-custom/90 text-white">
+                  <Button className="bg-primary-custom hover:bg-blue-700 text-white transition-transform transform hover:scale-105 shadow-md">
                     Request Feature
                   </Button>
                 </DialogTrigger>
@@ -161,44 +220,58 @@ const ProductUpdates = () => {
             </CardContent>
           </Card>
         </div>
-
         {/* Timeline */}
         <div className="max-w-4xl mx-auto">
           <div className="relative">
             {/* Timeline Line */}
-            <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-primary-custom"></div>
-            
+            <div className="hidden sm:block absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-primary-custom via-blue-200 to-blue-100 rounded-full"></div>
             {/* Timeline Items */}
-            <div className="space-y-8">
-              {filteredUpdates.map((update, index) => (
-                <div key={index} className="relative flex items-start space-x-6">
-                  {/* Timeline Dot */}
-                  <div className="flex-shrink-0 w-8 h-8 bg-primary-custom rounded-full flex items-center justify-center text-white relative z-10">
-                    {update.icon}
+            <div className="space-y-16">
+              {filteredUpdates.map((update, index) => {
+                const [ref, inView] = inViewPairs[index];
+                // Alternate left/right for desktop
+                const isLeft = index % 2 === 0;
+                return (
+                  <div
+                    key={index}
+                    ref={ref}
+                    className={`relative flex flex-col sm:flex-row items-center sm:items-stretch ${isLeft ? "sm:justify-start" : "sm:justify-end"} group transition-all duration-700 ease-in-out will-change-transform will-change-opacity futuristic-timeline-card ${inView ? "opacity-100 translate-y-0 blur-0" : "opacity-0 translate-y-8 blur-sm"}`}
+                    style={{
+                      transition: 'all 80ms ease-in-out',
+                      transitionDelay: `${index * 20}ms`,
+                    }}
+                  >
+                    {/* Timeline Dot */}
+                    <div className={`absolute sm:static left-1/2 sm:left-auto transform sm:transform-none -translate-x-1/2 sm:translate-x-0 z-10 flex-shrink-0 w-12 h-12 ${update.status === "prototype" ? "bg-gradient-to-br from-green-400 via-blue-400 to-purple-400" : "bg-gradient-to-br from-yellow-400 via-pink-400 to-purple-400"} rounded-full flex items-center justify-center text-white shadow-2xl border-4 border-white transition-all duration-500 group-hover:scale-110`}> 
+                      {update.icon}
+                    </div>
+                    {/* Content */}
+                    <div className={`w-full sm:w-1/2 ${isLeft ? "sm:pr-12 sm:pl-0" : "sm:pl-12 sm:pr-0"} mt-16 sm:mt-0`}> 
+                      <Card className="flex-1 card-hover border-none shadow-2xl bg-white/80 hover:shadow-3xl transition-all duration-500 futuristic-card">
+                        <CardContent className="p-8">
+                          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
+                            <div>
+                              <Badge variant="outline" className="mb-2 text-primary-custom border-primary-custom bg-white/70 futuristic-badge">
+                                {update.month}
+                              </Badge>
+                              <h3 className="text-xl font-semibold text-secondary-custom mb-4 futuristic-title">{update.title}</h3>
+                            </div>
+                            <div className="flex items-center gap-2 flex-wrap">
+                              <Badge 
+                                variant={update.status === "prototype" ? "default" : "secondary"}
+                                className={update.status === "prototype" ? "bg-green-100 text-green-800" : "bg-yellow-100 text-yellow-800"}
+                              >
+                                {update.status === "prototype" ? "Live" : "Coming Soon"}
+                              </Badge>
+                            </div>
+                          </div>
+                          <p className="text-gray-600 font-light text-base futuristic-desc">{update.description}</p>
+                        </CardContent>
+                      </Card>
+                    </div>
                   </div>
-                  
-                  {/* Content */}
-                  <Card className="flex-1 card-hover border-2 border-light-outline hover:border-primary-custom">
-                    <CardContent className="p-6">
-                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
-                        <div>
-                          <Badge variant="outline" className="mb-2 text-primary-custom border-primary-custom">
-                            {update.month}
-                          </Badge>
-                          <h3 className="text-xl font-semibold text-secondary-custom">{update.title}</h3>
-                        </div>
-                        <Badge 
-                          variant={update.status === "prototype" ? "default" : "secondary"}
-                          className={update.status === "prototype" ? "bg-green-100 text-green-800" : "bg-yellow-100 text-yellow-800"}
-                        >
-                          {update.status === "prototype" ? "Live" : "Coming Soon"}
-                        </Badge>
-                      </div>
-                      <p className="text-gray-600">{update.description}</p>
-                    </CardContent>
-                  </Card>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>

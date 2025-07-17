@@ -6,7 +6,7 @@ const TypewriterFamily = () => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [familyIndex, setFamilyIndex] = useState(0);
 
-  const familyOptions = ["Your Family", "Our Family"];
+  const familyOptions = ["You", "Your Family", "Your Loved Ones"];
   const baseText = "for ";
 
   useEffect(() => {

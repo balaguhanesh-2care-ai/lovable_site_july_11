@@ -29,10 +29,10 @@ const HeroSection = () => {
           loop
           muted
           playsInline
-          poster="/placeholder.svg"
+          poster="/placeholder.png"
           style={{ pointerEvents: 'none' }}
         >
-          <source src="/galaxy.mp4" type="video/mp4" />
+          <source src="videos/galaxy.mp4" type="video/mp4" />
         </video>
         {/* Fading Overlay Layer */}
         <div className="absolute inset-0 z-10 pointer-events-none" style={{
@@ -47,7 +47,7 @@ const HeroSection = () => {
               </p>
               <Button 
                 size="lg" 
-                className="w-full max-w-xs sm:max-w-fit bg-secondary-custom text-white hover:bg-secondary-custom/90 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl font-semibold px-8 py-4 sm:px-12 sm:py-6 text-base sm:text-lg"
+                className="w-full max-w-xs sm:max-w-fit bg-white text-secondary-custom hover:bg-secondary-custom/90 hover:scale-105 hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl font-semibold px-8 py-4 sm:px-12 sm:py-6 text-base sm:text-lg"
                 onClick={handleGetStartedClick}
               >
                 Get Started <ArrowRight className="ml-3 w-5 h-5 sm:w-6 sm:h-6" />

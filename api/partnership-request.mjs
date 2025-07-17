@@ -31,20 +31,18 @@ export default async function handler(req, res) {
 
   try {
     // Send notification to your team
-    // await resend.emails.send({
-    //   from: 'info@support.2care.ai',
-    //   to: 'gsbalaguhanesh@gmail.com',
-    //   subject: `New Partnership Application from ${firmName}`,
-    //   html: `
-    //     <h1>New Partnership Application</h1>
-    //     <p><strong>Name:</strong> ${name}</p>
-    //     <p><strong>Email:</strong> ${email}</p>
-    //     <p><strong>Phone:</strong> ${phone}</p>
-    //     <p><strong>Firm Name:</strong> ${firmName}</p>
-    //     <p><strong>Industry:</strong> ${industry}</p>
-    //     <p><strong>Location:</strong> ${location}</p>
-    //   `
-    // });
+    await resend.emails.send({
+      from: 'info@support.2care.ai',
+      to: 'support.2care.ai',
+      subject: `New Partnership Application submission`,
+      html: `
+        <h1><strong>form_type: partnernship</strong></h1>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Phone:</strong> ${phone}</p>
+        <p><strong>Location:</strong> ${message}</p>
+      `
+    });
 
     // Prepare and send confirmation to the user
     const templatePath = path.join(process.cwd(), 'api', 'partnership-format.html');

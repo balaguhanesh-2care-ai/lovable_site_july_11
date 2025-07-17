@@ -44,6 +44,19 @@ export default async function handler(req, res) {
       html: htmlForUser,
     });
 
+    await resend.emails.send({
+      from: 'info@support.2care.ai',
+      to: 'support@2care.ai',
+      subject: `Request Demo call form submission`,
+      html: `
+        <h1><strong>form_type: demo_call</strong></h1>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Phone:</strong> ${phone}</p>
+        <p><strong>Location:</strong> ${message}</p>
+      `
+    });
+
     await initDatabase(); // Ensures table exists
     const connection = await pool.getConnection();
     try {

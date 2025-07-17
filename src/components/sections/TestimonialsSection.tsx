@@ -73,11 +73,11 @@ interface TestimonialColumnProps {
   testimonials: Testimonial[];
   duration?: number;
   direction?: 'up' | 'down';
+  paused?: boolean;
 }
 
-const TestimonialColumn = ({ testimonials, duration = 60, direction = 'up' }: TestimonialColumnProps) => {
+const TestimonialColumn = ({ testimonials, duration = 60, direction = 'up', paused = false }: TestimonialColumnProps) => {
   const controls = useAnimation();
-
   const animationDefinition: TargetAndTransition = useMemo(() => ({
     y: direction === 'up' ? ['0%', '-50%'] : ['-50%', '0%'],
     transition: {
@@ -90,15 +90,17 @@ const TestimonialColumn = ({ testimonials, duration = 60, direction = 'up' }: Te
   }), [direction, duration]);
 
   useEffect(() => {
-    controls.start(animationDefinition);
-  }, [controls, animationDefinition]);
+    if (paused) {
+      controls.stop();
+    } else {
+      controls.start(animationDefinition);
+    }
+  }, [controls, animationDefinition, paused]);
 
   return (
     <motion.div
-      onMouseEnter={() => controls.stop()}
-      onMouseLeave={() => controls.start(animationDefinition)}
-      className="flex flex-col gap-8"
       animate={controls}
+      className="flex flex-col gap-8"
     >
       {[...testimonials, ...testimonials].map((testimonial, index) => (
         <TestimonialCard key={`${testimonial.name}-${index}`} testimonial={testimonial} />
@@ -107,10 +109,54 @@ const TestimonialColumn = ({ testimonials, duration = 60, direction = 'up' }: Te
   );
 };
 
+
+
+const testimonialsRight = [
+  {
+    name: "Anita Patel",
+    role: "Daughter, Ahmedabad",
+    content: "The family connection feature keeps us all informed about my mother’s wellbeing.",
+    rating: 5
+  },
+  {
+    name: "Deepak Joshi",
+    role: "Son, Indore",
+    content: "The AI health monitoring is accurate and easy to use. Highly recommended!",
+    rating: 5
+  },
+  {
+    name: "Meera Nair",
+    role: "Daughter, Thiruvananthapuram",
+    content: "I can track my parents’ health anytime. The reports are simple to understand.",
+    rating: 5
+  },
+  {
+    name: "Rahul Deshmukh",
+    role: "Son, Nagpur",
+    content: "24/7 support is real! The team responds instantly in emergencies.",
+    rating: 5
+  },
+  {
+    name: "Kavita Reddy",
+    role: "Daughter, Hyderabad",
+    content: "The app is user-friendly and the support is excellent. My family feels safer.",
+    rating: 4
+  }
+];
+
+const marqueeAnimation = `animate-[marquee-vertical_18s_linear_infinite]`;
+const marqueeReverseAnimation = `animate-[marquee-vertical-reverse_18s_linear_infinite]`;
+
+// Add keyframes for vertical marquee in global CSS if not present
+// @keyframes marquee-vertical { 0% { transform: translateY(0); } 100% { transform: translateY(-50%); } }
+// @keyframes marquee-vertical-reverse { 0% { transform: translateY(-50%); } 100% { transform: translateY(0); } }
+
+
 const TestimonialsSection = () => {
   const posthog = usePostHog();
   const [isVideoInteracted, setIsVideoInteracted] = useState(false);
-
+  const [leftPaused, setLeftPaused] = useState(false);
+  const [rightPaused, setRightPaused] = useState(false);
   const handleVideoClick = () => {
     // Fire the event only on the first interaction
     if (!isVideoInteracted) {
@@ -123,20 +169,24 @@ const TestimonialsSection = () => {
   };
   return (
     <section className="py-20 container mx-auto px-4">
-      <div className="text-center mb-16">
-        <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 leading-tight">
+      <div className="text-center mb-5">
+        <h2 className="text-2xl md:text-3xl font-bold text-secondary-custom mb-4">
           Trusted by Families Across the Globe
         </h2>
-        <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+        <p className="text-xl text-secondary-custom max-w-3xl mx-auto leading-relaxed">
           See what families are saying about their experience with 2care.ai
         </p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
         {/* Left Column - hidden on mobile */}
-        <div className="hidden px-3 lg:block relative h-[500px] overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)]">
-          <TestimonialColumn testimonials={testimonials} direction="up" />
-        </div>
+        <div
+  className="hidden px-3 lg:block relative h-[500px] overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)]"
+  onMouseEnter={() => setLeftPaused(true)}
+  onMouseLeave={() => setLeftPaused(false)}
+>
+  <TestimonialColumn testimonials={testimonials} direction="up" paused={leftPaused} />
+</div>
 
         {/* Center YouTube Video */}
         <div className="mt-8 lg:mt-0">
@@ -150,7 +200,7 @@ const TestimonialsSection = () => {
                 <iframe
                   width="100%"
                   height="100%"
-                  src="https://www.youtube.com/embed/v-tcho9xnaE?si=lgXbh37_4QhzBaCu&rel=0&showinfo=0&modestbranding=1"
+                  src="https://www.youtube.com/embed/EB7yWdg_ZKg?si=AxrnfLwaLkkEE1lE"
                   title="2care.ai Customer Experience"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -171,10 +221,14 @@ const TestimonialsSection = () => {
         </div>
 
         {/* Right Column - hidden on mobile */}
-        <div className="hidden px-3 lg:block relative h-[500px] overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)]">
-          <TestimonialColumn testimonials={[...testimonials].reverse()} direction="down" />
-        </div>
-      </div>
+        <div
+  className="hidden px-3 lg:block relative h-[500px] overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)]"
+  onMouseEnter={() => setRightPaused(true)}
+  onMouseLeave={() => setRightPaused(false)}
+>
+  <TestimonialColumn testimonials={[...testimonials].reverse()} direction="down" paused={rightPaused} />
+</div>
+</div>
     </section>
   );
 };

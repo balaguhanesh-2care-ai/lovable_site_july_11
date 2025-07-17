@@ -39,7 +39,7 @@ const Footer = () => {
               <div className="flex items-center space-x-2">
                 <Phone className="w-4 h-4 text-primary-custom" />
                 <div className="text-gray-300">
-                  <p>For Support: +91 6364872888 / 7899953477</p>
+                  <p>For Support: +91 6364872188 / 7899953477</p>
                 </div>
               </div>
               <div className="flex items-start space-x-2">
@@ -56,12 +56,6 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Sitemap</h3>
             <ul className="space-y-2">
-              <li><Link to="/" className="text-gray-300 hover:text-primary-custom transition-colors">Home</Link></li>
-              <li><Link to="/solutions" className="text-gray-300 hover:text-primary-custom transition-colors">Solutions</Link></li>
-              <li><Link to="/product-updates" className="text-gray-300 hover:text-primary-custom transition-colors">Product Updates</Link></li>
-              <li><Link to="/our-story" className="text-gray-300 hover:text-primary-custom transition-colors">Our Story</Link></li>
-              <li><Link to="/report-analysis" className="text-gray-300 hover:text-primary-custom transition-colors">Report Analysis</Link></li>
-              <li><Link to="/pricing" className="text-gray-300 hover:text-primary-custom transition-colors">Pricing</Link></li>
               <li><Link to="/cancellation-refunds" className="text-gray-300 hover:text-primary-custom transition-colors">Cancellation and Refunds</Link></li>
               <li><Link to="/shipping-delivery" className="text-gray-300 hover:text-primary-custom transition-colors">Shipping and Delivery</Link></li>
             </ul>

@@ -63,8 +63,8 @@ const Header = ({ onLoginClick, onSignupClick, minimal = false, logoSize = "h-12
                 to={item.path}
                 className={`text-sm md:text-base font-medium transition-all duration-200 transform hover:scale-105 relative px-1 md:px-2 ${
                   isActive(item.path) 
-                    ? "text-white font-semibold" 
-                    : "text-gray-300 hover:text-white"
+                    ? "text-secondary-custom font-semibold"
+                    : "text-primary-custom transition-colors"
                 }`}
               >
                 {item.label}
@@ -91,7 +91,7 @@ const Header = ({ onLoginClick, onSignupClick, minimal = false, logoSize = "h-12
           <Button
             variant="ghost"
             size="icon"
-            className="lg:hidden text-white hover:bg-white/10"
+            className="lg:hidden text-secondary-custom hover:bg-white/10"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Open menu"
           >

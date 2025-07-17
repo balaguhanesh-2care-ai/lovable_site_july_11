@@ -24,27 +24,27 @@ const features: FeatureData[] = [
 
 const cardVariants: Variants = {
   initial: {
-    x: 70,
+    x: -70,
     y: -20,
     scale: 0.84,
-    rotate: 10,
+    rotate: -10,
     opacity: 0,
   },
   animate: (position: number) => ({
-    x: position * 35,
+    x: position * -35,
     y: position * -10,
     scale: 1 - position * 0.08,
-    rotate: position * 5,
+    rotate: -position * 5,
     opacity: 1,
     zIndex: features.length - position,
     transition: { type: 'spring', stiffness: 100, damping: 20 },
   }),
   exit: {
-    x: -70,
+    x: 70,
     y: 20,
     scale: 0.8,
     opacity: 0,
-    rotate: -10,
+    rotate: 10,
     transition: { duration: 0.4, ease: 'easeIn' },
   },
 };
@@ -80,82 +80,73 @@ const CircularHealthFeatures = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveIndex((prevIndex) => (prevIndex + 1) % features.length);
-    }, 3000);
+    }, 2000);
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <section className="bg-gray-50 py-24">
-      <div className="container mx-auto px-4">
-        {/* The background image and styling are now on this main container */}
-        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-50/50 via-white to-orange-50/50">
-          {/* Background Image Layer */}
-          <div className="absolute inset-0 opacity-90">
-            <img
-              src="/pictures/water_molecules.jpg"
-              alt="Abstract health background"
-              className="w-full h-full object-cover"
-            />
-          </div>
-
-          {/* All content is now inside this container */}
-          <div className="relative z-10 max-w-7xl mx-auto p-8 md:p-12 lg:p-16">
-            <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-20">
-              {/* Left side - Text content */}
-              <div className="w-full lg:w-5/12 space-y-8 text-center lg:text-left">
-                <div>
-                  <h2 className="text-3xl md:text-4xl font-bold text-secondary-custom mb-6">
-                    A Comprehensive Health Ecosystem
-                  </h2>
-                  <p className="text-lg text-sub leading-relaxed mb-8">
-                    Experience the future of healthcare with our integrated AI system. From real-time monitoring to emergency response, we provide complete peace of mind.
-                  </p>
+    <section className="py-8 lg:py-16 flex items-center relative overflow-hidden bg-gray-50">
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-white to-orange-50/50"></div>
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-20">
+            {/* Left side - Text content */}
+            <div className="w-full lg:w-5/12 space-y-6 text-center lg:text-left lg:pl-10">
+              <div>
+                <h2 className="text-3xl md:text-4xl font-bold text-secondary-custom mb-4">
+                  A Comprehensive Health Ecosystem
+                </h2>
+                <p className="text-lg text-sub leading-relaxed">
+                  Experience the future of healthcare with our integrated AI system. From real-time monitoring to emergency response, we provide complete peace of mind.
+                </p>
+              </div>
+              <div className="space-y-4 mt-6">
+                <div className="flex items-center space-x-3">
+                  <div className="w-6 h-6 rounded-full bg-primary-custom flex items-center justify-center"><span className="text-white text-sm font-bold">✓</span></div>
+                  <span className="text-sub-bold">AI-Powered Health Summaries</span>
                 </div>
-                <div className="space-y-4 inline-block lg:block">
-                   <div className="flex items-center space-x-3">
-                    <div className="w-6 h-6 rounded-full bg-primary-custom flex items-center justify-center"><span className="text-white text-sm font-bold">✓</span></div>
-                    <span className="text-sub">Personalized health insights powered by AI</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <div className="w-6 h-6 rounded-full bg-primary-custom flex items-center justify-center"><span className="text-white text-sm font-bold">✓</span></div>
-                    <span className="text-sub">24/7 continuous monitoring and support</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <div className="w-6 h-6 rounded-full bg-primary-custom flex items-center justify-center"><span className="text-white text-sm font-bold">✓</span></div>
-                    <span className="text-sub">Seamless integration with healthcare providers</span>
-                  </div>
+                <div className="flex items-center space-x-3">
+                  <div className="w-6 h-6 rounded-full bg-primary-custom flex items-center justify-center"><span className="text-white text-sm font-bold">✓</span></div>
+                  <span className="text-sub-bold">Instant Critical Alerts</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <div className="w-6 h-6 rounded-full bg-primary-custom flex items-center justify-center"><span className="text-white text-sm font-bold">✓</span></div>
+                  <span className="text-sub-bold">24/7 Emergency Support</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <div className="w-6 h-6 rounded-full bg-primary-custom flex items-center justify-center"><span className="text-white text-sm font-bold">✓</span></div>
+                  <span className="text-sub-bold">Seamless Healthcare Integration</span>
                 </div>
               </div>
+            </div>
+            {/* Right side - Animated Card Stack */}
+            <div className="w-full lg:w-6/12 flex items-center justify-center">
+              <div className="relative h-[380px] w-full max-w-xs mx-auto">
+                <AnimatePresence initial={false}>
+                  {features.map((feature, index) => {
+                    const stackPosition = (features.length + index - activeIndex) % features.length;
+                    if (stackPosition >= 3) return null;
 
-              {/* Right side - Animated Card Stack */}
-              <div className="w-full lg:w-6/12 flex items-center justify-center">
-                <div className="relative h-[380px] w-full max-w-xs mx-auto">
-                  <AnimatePresence initial={false}>
-                    {features.map((feature, index) => {
-                      const stackPosition = (features.length + index - activeIndex) % features.length;
-                      if (stackPosition >= 3) return null;
-
-                      return (
-                        <motion.div
-                          key={feature.id}
-                          custom={stackPosition}
-                          variants={cardVariants}
-                          initial="initial"
-                          animate="animate"
-                          exit="exit"
-                          className="absolute w-full p-6 bg-white rounded-2xl border"
-                          style={{
-                            transformOrigin: 'bottom left',
-                            boxShadow: stackPosition === 0 ? '0 25px 50px -12px rgba(63, 196, 226, 0.4)' : '0 10px 15px -3px rgba(0, 0, 0, 0.05)',
-                            borderColor: stackPosition === 0 ? 'rgba(63, 196, 226, 0.5)' : 'rgba(229, 231, 235, 1)'
-                          }}
-                        >
-                          <FeatureCardContent feature={feature} />
-                        </motion.div>
-                      );
-                    })}
-                  </AnimatePresence>
-                </div>
+                    return (
+                      <motion.div
+                        key={feature.id}
+                        custom={stackPosition}
+                        variants={cardVariants}
+                        initial="initial"
+                        animate="animate"
+                        exit="exit"
+                        className="absolute w-full p-6 bg-white rounded-2xl border"
+                        style={{
+                          transformOrigin: 'bottom left',
+                          boxShadow: stackPosition === 0 ? '0 25px 50px -12px rgba(63, 196, 226, 0.4)' : '0 10px 15px -3px rgba(0, 0, 0, 0.05)',
+                          borderColor: stackPosition === 0 ? 'rgba(63, 196, 226, 0.5)' : 'rgba(229, 231, 235, 1)'
+                        }}
+                      >
+                        <FeatureCardContent feature={feature} />
+                      </motion.div>
+                    );
+                  })}
+                </AnimatePresence>
               </div>
             </div>
           </div>

@@ -1,10 +1,12 @@
-
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useState } from "react";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+import { Toaster } from "./components/ui/toaster";
+import { Toaster as Sonner } from "./components/ui/sonner";
+import { TooltipProvider } from "./components/ui/tooltip";
+import BackgroundBlobs from "./components/BackgroundBlobs.tsx";
+
 import Layout from "./components/Layout";
 import Index from "./pages/Index";
 import Solutions from "./pages/Solutions";
@@ -20,10 +22,28 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import NotFound from "./pages/NotFound";
 import LoginModal from "./components/LoginModal";
 import SignupModal from "./components/SignupModal";
+import MayaAI from "./pages/MayaAI";
+import Countdown from "./pages/Countdown";
+import ThankYou from "./pages/ThankYou";
+import Consult499 from "./pages/Consult499";
+
+import 'swiper/css';
+import 'swiper/css/autoplay';
+
+import 'swiper/css';
+import 'swiper/css/autoplay';
+
+import 'react-phone-input-2/lib/style.css';
 
 const queryClient = new QueryClient();
 
-const App = () => {
+// Wrapper to use useLocation inside BrowserRouter
+function BlobsConditional() {
+  const { pathname } = useLocation();
+  return pathname === "/product-updates" ? <BackgroundBlobs /> : null;
+}
+
+export default function App() {
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
 
@@ -33,6 +53,7 @@ const App = () => {
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <BlobsConditional />
           <Routes>
             <Route 
               path="/" 
@@ -65,6 +86,10 @@ const App = () => {
                     <Route path="/shipping-delivery" element={<ShippingDelivery />} />
                     <Route path="/terms-conditions" element={<TermsConditions />} />
                     <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                    <Route path="/maya-ai" element={<MayaAI />} />
+                    <Route path="/countdown" element={<Countdown />} />
+                    <Route path="/thank-you" element={<ThankYou />} />
+                    <Route path="/consult-499" element={<Consult499 />} />
                     <Route path="*" element={<NotFound />} />
                   </Routes>
                 </Layout>
@@ -77,6 +102,4 @@ const App = () => {
       </TooltipProvider>
     </QueryClientProvider>
   );
-};
-
-export default App;
+}

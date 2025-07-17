@@ -53,7 +53,7 @@ const PartnersSection = () => {
   };
 
   return (
-    <section className="py-16 bg-transparent overflow-hidden">
+    <section className="py-8 md:py-16 bg-transparent overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-2xl md:text-3xl font-bold text-secondary-custom mb-4">
