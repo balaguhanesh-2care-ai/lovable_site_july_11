@@ -110,10 +110,10 @@ const Solutions = () => {
 
   const platformFeatures = [
     { title: "Customized Vital Monitoring", image: "/lovable-uploads/9a9d9580-d25f-4620-b250-03f494970ed8.png" },
+    { title: "Watch Our Platform Overview", youtube: true, videoUrl: "https://www.youtube.com/embed/KqudCo3Yljw?si=EGy9W8d95_8dlJ1B" },
     { title: "Centralized Health Records", image: "/lovable-uploads/a1bd954a-2031-405e-94f8-286c3ba3f062.png" },
     { title: "Lab Appointment Booking", image: "/lovable-uploads/00fc7a11-e1c7-40fe-9c00-b65d858b5cbe.png" },
     { title: "Appointment Management", image: "/lovable-uploads/806c00b5-ce2d-479a-95b8-5527dfe632c2.png" },
-    { title: "Prescription Management", image: "/lovable-uploads/9d3c08bc-28cc-4026-a688-3c605d5e87c0.png" },
     { title: "Medical Progress Notes", image: "/lovable-uploads/32917b9d-d7f3-4f0e-bc3a-28874bbc5a59.png" }
   ];
 

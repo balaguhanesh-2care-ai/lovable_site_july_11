@@ -158,13 +158,6 @@ export default function MayaAI() {
         style={{ backgroundImage: "url('/bg-blobs.jpg')" }}
       >
         <div className="flex w-full justify-start items-end relative">
-          {/* Robot peeking image on the right top corner above the cards */}
-          <img
-            src="/robot%20corner.png"
-            alt="Robot corner"
-            className="hidden md:block absolute z-30 w-64 lg:w-80 xl:w-[28rem] pointer-events-none select-none robot-flicker"
-            style={{ top: '13rem', right: '-1rem', transform: 'translateY(-30%) rotate(15deg)' }}
-          />
           <div className="flex-1 flex flex-col">
             {/* Maya AI Heading */}
             <h1 className="text-5xl font-bold text-secondary-custom text-center my-10 sm:mb-12 drop-shadow-lg">Maya AI</h1>

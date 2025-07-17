@@ -1,4 +1,3 @@
-
 import { MessageCircle, Upload, FileText } from "lucide-react";
 import { usePostHog } from "posthog-js/react";
 import { useState, useRef, useEffect } from "react";
@@ -116,8 +115,8 @@ const ReportAnalysis = ({ onLoginClick, onSignupClick }: ReportAnalysisProps) =>
             <CardContent className="p-0 relative">
               {/* Chat Header */}
               <div className="bg-[#128C7E] text-white p-4 flex items-center space-x-3 z-10 relative rounded-t-xl">
-                <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-[#128C7E] font-bold text-lg border-2 border-white shadow">
-                  M
+                <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center border-2 border-white shadow overflow-hidden">
+                  <img src="/logo/2care.png" alt="2care.ai logo" className="w-8 h-8 object-contain" />
                 </div>
                 <div className="flex flex-col justify-center">
                   <span className="text-xl font-semibold text-green leading-tight">2care.ai</span>
