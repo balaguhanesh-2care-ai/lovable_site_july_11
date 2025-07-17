@@ -32,10 +32,10 @@ const LetsConnect = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!turnstileToken) {
-      alert("Please complete the CAPTCHA before submitting.");
-      return;
-    }
+    // if (!turnstileToken) {
+    //   alert("Please complete the CAPTCHA before submitting.");
+    //   return;
+    // }
 
     setIsSubmitting(true);
     setSubmissionStatus(null);
@@ -150,7 +150,7 @@ const LetsConnect = () => {
                       />
                     </div>
 
-                    <Turnstile 
+                    {/* <Turnstile 
                       siteKey={import.meta.env.VITE_CLOUDFLARE_TURNSTILE_SITE_KEY}
                       onSuccess={(token) => {
                         setTurnstileToken(token);
@@ -159,7 +159,7 @@ const LetsConnect = () => {
                       onError={() => setCaptchaError("CAPTCHA failed to load. Please refresh or check your ad-blocker.")}
                       onExpire={() => setTurnstileToken(null)}
                       options={{ theme: 'light' }}
-                    />
+                    /> */}
                     <Button
                       type="submit"
                       className="w-full bg-secondary-custom hover:bg-secondary-custom/90 text-white py-3 rounded-full transition-all duration-300 hover:shadow-lg"

@@ -23,6 +23,9 @@ import NotFound from "./pages/NotFound";
 import LoginModal from "./components/LoginModal";
 import SignupModal from "./components/SignupModal";
 import MayaAI from "./pages/MayaAI";
+import Countdown from "./pages/Countdown";
+import ThankYou from "./pages/ThankYou";
+import Consult499 from "./pages/Consult499";
 
 import 'swiper/css';
 import 'swiper/css/autoplay';
@@ -40,7 +43,7 @@ function BlobsConditional() {
   return pathname === "/product-updates" ? <BackgroundBlobs /> : null;
 }
 
-const App = () => {
+export default function App() {
   const [showLogin, setShowLogin] = useState(false);
   const [showSignup, setShowSignup] = useState(false);
 
@@ -84,6 +87,9 @@ const App = () => {
                     <Route path="/terms-conditions" element={<TermsConditions />} />
                     <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                     <Route path="/maya-ai" element={<MayaAI />} />
+                    <Route path="/countdown" element={<Countdown />} />
+                    <Route path="/thank-you" element={<ThankYou />} />
+                    <Route path="/consult-499" element={<Consult499 />} />
                     <Route path="*" element={<NotFound />} />
                   </Routes>
                 </Layout>
@@ -96,6 +102,4 @@ const App = () => {
       </TooltipProvider>
     </QueryClientProvider>
   );
-};
-
-export default App;
+}
