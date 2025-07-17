@@ -42,7 +42,7 @@ export default async function handler(req, res) {
     // Read and prepare the email template
     const templatePath = path.join(process.cwd(), 'api', 'format.html');
     const htmlTemplate = await fs.readFile(templatePath, 'utf-8');
-    const htmlForUser = htmlTemplate.replace(/\$\{name\}/g, name);
+    const htmlForUser = (htmlTemplate || "").replace(/\$\{name\}/g, name || "");
 
     await resend.emails.send({
       from: 'info@support.2care.ai',
@@ -71,10 +71,14 @@ export default async function handler(req, res) {
     }
 
     // Google Sheets Integration
+    if (!process.env.GOOGLE_PRIVATE_KEY) {
+      throw new Error("GOOGLE_PRIVATE_KEY is not set in environment variables");
+    }
+    const privateKey = process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n');
     const auth = new google.auth.JWT(
       process.env.GOOGLE_CLIENT_EMAIL,
       null,
-      process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'), // Replace escaped newlines
+      privateKey,
       ['https://www.googleapis.com/auth/spreadsheets']
     );
 
