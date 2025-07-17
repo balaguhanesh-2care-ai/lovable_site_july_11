@@ -34,7 +34,7 @@ const CallToActionSection = () => {
         // poster="public\videos\blue-gradient.mp4"
         style={{ pointerEvents: 'none' }}
       >
-        <source src="../../../public/videos/blue-gradient.mp4" type="video/mp4" />
+        <source src="videos/blue-gradient.mp4" type="video/mp4" />
       </video>
       {/* Overlay to reduce video intensity */}
       <div className="absolute inset-0 z-0" style={{ background: 'rgba(20,30,50,0.45)' }} />
