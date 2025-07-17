@@ -139,7 +139,7 @@ const Solutions = () => {
       {/* Heading section */}
       <div className="container mx-auto px-4 pt-12 pb-2">
         <div className="text-center mb-8">
-          <h1 className="text-5xl mt-10 font-extrabold text-secondary-custom mb-5">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-secondary-custom mb-5 mt-10">
             Our Solutions & Services
           </h1>
           <p className="text-lg text-sub max-w-4xl mx-auto leading-relaxed">

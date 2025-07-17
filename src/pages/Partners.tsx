@@ -6,7 +6,6 @@ import { Users, Zap, Heart, TrendingUp, IndianRupee, Settings } from "lucide-rea
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import PartnershipForm from "@/components/PartnershipForm";
 import { FloatingBlobsBackground } from "@/components/ui/FloatingBlobsBackground";
-
 // Swiper Imports
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectCoverflow } from "swiper/modules";
@@ -24,22 +23,6 @@ const Partners = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const partnershipSteps = [
-    {
-      icon: <Users className="w-12 h-12 text-primary-custom" />,
-      title: "Reach Out",
-      description: "Fill out our simple partnership inquiry form with your organization's details. Our team will contact you within 24 hours to discuss potential collaboration."
-    },
-    {
-      icon: <Zap className="w-12 h-12 text-primary-custom" />,
-      title: "Connect",
-      description: "Schedule a personalized demo where we'll show you how 2care.ai works and discuss how we can customize our platform to meet your specific needs."
-    },
-    {
-      icon: <TrendingUp className="w-12 h-12 text-primary-custom" />,
-      title: "Grow",
-      description: "After agreeing on partnership terms, we'll help you integrate our platform into your workflow, train your staff, and start connecting you with families who need your services."
-    },
-    // Duplicate
     {
       icon: <Users className="w-12 h-12 text-primary-custom" />,
       title: "Reach Out",
@@ -72,42 +55,10 @@ const Partners = () => {
       icon: <Heart className="w-12 h-12 text-primary-custom" />,
       title: "Continuity of Care",
       description: "Seamless transition for elderly patients between hospital and home care"
-    },
-    // Duplicate
-    {
-      icon: <Users className="w-12 h-12 text-primary-custom" />,
-      title: "Reach Out",
-      description: "Connect with an untapped market of NRI families seeking quality care for their parents"
-    },
-    {
-      icon: <Zap className="w-12 h-12 text-primary-custom" />,
-      title: "World Class Tech Infrastructure",
-      description: "Offer technology-enabled care coordination powered by AI as a competitive advantage"
-    },
-    {
-      icon: <Heart className="w-12 h-12 text-primary-custom" />,
-      title: "Continuity of Care",
-      description: "Seamless transition for elderly patients between hospital and home care"
     }
   ];
 
   const offeringsFeatures = [
-    {
-      icon: <Users className="w-12 h-12 text-primary-custom" />,
-      title: "Get More Quality Customers",
-      description: "Access a growing network of families seeking trusted healthcare providers"
-    },
-    {
-      icon: <IndianRupee className="w-12 h-12 text-primary-custom" />,
-      title: "Direct Revenue Impact",
-      description: "Increase your revenue through our referral system and expanded client base"
-    },
-    {
-      icon: <Settings className="w-12 h-12 text-primary-custom" />,
-      title: "Have AI Tech Layer to Your Services",
-      description: "Enhance your existing services with cutting-edge AI technology"
-    },
-    // Duplicate
     {
       icon: <Users className="w-12 h-12 text-primary-custom" />,
       title: "Get More Quality Customers",
@@ -128,10 +79,8 @@ const Partners = () => {
   return (
     <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
       <div className="relative min-h-screen py-12 overflow-hidden">
-        {/* Floating Blobs Background */}
         <FloatingBlobsBackground />
         <div className="container mx-auto px-4 relative z-10">
-          {/* Header */}
           <div className="text-center mb-16">
             <h1 className="text-4xl md:text-5xl font-extrabold text-secondary-custom my-10">
               Join Us for a World Where
@@ -150,7 +99,6 @@ const Partners = () => {
             </DialogTrigger>
           </div>
 
-          {/* Reusable Section Carousel */}
           {[{
             title: "How to Partner With Us",
             subtitle: "Simple steps to join our healthcare network",
@@ -219,7 +167,6 @@ const Partners = () => {
             </section>
           ))}
 
-          {/* CTA Section */}
           <section>
             <div className="relative rounded-2xl overflow-hidden">
               <video
@@ -241,7 +188,8 @@ const Partners = () => {
                     Join our growing network of healthcare partners and make a difference in families' lives
                   </p>
                   <DialogTrigger asChild>
-                    <Button className="bg-white text-primary-custom hover:bg-gray-100 px-8 py-3 text-lg">
+                  <Button className="w-full sm:w-auto mx-auto px-4 py-1 mt-5 bg-white text-sky-600 font-semibold whitespace-normal text-center flex items-center justify-center">
+                      <DialogTitle className="w-5 h-5 text-secondary"/>
                       Start Partnership Application
                     </Button>
                   </DialogTrigger>
@@ -251,7 +199,6 @@ const Partners = () => {
           </section>
         </div>
 
-        {/* Modal */}
         <DialogContent className="sm:max-w-2xl p-6">
           <DialogHeader>
             <DialogTitle className="text-2xl font-bold text-secondary-custom">Partnership Application</DialogTitle>

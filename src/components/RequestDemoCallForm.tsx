@@ -80,16 +80,16 @@ const RequestDemoCallForm = ({ onSuccess }: RequestDemoCallFormProps) => {
         </div>
         <div>
           <label className="block text-sm font-medium text-secondary-custom mb-1">Email</label>
-          <Input type="email" name="email" placeholder="you@company.com" value={formData.email} onChange={handleChange} required />
+          <Input type="email" name="email" placeholder="yourname@gmail.com" value={formData.email} onChange={handleChange} required />
         </div>
       </div>
       <div>
         <label className="block text-sm font-medium text-secondary-custom mb-1">Phone Number</label>
-        <Input type="tel" name="phone" placeholder="+91 12345 67890" value={formData.phone} onChange={handleChange} required />
+        <Input type="tel" name="phone" placeholder="+91 98765 43210" value={formData.phone} onChange={handleChange} required />
       </div>
       <div>
         <label className="block text-sm font-medium text-secondary-custom mb-1">Your Message</label>
-        <Textarea name="message" placeholder="Tell us about your organization and how you'd like to partner." value={formData.message} onChange={handleChange} className="min-h-24" required />
+        <Textarea name="message" placeholder="Tell us about the feature you need a demo from us" value={formData.message} onChange={handleChange} className="min-h-24" required />
       </div>
 
       <Turnstile

@@ -79,7 +79,7 @@ const FeatureRequestForm = ({ onSuccess }: FeatureRequestFormProps) => {
       </div>
       <div>
         <label className="block text-sm font-medium text-secondary-custom mb-1">Your Email</label>
-        <Input type="email" name="email" placeholder="xyz@mail.com" value={formData.email} onChange={handleChange} required />
+        <Input type="email" name="email" placeholder="yourname@gmail.com" value={formData.email} onChange={handleChange} required />
       </div>
       <div>
         <label className="block text-sm font-medium text-secondary-custom mb-1">Your Feature Idea</label>

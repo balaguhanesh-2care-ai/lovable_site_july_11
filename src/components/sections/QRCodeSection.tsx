@@ -24,7 +24,7 @@ const QRCodeSection = () => {
       initial={{ x: -200, opacity: 0 }}
       animate={inView ? { x: 0, opacity: 1 } : { x: -200, opacity: 0 }}
       transition={{ duration: 0.9, ease: 'easeOut' }}
-      className="py-20 bg-primary-custom/5"
+      className="py-10 md:py-20 bg-primary-custom/5"
     >
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center justify-center md:space-x-12">
@@ -43,7 +43,7 @@ const QRCodeSection = () => {
             </p>
           </div>
           <div className="flex justify-center">
-            <div className="rounded-2xl shadow-xl border-2 border-primary-custom bg-white p-4">
+            <div className="rounded-2xl shadow-xl border-2 border-primary-custom bg-white p-4 z-10">
               <QrCode value={whatsappLink} size={200} />
             </div>
           </div>

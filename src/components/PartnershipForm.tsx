@@ -77,7 +77,7 @@ const PartnershipForm = ({ onSuccess }: PartnershipFormProps) => {
         </div>
         <div>
           <label className="block text-sm font-medium text-secondary-custom mb-1">Email</label>
-          <Input type="email" name="email" placeholder="you@company.com" value={formData.email} onChange={handleChange} required />
+          <Input type="email" name="email" placeholder="name@company.com" value={formData.email} onChange={handleChange} required />
         </div>
       </div>
       <div>
