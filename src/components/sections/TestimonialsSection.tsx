@@ -73,9 +73,10 @@ interface TestimonialColumnProps {
   testimonials: Testimonial[];
   duration?: number;
   direction?: 'up' | 'down';
+  paused?: boolean;
 }
 
-const TestimonialColumn = ({ testimonials, duration = 60, direction = 'up' }: TestimonialColumnProps) => {
+const TestimonialColumn = ({ testimonials, duration = 60, direction = 'up', paused = false }: TestimonialColumnProps) => {
   const controls = useAnimation();
   const animationDefinition: TargetAndTransition = useMemo(() => ({
     y: direction === 'up' ? ['0%', '-50%'] : ['-50%', '0%'],
@@ -89,8 +90,12 @@ const TestimonialColumn = ({ testimonials, duration = 60, direction = 'up' }: Te
   }), [direction, duration]);
 
   useEffect(() => {
-    controls.start(animationDefinition);
-  }, [controls, animationDefinition]);
+    if (paused) {
+      controls.stop();
+    } else {
+      controls.start(animationDefinition);
+    }
+  }, [controls, animationDefinition, paused]);
 
   return (
     <motion.div
@@ -103,6 +108,8 @@ const TestimonialColumn = ({ testimonials, duration = 60, direction = 'up' }: Te
     </motion.div>
   );
 };
+
+
 
 const testimonialsRight = [
   {
@@ -148,7 +155,8 @@ const marqueeReverseAnimation = `animate-[marquee-vertical-reverse_18s_linear_in
 const TestimonialsSection = () => {
   const posthog = usePostHog();
   const [isVideoInteracted, setIsVideoInteracted] = useState(false);
-
+  const [leftPaused, setLeftPaused] = useState(false);
+  const [rightPaused, setRightPaused] = useState(false);
   const handleVideoClick = () => {
     // Fire the event only on the first interaction
     if (!isVideoInteracted) {
@@ -172,9 +180,13 @@ const TestimonialsSection = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
         {/* Left Column - hidden on mobile */}
-        <div className="hidden px-3 lg:block relative h-[500px] overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)]">
-          <TestimonialColumn testimonials={testimonials} direction="up" />
-        </div>
+        <div
+  className="hidden px-3 lg:block relative h-[500px] overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)]"
+  onMouseEnter={() => setLeftPaused(true)}
+  onMouseLeave={() => setLeftPaused(false)}
+>
+  <TestimonialColumn testimonials={testimonials} direction="up" paused={leftPaused} />
+</div>
 
         {/* Center YouTube Video */}
         <div className="mt-8 lg:mt-0">
@@ -209,10 +221,14 @@ const TestimonialsSection = () => {
         </div>
 
         {/* Right Column - hidden on mobile */}
-        <div className="hidden px-3 lg:block relative h-[500px] overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)]">
-          <TestimonialColumn testimonials={[...testimonials].reverse()} direction="down" />
-        </div>
-      </div>
+        <div
+  className="hidden px-3 lg:block relative h-[500px] overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_80%,transparent)]"
+  onMouseEnter={() => setRightPaused(true)}
+  onMouseLeave={() => setRightPaused(false)}
+>
+  <TestimonialColumn testimonials={[...testimonials].reverse()} direction="down" paused={rightPaused} />
+</div>
+</div>
     </section>
   );
 };

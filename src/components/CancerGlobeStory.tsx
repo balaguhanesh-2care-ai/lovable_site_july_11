@@ -74,17 +74,18 @@ const CancerGlobeStory: React.FC = () => {
 
   return (
     <section
-      className="w-full h-[600px] relative overflow-hidden rounded-xl my-10 bg-black"
-      style={{
-        WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.7) 6%, black 12%, black 88%, rgba(0,0,0,0.7) 94%, transparent 100%)',
-        maskImage: 'linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.7) 6%, black 12%, black 88%, rgba(0,0,0,0.7) 94%, transparent 100%)'
-      }}
+      className="w-full h-[600px] relative overflow-hidden rounded-xl my-10"
+      style={{ backgroundColor: '#1A2A44' }}
+      // style={{
+      //   WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.7) 6%, black 12%, black 88%, rgba(0,0,0,0.7) 94%, transparent 100%)',
+      //   maskImage: 'linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.7) 6%, black 12%, black 88%, rgba(0,0,0,0.7) 94%, transparent 100%)'
+      // }}
     >
       {/* Left animated bullet points */}
       
       <div className="absolute inset-y-0 left-6 flex flex-col justify-center z-20 text-left">
-      <h2 className='mb-0 font-bold text-2xl font-primary-custom '>As we tried to care from continents apart, </h2>
-      <h2 className=''>these were the hurdles we could not escape. </h2>
+      <h2 className='mb-0 font-bold text-2xl text-primary-custom'>As we tried to care from continents apart, </h2>
+      <h2 className='text-primary-custom'>these were the hurdles we could not escape. </h2>
         {[
           '• Missed diagnoses from complex medical reports',
           '• Difficulty in assessing severity of situations',

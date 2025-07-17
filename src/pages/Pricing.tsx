@@ -11,6 +11,8 @@ import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import { RazorpayMonthlyButton, RazorpayYearlyButton, RazorpayPaymentButton } from "@/components/RazorpayButton";
 import { Separator } from "@/components/ui/separator";
 import { RazorpayModal } from "@/components/RazorpayModal";
+import { Shield, CheckCircle, Star, Crown, Sparkles } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const Pricing = () => {
   const posthog = usePostHog();
@@ -148,15 +150,12 @@ const Pricing = () => {
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-16 animate-fade-in">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-secondary-custom my-10">
-            Complete Health Care
+          <h1 className="text-4xl md:text-5xl font-extrabold text-secondary-custom mt-10">
+              AI-Powered Health Care
           </h1>
-          <h2 className="text-2xl md:text-3xl font-bold text-secondary-custom mb-6">
-            Maya AI Health Agent + Personal Doctor Attention
+          <h2 className="text-2xl md:text-3xl font-semibold text-secondary-custom mb-6">
+              Anytime, Anywhere. Choose your plan now.
           </h2>
-          <p className="text-sm md:text-base text-sub max-w-4xl mx-auto">
-            Doctor-supervised and AI monitoring for chronic conditions, no matter the distance
-          </p>
         </div>
 
         {/* Billing Toggle */}
@@ -185,109 +184,206 @@ const Pricing = () => {
         {/* Pricing Cards */}
         <section className="mb-16">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {/* Free Forever Plan */}
-            <Card className="relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 animate-slide-up hover:border-primary-custom">
-              <CardHeader className="text-center pb-4">
-              {/* ({getPriceDetails("free", billingPeriod).current}) */}
-                <CardTitle className="text-xl font-semibold text-secondary-custom mb-4">Free Forever </CardTitle>
-                <p className="text-sub mb-4">WhatsApp + AI Analysis</p>
-                
-                <div className="mt-4 space-y-2">
-                  <div className="text-sm font-medium text-secondary-custom">What we provide?</div>
-                  <div className="space-y-1 text-left">
-                    <div className="flex items-center space-x-2 hover:bg-gray-50 p-2 rounded transition-colors duration-200">
-                      <Check className="w-4 h-4 text-green-500 transition-transform hover:scale-110" />
-                      <span className="text-sm font-bold">Simplified Medical Report Analysis</span>
-                    </div>
-                    <div className="flex items-center space-x-2 hover:bg-gray-50 p-2 rounded transition-colors duration-200">
-                      <Check className="w-4 h-4 text-green-500 transition-transform hover:scale-110" />
-                      <span className="text-sm font-bold">Your personalised electronic medical records (storage)</span>
-                    </div>
-                    <div className="flex items-center space-x-2 hover:bg-gray-50 p-2 rounded transition-colors duration-200">
-                      <Check className="w-4 h-4 text-green-500 transition-transform hover:scale-110" />
-                      <span className="text-sm font-bold">24/7 AI health assistance in WhatsApp</span>
-                    </div>
-                  </div>
+          <div   className="
+    relative bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-gray-100
+    transition-all duration-300
+    hover:border-cyan-400
+    hover:shadow-[0_8px_32px_0_rgba(34,211,238,0.35)]
+    hover:-translate-y-2
+    group
+  ">
+            <div className="relative p-8">
+              <div className="text-center mb-6">
+                <div className="flex justify-center mb-3">
+                  <Sparkles className="h-8 w-8 text-cyan-500" />
                 </div>
-              </CardHeader>
-              
-              <CardContent className="space-y-4 flex flex-col justify-center items-center">
-  {/* ... Free features ... */}
-
-  {/* One-Time Doctor Appointment Section */}
-  <div className="w-full mt-6">
-    <div className="rounded-lg border border-primary-custom bg-primary-custom/5 p-4 flex flex-col items-center shadow-sm">
-      <div className="font-semibold text-primary-custom mb-1">Need a Doctor Now?</div>
-      <div className="text-sm text-sub mb-2">Book a one-time doctor appointment for just <span className="font-bold text-main">₹499</span>.</div>
-      <Button
-        className="w-full bg-primary-custom hover:bg-primary-custom/90 text-white transition-all duration-300 hover:scale-105"
-        onClick={() => {
-          setSelectedPlan("free");
-          setModalOpen(true);
-          handlePaymentClick('Free Forever');
-        }}
-      >
-        Pay Now
-      </Button>
-    </div>
-  </div>
-</CardContent>
-              
-            </Card>
-
-            {/* Premium Plan */}
-            <Card className="relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl hover:border-primary-custom transition-all duration-300 hover:-translate-y-2 animate-slide-up">
-              {/* Full-width ribbon badge at the top */}
-              <div className="bg-gradient-to-r from-primary-custom to-tertiary-custom text-white text-center py-3 rounded-t-xl">
-              <span className="text-sm font-semibold">Most Popular</span>
+                <h3 className="text-3xl font-bold text-gray-800 mb-2">Free Forever</h3>
+                <p className="text-cyan-600 font-medium">WhatsApp + AI Analysis</p>
               </div>
               
-              <CardHeader className="text-center pb-4">
-                <CardTitle className="text-2xl font-bold text-secondary-custom mb-4">Premium</CardTitle>
-                <div className="my-2">
-                    <span className="text-4xl font-extrabold text-secondary-custom">{getPriceDetails("premium", billingPeriod).current}</span>
-                    <span className="text-2xl text-gray-400 line-through ml-2">{getPriceDetails("premium", billingPeriod).original}</span>
-                </div>
-                <p className="text-sub text-sm mb-4">{`${getPriceDetails("premium", billingPeriod).duration} / ${getPriceDetails("premium", billingPeriod).perDay}`}</p>
-                
-                <p className="text-sub mb-4">Everything in Free Forever + Dashboard + Unlimited Doctor Consults+ Lab Tests</p>
-                
-                <div className="mt-4 space-y-2">
-                  <div className="text-sm font-medium text-secondary-custom">What we provide?</div>
-                  <div className="space-y-1 text-left">
-                    <div className="flex items-center space-x-2 hover:bg-gray-50 p-2 rounded transition-colors duration-200">
-                      <Check className="w-4 h-4 text-green-500 transition-transform hover:scale-110" />
-                      <span className="text-sm font-bold">Unlimited Doctor Consultations</span>
-                    </div>
-                    <div className="flex items-center space-x-2 hover:bg-gray-50 p-2 rounded transition-colors duration-200">
-                      <Check className="w-4 h-4 text-green-500 transition-transform hover:scale-110" />
-                      <span className="text-sm font-bold">Full Body Lab Test included worth ₹3000</span>
-                    </div>
-                    <div className="flex items-center space-x-2 hover:bg-gray-50 p-2 rounded transition-colors duration-200">
-                      <Check className="w-4 h-4 text-green-500 transition-transform hover:scale-110" />
-                      <span className="text-sm font-bold">Health Dashboard for Trends, Vitals, Alerts & Insights</span>
-                    </div>
+              <div className="mb-6">
+                <Separator className="mb-4"/>
+                <h4 className="text-lg font-semibold text-gray-800 mb-6 text-center">What we provide?</h4>
+                <div className="space-y-3">
+                  <div className="flex items-start gap-3">
+                    <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                    <span className="text-sm font-semibold">Simplified Medical Report Analysis</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                    <span className="text-sm font-semibold">Your personalised electronic medical records (storage)</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                    <span className="text-sm font-semibold">24/7 AI health assistance in WhatsApp</span>
                   </div>
                 </div>
-              </CardHeader>
-              
-              <CardContent className="space-y-4 flex justify-center items-center">
-                <div className="flex justify-center w-full">
-                  <Button
-                    className="w-full bg-gradient-to-r from-primary-custom to-tertiary-custom hover:opacity-90 text-white transition-all duration-300 hover:scale-105"
-                    onClick={() => {
-                      setSelectedPlan(billingPeriod === "monthly" ? "monthly" : "yearly");
-                      setModalOpen(true);
-                      handlePaymentClick('Premium');
-                    }}
-                  >
+              </div>
+
+              <div className="border-2 border-cyan-200 rounded-xl p-4 mb-6 bg-gradient-to-r from-cyan-50 to-blue-50">
+                <div className="text-center">
+                  <h4 className="text-cyan-700 font-semibold mb-2">Need a Doctor Now?</h4>
+                  <p className="text-gray-600 text-sm mb-3">
+                    Book a one-time doctor appointment for just <span className="font-bold text-cyan-600">₹499</span>
+                  </p>
+                  <button className="w-full bg-gradient-to-r from-cyan-500 to-primary-custom text-white py-3 rounded-lg font-medium hover:from-cyan-600 hover:to-primary-custom transition-all duration-300 hover:shadow-lg"
+                  onClick={() => {
+                    setSelectedPlan("free");
+                    setModalOpen(true);
+                    handlePaymentClick('Free Forever');
+                  }}>
                     Pay Now
-                  </Button>
+                  </button>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
+          </div>
+<div
+  className="
+    relative bg-white rounded-2xl shadow-xl border-2 border-gray-100
+    transition-all duration-300
+    hover:border-cyan-400
+    hover:shadow-[0_8px_32px_0_rgba(34,211,238,0.35)]
+    hover:-translate-y-2
+    group
+  "
+>
+  {/* Premium Badge */}
+  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-10">
+  <div
+    className={
+      `px-6 py-2 rounded-full border-2 shadow-lg transition-all duration-300
+      ${billingPeriod === 'annual'
+        ? 'bg-cyan-500 text-white border-white shadow-[0_0_24px_6px_rgba(34,211,238,0.7)]'
+        : 'bg-white text-cyan-500 border-cyan-500'
+      }`
+    }
+  >
+    <div className="flex items-center space-x-2">
+      <Star className={`w-4 h-4 ${billingPeriod === 'annual' ? 'text-white' : 'text-cyan-500'}`} />
+      <span className="text-sm font-semibold">Most Popular</span>
+    </div>
+  </div>
+</div>
+
+  {/* Main Card */}
+  <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden relative">
+    {/* Subtle background */}
+    <div className="absolute inset-0 bg-gray-50 opacity-30"></div>
+
+    <div className="relative z-10 p-8">
+      {/* Header */}
+      <div className="text-center mb-8">
+      <div className="flex justify-center mb-4">
+  <div className={`p-3 rounded-full transition-all duration-500 ${billingPeriod === 'annual' ? 'bg-cyan-500' : 'bg-white'}`}>
+    <motion.div
+      initial={false}
+      animate={
+        billingPeriod === 'annual'
+          ? { scale: 1.25, rotate: 15, filter: 'drop-shadow(0 0 16px #22d3ee)' }
+          : { scale: 1, rotate: 0, filter: 'none' }
+      }
+      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+    >
+      <Sparkles
+        className={`w-8 h-8 transition-colors duration-500 ${billingPeriod === 'annual' ? 'text-white' : 'text-cyan-500'}`}
+      />
+    </motion.div>
+  </div>
+</div>
+        
+        <h2 className="text-3xl font-bold text-gray-800 mb-6">Premium</h2>
+        
+        <div className="mb-4">
+          <span className="text-5xl font-extrabold text-gray-800 ">
+            {getPriceDetails("premium", billingPeriod).current}
+          </span>
+          <span className="text-2xl text-gray-400 line-through ml-3">
+            {getPriceDetails("premium", billingPeriod).original}
+          </span>
+        </div>
+        
+        <p className="text-cyan-600 font-medium mb-4">
+          {`${getPriceDetails("premium", billingPeriod).duration} / ${getPriceDetails("premium", billingPeriod).perDay}`}
+        </p>
+        
+        <p className="text-gray-600 text-sm mb-6">
+          Everything in Free Forever + Dashboard + Unlimited Doctor Consults+ Lab Tests
+        </p>
+      </div>
+
+      {/* Features */}
+      <div className="mb-8">
+      <Separator className="mb-4"/>
+        <h3 className="text-lg font-semibold text-gray-800 mb-6 text-center">What we provide?</h3>
+        
+        <div className="space-y-3">
+          <div className="flex items-center space-x-3">
+            <div className="flex-shrink-0">
+              <CheckCircle className="w-5 h-5 text-green-500" />
+            </div>
+            <span className="text-sm font-semibold text-gray-800">
+              Unlimited Doctor Consultations
+            </span>
           </div>
 
+          <div className="flex items-center space-x-3">
+            <div className="flex-shrink-0">
+              <CheckCircle className="w-5 h-5 text-green-500" />
+            </div>
+            <span className="text-sm font-semibold text-gray-800">
+              Full Body Lab Test included worth ₹3000
+            </span>
+          </div>
+
+          <div className="flex items-center space-x-3">
+            <div className="flex-shrink-0">
+              <CheckCircle className="w-5 h-5 text-green-500" />
+            </div>
+            <span className="text-sm font-semibold text-gray-800">
+              Health Dashboard for Trends, Vitals, Alerts & Insights
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* CTA Button */}
+      <div className="text-center">
+        <button
+          onClick={() => {
+            setSelectedPlan(billingPeriod === "monthly" ? "monthly" : "yearly");
+            setModalOpen(true);
+            handlePaymentClick('Premium');
+          }}
+          className="w-full bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden group"
+        >
+          <div className="absolute inset-0 bg-white/20 -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+          <div className="relative">
+            <span className="text-lg">Pay Now</span>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<motion.div
+          initial={{ opacity: 0, scale: 0.95, y: 30 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          whileHover={{ scale: 1.04, boxShadow: "0 8px 32px 0 rgba(0,0,0,0.18)" }}
+          className="relative mt-10 bg-gradient-to-r from-cyan-500 to-secondary-custom rounded-xl p-4 text-white overflow-hidden mx-auto max-w-xs sm:max-w-sm md:max-w-md cursor-pointer"
+        >
+          <div className="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-full -translate-y-10 translate-x-10"></div>
+          <div className="relative flex items-center justify-center gap-2">
+            <CheckCircle className="h-5 w-5" />
+            <div className="text-center">
+              <h3 className="text-lg font-bold mb-1">14-Day Money-Back Guarantee</h3>
+              <p className="text-white text-xs">Cancel anytime within 14 days for a full refund</p>
+            </div>
+          </div>
+        </motion.div>
           {/* Single Know More Section */}
           <div className="max-w-5xl mx-auto mt-8">
             <Collapsible open={knowMoreOpen} onOpenChange={setKnowMoreOpen}>
@@ -368,13 +464,9 @@ const Pricing = () => {
         </section>
 
         {/* Risk-free guarantee */}
-        <section className="mb-16">
-          <Card className="bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 hover:border-green-300 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-            <CardContent className="p-8 text-center">
-              <h3 className="text-2xl font-bold text-secondary-custom mb-4">Risk-free: Cancel anytime in the first 14 days for a full refund</h3>
-            </CardContent>
-          </Card>
-        </section>
+
+        
+      
 
         {/* Trusted by Families Testimonials */}
         <TestimonialsSection />

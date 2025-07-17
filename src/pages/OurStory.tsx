@@ -50,9 +50,15 @@ const OurStory = () => {
 
                 <div className="relative my-3">
                   {/* Top Blur */}
-                  <div className="absolute top-0 left-0 w-full h-6 bg-gradient-to-b from-[#162447] via-[#162447]/80 to-transparent rounded-t-lg pointer-events-none z-10 blur-sm" />
+                  <motion.div className="absolute top-0 left-0 w-full h-6 rounded-lg pointer-events-none" />
                   {/* Main Content */}
-                  <p className="bg-[#162447] rounded-lg border border-[#1f4068] text-white font-semibold px-3 py-2 relative z-20">
+                  <p
+                    className="relative rounded-lg text-white font-semibold px-3 py-2 z-20"
+                    style={{
+                      background: "linear-gradient(135deg, #1A2A44 80%, #23395d 100%)",
+                      backgroundColor: "#1A2A44"
+                    }}
+                  >
                     We weren’t just battling a disease; we were battling 
                     <span className="block text-xs italic mt-1">"borders, time zones, and fragmented information."</span>
                   </p>
