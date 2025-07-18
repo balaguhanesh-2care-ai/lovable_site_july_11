@@ -1,6 +1,7 @@
 
 import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin } from "lucide-react";
+import { FaInstagram, FaLinkedin, FaFacebook, FaWhatsapp } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -49,6 +50,7 @@ const Footer = () => {
                   II Stage Indiranagar Bangalore - 560038
                 </span>
               </div>
+              {/* Social Media Links with cyan blue icons and gray text */}
             </div>
           </div>
 
@@ -70,7 +72,49 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-
+        {/* Centered Social Media Links Section */}
+        <div className="flex flex-wrap justify-center items-center gap-x-10 gap-y-4 mt-8 w-full">
+          <a
+            href="https://instagram.com/2care.ai"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+            className="flex items-center space-x-2 group text-gray-300 hover:text-primary-custom transition-colors"
+          >
+            <FaInstagram className="text-xl text-primary-custom" />
+            <span className="group-hover:text-primary-custom transition-colors">Instagram</span>
+          </a>
+          <a
+            href="https://www.linkedin.com/company/2careai"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            className="flex items-center space-x-2 group text-gray-300 hover:text-primary-custom transition-colors"
+          >
+            <FaLinkedin className="text-xl text-primary-custom" />
+            <span className="group-hover:text-primary-custom transition-colors">LinkedIn</span>
+          </a>
+          <a
+            href="https://www.facebook.com/people/2Careai/61577776422384/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook"
+            className="flex items-center space-x-2 group text-gray-300 hover:text-primary-custom transition-colors"
+          >
+            <FaFacebook className="text-xl text-primary-custom" />
+            <span className="group-hover:text-primary-custom transition-colors">Facebook</span>
+          </a>
+          <a
+            href="https://www.linkedin.com/company/2careai"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="WhatsApp Community"
+            className="flex items-center space-x-2 group text-gray-300 hover:text-primary-custom transition-colors"
+          >
+            <FaWhatsapp className="text-xl text-primary-custom" />
+            <span className="whitespace-nowrap group-hover:text-primary-custom transition-colors">WhatsApp Community</span>
+          </a>
+        </div>
         <div className="border-t border-gray-700 mt-8 pt-8 text-center">
           <p className="text-gray-300">
             © 2024 2Care.ai • All Rights Reserved • Billion AGI Private Limited
