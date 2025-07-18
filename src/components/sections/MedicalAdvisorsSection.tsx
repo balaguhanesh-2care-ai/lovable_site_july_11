@@ -24,13 +24,18 @@ const MedicalAdvisorsSection = () => {
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                 />
               </div>
-              <h3 className="text-xl font-bold text-secondary-custom mb-2">
+              <a
+                href="https://www.cancercenter.com/physician-directory/nilesh-d-mehta"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-2xl font-bold text-secondary-custom mb-2 hover:underline focus:underline inline-block"
+              >
                 Dr. Nilesh Mehta
-              </h3>
-              <p className="text-primary-custom font-semibold mb-2">
+              </a>
+              <p className="text-primary-custom text-xl font-semibold mb-2">
                 Phoenix Cancer Center
               </p>
-              <p className="text-sub mb-4">Medical Oncologist</p>
+              <p className="text-sub text-xl mb-4">Medical Oncologist</p>
               <p className="text-main">
                 World-class medical expertise guiding your family's health
                 decisions with safe, trusted care
@@ -48,13 +53,18 @@ const MedicalAdvisorsSection = () => {
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                 />
               </div>
-              <h3 className="text-xl font-bold text-secondary-custom mb-2">
+              <a
+                href="https://www.aurorahealthcare.org/doctors/vivek-arora-1194712638?address_id=57584"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-2xl font-bold text-secondary-custom mb-2 hover:underline focus:underline inline-block"
+              >
                 Dr. Vivek Arora
-              </h3>
-              <p className="text-primary-custom font-semibold mb-2">
+              </a>
+              <p className="text-primary-custom text-xl font-semibold mb-2">
                 Aurora Health Care
               </p>
-              <p className="text-sub mb-4">Internal Medicine</p>
+              <p className="text-sub text-xl mb-4">Internal Medicine</p>
               <p className="text-main">
                 Guiding evidence-based management of hypertension and diabetes
                 to deliver effective patient care

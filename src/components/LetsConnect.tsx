@@ -215,20 +215,6 @@ const LetsConnect = () => {
 
                   <Card className="feature-card">
                     <CardContent className="p-6 flex items-center space-x-4">
-                      <div className="w-12 h-12 bg-tertiary-custom rounded-full flex items-center justify-center">
-                        <Mail className="w-6 h-6 text-white" />
-                      </div>
-                      <a href="mailto:support@2care.ai" className="block">
-                      <div className="cursor-pointer">
-                        <h4 className="font-semibold text-secondary-custom">Email Support</h4>
-                        <p className="text-primary-custom font-medium">support@2care.ai</p>
-                      </div>
-                    </a>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="feature-card">
-                    <CardContent className="p-6 flex items-center space-x-4">
                       <div className="w-12 h-12 bg-secondary-custom rounded-full flex items-center justify-center">
                         <FaWhatsapp className="w-6 h-6 text-white" />
                       </div>
@@ -244,6 +230,20 @@ const LetsConnect = () => {
                           </div>
                         </a>
 
+                    </CardContent>
+                  </Card>
+                  
+                  <Card className="feature-card">
+                    <CardContent className="p-6 flex items-center space-x-4">
+                      <div className="w-12 h-12 bg-tertiary-custom rounded-full flex items-center justify-center">
+                        <Mail className="w-6 h-6 text-white" />
+                      </div>
+                      <a href="mailto:support@2care.ai" className="block">
+                      <div className="cursor-pointer">
+                        <h4 className="font-semibold text-secondary-custom">Email Support</h4>
+                        <p className="text-primary-custom font-medium">support@2care.ai</p>
+                      </div>
+                    </a>
                     </CardContent>
                   </Card>
                 </div>
