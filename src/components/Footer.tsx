@@ -105,7 +105,7 @@ const Footer = () => {
             <span className="group-hover:text-primary-custom transition-colors">Facebook</span>
           </a>
           <a
-            href="https://www.linkedin.com/company/2careai"
+            href="https://api.whatsapp.com/send/?phone=916364872188&text=Hi&type=phone_number&app_absent=0"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="WhatsApp Community"
@@ -117,7 +117,7 @@ const Footer = () => {
         </div>
         <div className="border-t border-gray-700 mt-8 pt-8 text-center">
           <p className="text-gray-300">
-            © 2024 2Care.ai • All Rights Reserved • Billion AGI Private Limited
+            © 2025 2Care.ai • All Rights Reserved • Billion AGI Private Limited
           </p>
         </div>
       </div>

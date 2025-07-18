@@ -5,10 +5,10 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-import { Check, X, ChevronDown, ChevronUp } from "lucide-react";
+import { Check, XCircle, ChevronDown, ChevronUp } from "lucide-react";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import TestimonialsSection from "@/components/sections/TestimonialsSection";
-import { RazorpayMonthlyButton, RazorpayYearlyButton, RazorpayPaymentButton } from "@/components/RazorpayButton";
+import RazorpayEmbed from "@/components/RazorpayEmbed";
 import { Separator } from "@/components/ui/separator";
 import { RazorpayModal } from "@/components/RazorpayModal";
 import { Shield, CheckCircle, Star, Crown, Sparkles } from 'lucide-react';
@@ -217,6 +217,18 @@ const Pricing = () => {
                     <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
                     <span className="text-sm font-semibold">24/7 AI health assistance in WhatsApp</span>
                   </div>
+                  <div className="flex items-start gap-3">
+                    <XCircle className="h-5 w-5 text-red-500 mt-0.5 flex-shrink-0" />
+                    <span className="text-sm font-semibold">Doctor Consultation</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <XCircle className="h-5 w-5 text-red-500 mt-0.5 flex-shrink-0" />
+                    <span className="text-sm font-semibold">Full Body Lab Test</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <XCircle className="h-5 w-5 text-red-500 mt-0.5 flex-shrink-0" />
+                    <span className="text-sm font-semibold">Health Dashboard for Trends, Vitals, Alerts & Insights</span>
+                  </div>
                 </div>
               </div>
 
@@ -344,6 +356,34 @@ const Pricing = () => {
               Health Dashboard for Trends, Vitals, Alerts & Insights
             </span>
           </div>
+
+          <div className="flex items-center space-x-3">
+            <div className="flex-shrink-0">
+              <CheckCircle className="w-5 h-5 text-green-500" />
+            </div>
+            <span className="text-sm font-semibold text-gray-800">
+            Emergency virtual Support
+            </span>
+          </div>
+
+          <div className="flex items-center space-x-3">
+            <div className="flex-shrink-0">
+              <CheckCircle className="w-5 h-5 text-green-500" />
+            </div>
+            <span className="text-sm font-semibold text-gray-800">
+            Schedule External Doctor Appointments & Lab Tests
+            </span>
+          </div>
+
+          <div className="flex items-center space-x-3">
+            <div className="flex-shrink-0">
+              <CheckCircle className="w-5 h-5 text-green-500" />
+            </div>
+            <span className="text-sm font-semibold text-gray-800">
+            Weekly Health Summary
+            </span>
+          </div>
+
         </div>
       </div>
 
@@ -427,7 +467,7 @@ const Pricing = () => {
                                   </div>
                                 ) : (
                                   <div className="flex flex-col items-center space-y-1">
-                                    <X className="w-4 h-4 text-red-500 transition-transform hover:scale-110" />
+                                    <XCircle className="w-4 h-4 text-red-500 transition-transform hover:scale-110" />
                                     {feature.free.details && (
                                       <span className="text-xs text-sub">{feature.free.details}</span>
                                     )}
@@ -444,7 +484,7 @@ const Pricing = () => {
                                   </div>
                                 ) : (
                                   <div className="flex flex-col items-center space-y-1">
-                                    <X className="w-4 h-4 text-red-500 transition-transform hover:scale-110" />
+                                    <XCircle className="w-4 h-4 text-red-500 transition-transform hover:scale-110" />
                                     {feature.premium.details && (
                                       <span className="text-xs text-sub">{feature.premium.details}</span>
                                     )}
@@ -478,7 +518,7 @@ const Pricing = () => {
               <h2 className="text-3xl font-bold mb-4">Stay connected and up-to-date with your parents' healthcare today.</h2>
               <h3 className="text-xl mb-4">Have Questions?</h3>
               <p className="text-lg mb-6">Contact our support team.</p>
-              <div className="text-2xl font-bold hover:scale-110 transition-transform duration-300 cursor-pointer">+91 78999 53477</div>
+              <div className="text-2xl font-bold hover:scale-110 transition-transform duration-300 cursor-pointer">+91 63648 72188</div>
             </CardContent>
           </Card>
         </section>

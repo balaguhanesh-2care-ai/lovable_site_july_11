@@ -85,8 +85,8 @@ const CircularHealthFeatures = () => {
   }, []);
 
   return (
-    <section className="py-8 lg:py-16 flex items-center relative overflow-hidden bg-gray-50">
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-white to-orange-50/50"></div>
+    <section className="py-8 lg:py-16 flex items-center relative mt-10">
+      
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-20">

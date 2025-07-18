@@ -172,7 +172,7 @@ When our own family struggled to navigate fragmented records, missed diagnoses, 
                 poster="/blue-gradient.jpg"
                 style={{ pointerEvents: 'none' }}
               >
-                <source src="/blue-gradient.mp4" type="video/mp4" />
+                <source src="videos/blue-gradient.mp4" type="video/mp4" />
               </video>
               <div className="absolute inset-0 z-0" style={{ background: 'rgba(20,30,50,0.45)' }} />
               <Card className="bg-transparent text-white relative z-10 shadow-none">

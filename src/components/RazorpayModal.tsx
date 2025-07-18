@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import {
   Dialog,
   DialogContent,
@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import RazorpayEmbed from "@/components/RazorpayEmbed";
 
 interface RazorpayModalProps {
   open: boolean;
@@ -39,51 +40,12 @@ const PLAN_DETAILS = {
 };
 
 const RAZORPAY_BUTTON_IDS = {
-  monthly: "pl_QticDJhCCSYmai",
-  yearly: "pl_Qtideo8ZUygoYM",
-  free: "pl_QrhRqK9f7BNU4h"
+  monthly: "pl_QtlVoG1Mok8SDy",
+  yearly: "pl_QtlYcHqTWghLIW",
+  free: "pl_QrhHVafuNAbQLC"
 };
 
 export const RazorpayModal: React.FC<RazorpayModalProps> = ({ open, onClose, planType }) => {
-  const formRef = useRef<HTMLFormElement>(null);
-
-  useEffect(() => {
-    if (!open) return;
-    // Remove any previous Razorpay scripts
-    document.querySelectorAll('script[id^="razorpay-script-"]').forEach(s => s.remove());
-    if (formRef.current) formRef.current.innerHTML = '';
-    // Delay script injection to ensure modal and form are rendered
-    setTimeout(() => {
-      if (!formRef.current) {
-        console.log("[RazorpayModal] formRef.current is null, cannot append script");
-        return;
-      }
-      const script = document.createElement("script");
-      script.async = true;
-      let scriptId = '';
-      if (planType === "monthly") {
-        scriptId = "razorpay-script-monthly";
-        script.id = scriptId;
-        script.src = "https://cdn.razorpay.com/static/widget/subscription-button.js";
-        script.setAttribute("data-subscription_button_id", RAZORPAY_BUTTON_IDS.monthly);
-        script.setAttribute("data-button_theme", "rzp-outline-standard");
-      } else if (planType === "yearly") {
-        scriptId = "razorpay-script-yearly";
-        script.id = scriptId;
-        script.src = "https://cdn.razorpay.com/static/widget/subscription-button.js";
-        script.setAttribute("data-subscription_button_id", RAZORPAY_BUTTON_IDS.yearly);
-        script.setAttribute("data-button_theme", "rzp-outline-standard");
-      } else {
-        scriptId = "razorpay-script-free";
-        script.id = scriptId;
-        script.src = "https://checkout.razorpay.com/v1/payment-button.js";
-        script.setAttribute("data-payment_button_id", RAZORPAY_BUTTON_IDS.free);
-      }
-      formRef.current.appendChild(script);
-      console.log(`[RazorpayModal] Appended script for planType: ${planType}, scriptId: ${scriptId}`);
-    }, 0);
-  }, [open, planType]);
-
   const details = PLAN_DETAILS[planType];
 
   return (
@@ -102,7 +64,6 @@ export const RazorpayModal: React.FC<RazorpayModalProps> = ({ open, onClose, pla
         {/* --- BEGIN: Special Info for ₹499 Doctor Appointment --- */}
         {planType === "free" && (
           <div className="mb-4 text-left bg-cyan-100 rounded-lg px-6 pt-6 border border-cyan-100">
-            {/* <h2 className="text-lg font-bold mb-2 text-center text-cyan-700">Talk to a 2care.ai Doctor — Only ₹499</h2> */}
             <p className="mb-2 text-center text-cyan-900">Get expert medical advice without the wait. Book a private consultation with a certified 2care.ai doctor from the comfort of your home.</p>
             <Separator className="my-3" style={{ backgroundColor: "black" }} />
             <ul className="pl-2 mb-2 text-sm text-cyan-900 font-bold space-y-2">
@@ -135,9 +96,40 @@ export const RazorpayModal: React.FC<RazorpayModalProps> = ({ open, onClose, pla
           </div>
         )}
         {/* --- END: Special Info for ₹499 Doctor Appointment --- */}
-        <div className="flex flex-col items-center gap-4">
-          <form ref={formRef}></form>
-        </div>
+        {/* Razorpay Payment Button for Each Plan */}
+        {planType === "free" && (
+          <div className="w-full flex justify-center mt-6">
+            <RazorpayEmbed
+              src="https://checkout.razorpay.com/v1/payment-button.js"
+              scriptProps={{ "data-payment_button_id": RAZORPAY_BUTTON_IDS.free }}
+              className="w-full flex justify-center"
+            />
+          </div>
+        )}
+        {planType === "monthly" && (
+          <div className="w-full flex justify-center mt-6">
+            <RazorpayEmbed
+              src="https://cdn.razorpay.com/static/widget/subscription-button.js"
+              scriptProps={{
+                "data-subscription_button_id": RAZORPAY_BUTTON_IDS.monthly,
+                "data-button_theme": "rzp-outline-standard"
+              }}
+              className="w-full flex justify-center"
+            />
+          </div>
+        )}
+        {planType === "yearly" && (
+          <div className="w-full flex justify-center mt-6">
+            <RazorpayEmbed
+              src="https://cdn.razorpay.com/static/widget/subscription-button.js"
+              scriptProps={{
+                "data-subscription_button_id": RAZORPAY_BUTTON_IDS.yearly,
+                "data-button_theme": "rzp-outline-standard"
+              }}
+              className="w-full flex justify-center"
+            />
+          </div>
+        )}
         <DialogFooter>
           <DialogClose asChild>
             <Button variant="outline">Cancel</Button>

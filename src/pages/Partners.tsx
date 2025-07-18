@@ -12,6 +12,7 @@ import { Autoplay, EffectCoverflow } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/effect-coverflow";
+
 import clsx from "clsx";
 
 const Partners = () => {
@@ -24,17 +25,33 @@ const Partners = () => {
 
   const partnershipSteps = [
     {
-      icon: <Users className="w-12 h-12 text-primary-custom" />,
+      icon: <Users className="w-12 h-12 text-primary-custom" />, 
       title: "Reach Out",
       description: "Fill out our simple partnership inquiry form with your organization's details. Our team will contact you within 24 hours to discuss potential collaboration."
     },
     {
-      icon: <Zap className="w-12 h-12 text-primary-custom" />,
+      icon: <Zap className="w-12 h-12 text-primary-custom" />, 
       title: "Connect",
       description: "Schedule a personalized demo where we'll show you how 2care.ai works and discuss how we can customize our platform to meet your specific needs."
     },
     {
-      icon: <TrendingUp className="w-12 h-12 text-primary-custom" />,
+      icon: <TrendingUp className="w-12 h-12 text-primary-custom" />, 
+      title: "Grow",
+      description: "After agreeing on partnership terms, we'll help you integrate our platform into your workflow, train your staff, and start connecting you with families who need your services."
+    },
+    // Duplicates
+    {
+      icon: <Users className="w-12 h-12 text-primary-custom" />, 
+      title: "Reach Out",
+      description: "Fill out our simple partnership inquiry form with your organization's details. Our team will contact you within 24 hours to discuss potential collaboration."
+    },
+    {
+      icon: <Zap className="w-12 h-12 text-primary-custom" />, 
+      title: "Connect",
+      description: "Schedule a personalized demo where we'll show you how 2care.ai works and discuss how we can customize our platform to meet your specific needs."
+    },
+    {
+      icon: <TrendingUp className="w-12 h-12 text-primary-custom" />, 
       title: "Grow",
       description: "After agreeing on partnership terms, we'll help you integrate our platform into your workflow, train your staff, and start connecting you with families who need your services."
     }
@@ -42,17 +59,33 @@ const Partners = () => {
 
   const whyPartnerFeatures = [
     {
-      icon: <Users className="w-12 h-12 text-primary-custom" />,
+      icon: <Users className="w-12 h-12 text-primary-custom" />, 
       title: "Reach Out",
       description: "Connect with an untapped market of NRI families seeking quality care for their parents"
     },
     {
-      icon: <Zap className="w-12 h-12 text-primary-custom" />,
+      icon: <Zap className="w-12 h-12 text-primary-custom" />, 
       title: "World Class Tech Infrastructure",
       description: "Offer technology-enabled care coordination powered by AI as a competitive advantage"
     },
     {
-      icon: <Heart className="w-12 h-12 text-primary-custom" />,
+      icon: <Heart className="w-12 h-12 text-primary-custom" />, 
+      title: "Continuity of Care",
+      description: "Seamless transition for elderly patients between hospital and home care"
+    },
+    // Duplicates
+    {
+      icon: <Users className="w-12 h-12 text-primary-custom" />, 
+      title: "Reach Out",
+      description: "Connect with an untapped market of NRI families seeking quality care for their parents"
+    },
+    {
+      icon: <Zap className="w-12 h-12 text-primary-custom" />, 
+      title: "World Class Tech Infrastructure",
+      description: "Offer technology-enabled care coordination powered by AI as a competitive advantage"
+    },
+    {
+      icon: <Heart className="w-12 h-12 text-primary-custom" />, 
       title: "Continuity of Care",
       description: "Seamless transition for elderly patients between hospital and home care"
     }
@@ -60,17 +93,33 @@ const Partners = () => {
 
   const offeringsFeatures = [
     {
-      icon: <Users className="w-12 h-12 text-primary-custom" />,
+      icon: <Users className="w-12 h-12 text-primary-custom" />, 
       title: "Get More Quality Customers",
       description: "Access a growing network of families seeking trusted healthcare providers"
     },
     {
-      icon: <IndianRupee className="w-12 h-12 text-primary-custom" />,
+      icon: <IndianRupee className="w-12 h-12 text-primary-custom" />, 
       title: "Direct Revenue Impact",
       description: "Increase your revenue through our referral system and expanded client base"
     },
     {
-      icon: <Settings className="w-12 h-12 text-primary-custom" />,
+      icon: <Settings className="w-12 h-12 text-primary-custom" />, 
+      title: "Have AI Tech Layer to Your Services",
+      description: "Enhance your existing services with cutting-edge AI technology"
+    },
+    // Duplicates
+    {
+      icon: <Users className="w-12 h-12 text-primary-custom" />, 
+      title: "Get More Quality Customers",
+      description: "Access a growing network of families seeking trusted healthcare providers"
+    },
+    {
+      icon: <IndianRupee className="w-12 h-12 text-primary-custom" />, 
+      title: "Direct Revenue Impact",
+      description: "Increase your revenue through our referral system and expanded client base"
+    },
+    {
+      icon: <Settings className="w-12 h-12 text-primary-custom" />, 
       title: "Have AI Tech Layer to Your Services",
       description: "Enhance your existing services with cutting-edge AI technology"
     }
@@ -119,49 +168,38 @@ const Partners = () => {
                 modules={[Autoplay, EffectCoverflow]}
                 effect="coverflow"
                 coverflowEffect={{
-                  rotate: 50,
-                  stretch: 0,
-                  depth: 200,
+                  rotate: 30,        // reduce for less dramatic tilt
+                  stretch: 0,      // reduce or negative to tighten spacing
+                  depth: 100,        // reduce depth
                   modifier: 1,
-                  slideShadows: false,
-                  scale: 0.85
+                  slideShadows: false
                 }}
-                spaceBetween={-60}
+                spaceBetween={30}  // negative = slides overlap more
                 loop={true}
-                autoplay={{ delay: 2000, disableOnInteraction: false }}
+                autoplay={{ delay: 500, disableOnInteraction: false }}
                 speed={900}
-                slidesPerView={1}
-                slidesPerGroup={1}
-                allowTouchMove={false}
+                slidesPerView={3}
                 centeredSlides={true}
+                className="w-full max-w-[1100px] mx-auto"
                 breakpoints={{
-                  0: { slidesPerView: 1, slidesPerGroup: 1 },
-                  640: { slidesPerView: 2, slidesPerGroup: 1 },
-                  1024: { slidesPerView: 3, slidesPerGroup: 1 },
+                  0: { slidesPerView: 1, spaceBetween: 16 },
+                  640: { slidesPerView: 2, spaceBetween: 20 },
+                  1024: { slidesPerView: 3, spaceBetween: 30 },
                 }}
-                className="w-full max-w-[1200px] mx-auto"
               >
+
+
                 {section.data.map((item, idx) => (
                   <SwiperSlide key={idx}>
-                    {({ isActive, isNext, isPrev }) => (
-                      <Card
-                        className={clsx(
-                          "w-full max-w-[300px] border-2 border-light-outline transition-transform duration-300 bg-white shadow-xl",
-                          {
-                            "opacity-100 scale-100 z-30": isActive,
-                            "opacity-80 scale-95 z-20": isNext || isPrev,
-                            "opacity-60 scale-90 z-0": !isActive && !isNext && !isPrev,
-                          }
-                        )}
-                      >
-                        <CardContent className="flex flex-col items-center justify-center h-full p-8 text-center">
-                          <div className="flex justify-center mb-6">{item.icon}</div>
-                          <h3 className="text-xl font-semibold text-secondary-custom mb-4">{item.title}</h3>
-                          <p className="text-gray-600">{item.description}</p>
-                        </CardContent>
-                      </Card>
-                    )}
+                    <Card className="w-full max-w-xs sm:max-w-sm md:max-w-md bg-white border-2 border-light-outline shadow-xl">
+                      <CardContent className="flex flex-col items-center justify-center h-full p-4 sm:p-6 md:p-8 text-center">
+                        <div className="flex justify-center mb-4 sm:mb-6">{item.icon}</div>
+                        <h3 className="text-base sm:text-lg md:text-xl font-semibold text-secondary-custom mb-2 sm:mb-4">{item.title}</h3>
+                        <p className="text-xs sm:text-sm md:text-base text-gray-600">{item.description}</p>
+                      </CardContent>
+                    </Card>
                   </SwiperSlide>
+
                 ))}
               </Swiper>
             </section>
@@ -178,7 +216,7 @@ const Partners = () => {
                 poster="/blue-gradient.jpg"
                 style={{ pointerEvents: 'none' }}
               >
-                <source src="/blue-gradient.mp4" type="video/mp4" />
+                <source src="videos/blue-gradient.mp4" type="video/mp4" />
               </video>
               <div className="absolute inset-0 z-0" style={{ background: 'rgba(20,30,50,0.45)' }} />
               <Card className="bg-transparent text-white relative z-10 shadow-none">
@@ -188,8 +226,7 @@ const Partners = () => {
                     Join our growing network of healthcare partners and make a difference in families' lives
                   </p>
                   <DialogTrigger asChild>
-                  <Button className="w-full sm:w-auto mx-auto px-4 py-1 mt-5 bg-white text-sky-600 font-semibold whitespace-normal text-center flex items-center justify-center">
-                      <DialogTitle className="w-5 h-5 text-secondary"/>
+                  <Button className="bg-primary-custom hover:bg-primary-custom/90 text-white px-8 py-3 text-lg">
                       Start Partnership Application
                     </Button>
                   </DialogTrigger>
