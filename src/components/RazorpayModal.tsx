@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import {
   Dialog,
   DialogContent,
@@ -39,12 +39,6 @@ const PLAN_DETAILS = {
   }
 };
 
-const RAZORPAY_BUTTON_IDS = {
-  monthly: "pl_QtlVoG1Mok8SDy",
-  yearly: "pl_QtlYcHqTWghLIW",
-  free: "pl_QrhHVafuNAbQLC"
-};
-
 export const RazorpayModal: React.FC<RazorpayModalProps> = ({ open, onClose, planType }) => {
   const details = PLAN_DETAILS[planType];
 
@@ -67,13 +61,7 @@ export const RazorpayModal: React.FC<RazorpayModalProps> = ({ open, onClose, pla
             <p className="mb-2 text-center text-cyan-900">Get expert medical advice without the wait. Book a private consultation with a certified 2care.ai doctor from the comfort of your home.</p>
             <Separator className="my-3" style={{ backgroundColor: "black" }} />
             <ul className="pl-2 mb-2 text-sm text-cyan-900 font-bold space-y-2">
-              {[
-                "One-on-one video consult (15–20 minutes)",
-                "Share your medical reports in advance",
-                "Get advice on medications, treatment options, and next steps",
-                "Ask anything — symptoms, lab results, diet, second opinion",
-                "Summary and recommendations sent to your WhatsApp"
-              ].map((text, idx) => (
+              {["One-on-one video consult (15–20 minutes)", "Share your medical reports in advance", "Get advice on medications, treatment options, and next steps", "Ask anything — symptoms, lab results, diet, second opinion", "Summary and recommendations sent to your WhatsApp"].map((text, idx) => (
                 <li key={idx} className="flex items-start gap-2">
                   <span className="mt-0.5 text-cyan-600 font-semibold">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-check-circle w-5 h-5">
@@ -101,7 +89,7 @@ export const RazorpayModal: React.FC<RazorpayModalProps> = ({ open, onClose, pla
           <div className="w-full flex justify-center mt-6">
             <RazorpayEmbed
               src="https://checkout.razorpay.com/v1/payment-button.js"
-              scriptProps={{ "data-payment_button_id": RAZORPAY_BUTTON_IDS.free }}
+              scriptProps={{ "data-payment_button_id": "pl_QrhHVafuNAbQLC" }}
               className="w-full flex justify-center"
             />
           </div>
@@ -111,7 +99,7 @@ export const RazorpayModal: React.FC<RazorpayModalProps> = ({ open, onClose, pla
             <RazorpayEmbed
               src="https://cdn.razorpay.com/static/widget/subscription-button.js"
               scriptProps={{
-                "data-subscription_button_id": RAZORPAY_BUTTON_IDS.monthly,
+                "data-subscription_button_id": "pl_QtlVoG1Mok8SDy",
                 "data-button_theme": "rzp-outline-standard"
               }}
               className="w-full flex justify-center"
@@ -123,7 +111,7 @@ export const RazorpayModal: React.FC<RazorpayModalProps> = ({ open, onClose, pla
             <RazorpayEmbed
               src="https://cdn.razorpay.com/static/widget/subscription-button.js"
               scriptProps={{
-                "data-subscription_button_id": RAZORPAY_BUTTON_IDS.yearly,
+                "data-subscription_button_id": "pl_QtlYcHqTWghLIW",
                 "data-button_theme": "rzp-outline-standard"
               }}
               className="w-full flex justify-center"

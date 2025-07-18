@@ -116,12 +116,10 @@ const OurStory = () => {
         Losing our father was an incredibly difficult experience —
         one filled with <span className="font-semibold">questions</span> and <span className=" font-semibold">regrets</span>.
       </p>
-      <ul className="list-disc space-y-1 mx-auto flex flex-col items-center justify-cente mb-5">
-        <div className="">
-          <li><strong>What if</strong> we had recognized the symptoms earlier?</li>
-          <li><strong>What if</strong> we had real-time vitals from afar?</li>
-          <li><strong>What if</strong> we had understood those medical reports better?</li>
-        </div>
+      <ul className="list-disc space-y-2 mx-auto max-w-xs sm:max-w-md md:max-w-lg px-4 text-base text-center md:text-left mb-5">
+        <li><strong>What if</strong> we had recognized the symptoms earlier?</li>
+        <li><strong>What if</strong> we had real-time vitals from afar?</li>
+        <li><strong>What if</strong> we had understood those medical reports better?</li>
       </ul>
     </motion.div>
 

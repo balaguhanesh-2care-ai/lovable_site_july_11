@@ -389,20 +389,20 @@ const Pricing = () => {
 
       {/* CTA Button */}
       <div className="text-center">
-        <button
-          onClick={() => {
-            setSelectedPlan(billingPeriod === "monthly" ? "monthly" : "yearly");
-            setModalOpen(true);
-            handlePaymentClick('Premium');
-          }}
-          className="w-full bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden group"
-        >
-          <div className="absolute inset-0 bg-white/20 -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-          <div className="relative">
-            <span className="text-lg">Pay Now</span>
-          </div>
-        </button>
-      </div>
+  <button
+    onClick={() => {
+      setSelectedPlan(billingPeriod === "monthly" ? "monthly" : "yearly");
+      setModalOpen(true);
+      handlePaymentClick('Premium');
+    }}
+    className="w-full bg-cyan-500 hover:bg-cyan-600 text-white font-semibold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden group"
+  >
+    <div className="absolute inset-0 bg-white/20 -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+    <div className="relative">
+      <span className="text-lg">Pay Now</span>
+    </div>
+  </button>
+</div>
     </div>
   </div>
 </div>
@@ -524,8 +524,8 @@ const Pricing = () => {
         </section>
       </div>
       {modalOpen && (
-        <RazorpayModal open={modalOpen} onClose={() => setModalOpen(false)} planType={selectedPlan} />
-      )}
+  <RazorpayModal open={modalOpen} onClose={() => setModalOpen(false)} planType={selectedPlan} />
+)}
     </div>
   );
 };
