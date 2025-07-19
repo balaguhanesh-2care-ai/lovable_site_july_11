@@ -518,7 +518,7 @@ const Pricing = () => {
               <h2 className="text-3xl font-bold mb-4">Stay connected and up-to-date with your parents' healthcare today.</h2>
               <h3 className="text-xl mb-4">Have Questions?</h3>
               <p className="text-lg mb-6">Contact our support team.</p>
-              <div className="text-2xl font-bold hover:scale-110 transition-transform duration-300 cursor-pointer">+91 63648 72188</div>
+              <div className="text-2xl font-bold hover:scale-110 transition-transform duration-300 cursor-pointer">+91 6364872188</div>
             </CardContent>
           </Card>
         </section>
